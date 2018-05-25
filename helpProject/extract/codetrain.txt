@@ -1,0 +1,4 @@
+F:\codingSpace\helpProject\extract\a.wav F:\codingSpace\helpProject\extract\a.mfc
+F:\codingSpace\helpProject\extract\b.wav F:\codingSpace\helpProject\extract\b.mfc
+F:\codingSpace\helpProject\extract\testB\c.wav F:\codingSpace\helpProject\extract\testB\c.mfc
+F:\codingSpace\helpProject\extract\testB\testC\b.wav F:\codingSpace\helpProject\extract\testB\testC\b.mfc
