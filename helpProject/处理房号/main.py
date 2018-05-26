@@ -27,3 +27,15 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# 最常用的配置。WPA-PSK 加密方式。
+network={
+ssid="TP-LINK_0A4A"
+psk="527527527"
+priority=5
+}
+ 
+network={
+ssid="lyreal666"
+priority=4
+}
