@@ -1,0 +1,50 @@
+{
+  "manifest_version": 2,
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "简单的Chrome扩展demo",
+  "icons":
+  {
+    "16": "imgs/green_mushroom.png",
+    "48": "imgs/human_skeleton.png",
+    "128": "imgs/green_mushroom.png"
+  },
+  "browser_action":
+  {
+    "default_icon": "imgs/green_mushroom.png",
+    "default_title": "这是一个示例Chrome插件",
+    "default_popup": "html/popup.html"
+  },
+  "background":
+  {
+    "scripts": ["js/jquery.js", "scripts/background.js"]
+  },
+  "content_scripts":
+  [
+    {
+      "matches": ["http://219.229.251.2/srun_portal_pc_xs.php?ac_id=1&ip=*"],
+      "js": ["js/jquery.js", "js/popper.js", "js/bootstrap.js", "js/base64.js","scripts/index.js"],
+      "css": ["css/bootstrap.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions":
+  [
+    "contextMenus",
+    "tabs",
+    "notifications",
+    "webRequest",
+    "webRequestBlocking",
+    "storage",
+    "*://baike.baidu.com/*"
+  ],
+  "web_accessible_resources": ["js/inject.js"],
+  "homepage_url": "http://120.78.173.232:8081/",
+  "options_page": "html/options.html",
+  "options_ui":
+  {
+    "page": "html/options.html",
+    "chrome_style": true
+  },
+  "omnibox": { "keyword" : "go" }
+}

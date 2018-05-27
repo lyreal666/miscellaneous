@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>browser_action</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/popup.css">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/popper.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/base64.js"></script>
+    <script src="../scripts/jxnuWifi/popup.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h3 id="title">填写登入信息</h3>
+        <form>
+            <div>
+                <label for="account">用户名:</label>
+                <input id="account" type="text">
+            </div>
+            <div>
+                <label for="passwd">密码:</label>
+                <input id="passwd" type="password">
+            </div>
+            <div>
+                <label for="domain"></label>
+                <select id="domain">
+                    <option value="@cmcc">移动</option>
+                    <option value="@cucc">联通</option>
+                </select>
+            </div>
+            <div>
+                <label for="isSave">保存密码</label>
+                <input id="isSave" type="checkbox" checked>
+            </div>
+            <div>
+                <label for="isNotice">连接后通知</label>
+                <input id="isNotice" type="checkbox" checked>
+            </div>
+            <div>
+                <label for="autoClose">自动关闭认证网页</label>
+                <input id="autoClose" type="checkbox" checked>
+            </div>
+            <div>
+                <button type="reset">重置</button>
+                <button id="submit" type="submit">确定</button>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+"name": "收益率计算",
+"version": "0.0.1",
+"manifest_version": 2,
+// 简单描述
+"description": "累加优惠券后计算最终实际收益率",
+"icons": {
+"16": "images/icon16.png"
+},
+// 浏览器小图表部分
+"browser_action": {
+"default_title": "收益率计算",
+"default_icon": "images/icon16.png",
+"default_popup": "html/calc.html"
+},
+// 引入脚本，content script 是运行在一个被称为isolated world 的运行环境里，
+// 和页面上的脚本互不干扰，因为不在一个运行环境里，所以也无法调用页面上脚本定义的方法了
+"content_scripts": [
+{
+"js": ["scripts/include.js"],
+// 满足什么条件下使用该脚本
+"matches": [
+//"http://*/*",
+//"https://*/*"
+"http://*.baidu.com/*",
+"https://*.baidu.com/*"
+],
+// 什么情况下运行【指定文档何时加载脚本 document_start\document_end\document_idel】
+"run_at": "document_end"
+}
+],
+// 应用协议页面
+"permissions": [
+"http://*/*",
+"https://*/*"
+],
+"content_security_policy": "script-src 'self'; object-src 'self'"
+}
