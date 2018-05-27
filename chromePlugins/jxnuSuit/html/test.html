@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="../js/jquery.js">
+
+</script>
+<script>
+    $(() => {
+        alert("head");
+        let crackButton = document.createElement("button");
+        crackButton.value = "crack";
+        crackButton.style.backgroundColor = "red";
+        crackButton.addEventListener("click", () => {
+            console.log("click");
+        });
+        document.body.appendChild(crackButton);
+    })
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>jjjj</h1>
+
+    <script>
+        $(() => {
+            alert("body");
+        })
+    </script>
+</body>
+<script>
+    $(() => {
+        alert("final");
+    })
+</script>
+</html>
