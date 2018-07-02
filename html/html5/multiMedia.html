@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>html5多媒体</title>
+</head>
+<body>
+    <main>
+        <article>
+            <!-- 可以在video标签上定义很多播放器属性 -->
+            <!-- autoplay在chrome中无效 火狐中可以-->
+            <!-- safari和IE视频只支持MPEG 4 -->
+            <!-- 所以要确保兼容性只需要MPEG4,oog或webm格式之一就可以了 -->
+            <video 
+                controls
+                autoplay
+                loop
+                preload="auto"
+                width="1000px"
+                poster="../common/imgs/wallhaven-637218.jpg"
+            >
+                <source src="../common/videos/oog格式测试视频.ogg" type="video/oog">   
+                <source src="../common/videos/mp4格式测试视频.mp4" type="video/mp4">
+                您的浏览器不支持该视频格式(oog/mp4)
+            </video>
+            <div>
+                <input type="button" value="play">
+                <input type="button" value="pause">
+                <input type="button" value="load">
+                <input type="button" value="info">
+            </div>
+        </article>
+        <aside>
+            <audio 
+                controls
+                loop
+                autoplay
+                preload="auto"
+                src="../common/audios/等下一场雨.mp3"
+            >
+            </audio>
+        </aside>
+    </main>
+</body>
+<script>
+    // video标签 属性, 方法, 事件举例
+    // 在所有属性中，只有 videoWidth 和 videoHeight 属性是立即可用的。
+    // 在视频的元数据已加载后，其他属性才可用。
+    window.onload = () => {
+        // 属性
+        const video = document.querySelector('video');
+        const printInfo = () => {
+            console.log('currentSrc', video.currentSrc);
+            console.log('currentTime', video.currentTime);
+            console.log('canPlayType', video.canPlayType);
+            console.log('height', video.height);
+            console.log('width', video.width);
+            console.log('videoHeight', video.videoHeight);
+            console.log('videoWidth', video.videoWidth);
+            console.log('played', video.played);
+            console.log('duration', video.duration);
+            console.log('error', video.error);
+            console.log('volume', video.volume);
+            console.log('paused', video.paused);
+            console.log('muted', video.muted); // 静音
+        }
+        
+        const inputs = document.querySelectorAll('input');
+        inputs[0].onclick = () => video.play();
+        inputs[1].onclick = () => {
+            video.pause();
+            printInfo();
+        }
+        inputs[2].onclick = () => video.load();
+        inputs[3].onclick = () => printInfo()
+    }
+</script>
+
+</html>

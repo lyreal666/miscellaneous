@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义属性</title>
+</head>
+<body>
+    <main>
+        <article>
+            <!-- 标准的html5自定义属性 -->
+            <!-- 以data-开头使用kebab命名法命名 -->
+            <div class="standard" data-custom-property="这是一个标准的html5自定义属性">标准的html5自定义属性</div>
+            <div ly-custom-property="这是非标准的自定义属性">非标准的自定义属性</div>
+        </article>
+        <aside></aside>
+    </main>
+    <script>
+        window.onload = () => {
+            // 下面两个都能获取到
+            const standardDiv = document.querySelector('[data-custom-property=这是一个标准的html5自定义属性]') ;
+            console.log(standardDiv);
+            const notStandardDiv = document.querySelector('[ly-custom-property=这是非标准的自定义属性]');
+            console.log(notStandardDiv);
+            // 操作标准自定义属性的方法
+            // dataset返回的是一个
+            console.log(standardDiv.dataset); // DOMStringMap {customProperty: "这是一个标准的html5自定义属性"}
+            console.log(standardDiv.customProperty); // undifined
+            console.log(standardDiv.style); // CSSStyleDeclaration {alignContent: "", alignItems: "", alignSelf: "", alignmentBaseline: "", all: "", …}
+            console.log(standardDiv.className); // standard
+            console.log(standardDiv.dataset['customProperty']); // 这是一个标准的html5自定义属性
+            console.log(standardDiv.customProperty); // undefined
+            // 说明了非标准方式定义的属性用dataset获取不到
+            console.log(notStandardDiv.dataset); // DOMStringMap {}
+            console.log(notStandardDiv.lyCustomProperty); // undefined
+            console.log(Reflect.ownKeys(notStandardDiv)); []
+        }        
+    </script>
+</body>
+</html>
