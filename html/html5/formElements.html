@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>html5新增表单元素及属性和api</title>
+</head>
+
+<body>
+    <main>
+        <form id="form" action="" method="GET">
+            <div>
+                <label for="text">文本:</label>
+                <input type="text" id="text" autofocus placeholder="输入一段文本">
+            </div>
+            <div>
+                <label for="email">邮箱:</label>
+                <!-- 使用multiple可以上传多个邮箱，使用英文,号隔开 -->
+                <input type="email" id="email" required multiple>
+            </div>
+            <div>
+                <label for="password">密码:</label>
+                <input type="password" id="password">
+            </div>
+            <div>
+                <label for="tel">电话:</label>
+                <!-- tel没有默认的匹配检查,作用是为了在移动端打开数字键盘,可以自己设置parttern正则匹配 -->
+                <!-- 可以不输入 输入了就按照pattern匹配 -->
+                <input type="tel" id="tel" pattern="^\+86\s?\d{11}$">
+            </div>
+            <div>
+                <label for="number">数字:</label>
+                <!-- 输入非数字会被消除 -->
+                <input type="number" id="number">
+            </div>
+            <div>
+                <label for="search">搜索:</label>
+                <!-- 要想使用自动补全提示功能有两个条件 多了个清楚输入的功能-->
+                <!-- 1.字段要被提交过才会被浏览器记录 2.必须有name属性 -->
+                <!-- autocomplete还可以设置到form上 -->
+                <input name="search" type="search" autocomplete="">
+            </div>
+            <div>
+                <label for="range">范围:</label>
+                <input type="range" id="range" max="100" min="-20" value="50">
+            </div>
+            <div>
+                <label for="file">file:</label>
+                <!-- 使用multiple可以上传多个文件 -->
+                <input type="file" id="file" multiple>
+            </div>
+            <div>
+                <label for="progress">进度条:</label>
+                <progress id="progress" min="0" max="100" value="80"></progress>
+            </div>
+            <div>
+                <label for="meter">度量器:</label>
+                <meter id="meter" min="0" max="150" low="85" high="120" value="110"></meter>
+            </div>
+            <div>
+                <label for="color">拾色器:</label>
+                <input id="color" type="color">
+            </div>
+            <div>
+                <label for="date">日期时间:</label>
+                <!-- 表示日期还可以用month,datetime -->
+                <input id="date" type="datetime-local">
+            </div>
+            <div>
+                <label for="datalist">datalist:</label>
+                <input type="text" list="datalist" placeholder="选择上传格式">
+                <datalist id="datalist">
+                    <option value="zip">压缩包</option>
+                    <option value="image">图片</option>
+                    <option value="docement">文档</option>
+                    <option value="audio">音频</option>
+                </datalist>
+            </div>
+            <input type="submit" value="提交">
+        </form>
+        <div>
+            <label for="man">男</label>
+            <input id="man" name="sex" type="radio" value="男" form="form">
+            <label for="female">女</label>
+            <input id="female" name="sex" type="radio" value="女" form="form">
+        </div>
+    </main>
+</body>
+<script>
+    window.onload = () => {
+        // 输入验证不通过的回调
+        const telInput = document.querySelector('[type=tel]');
+        console.log(telInput);
+        telInput.oninvalid = function () {
+            // 设置验证失败提示文字
+            this.setCustomValidity('请输入合法的电话号码....')
+        }
+
+        const textInput = document.querySelector('[type=text]');
+        console.log(textInput);
+        // 输入框失去焦点后,如果输入发生了改变,才会触发
+        textInput.onchange = event => {
+            console.log('onchange', event.target.value);
+        }
+        // 敲键盘就会触发
+        textInput.oninput = event => {
+            console.log('oninput', event.target.value);
+        }
+        // 左右键都会触发
+        textInput.onkeyup = event => {
+            //console.log('onkeyup', event.target.value);
+        }
+
+        document.querySelector('[type=color]').onchange = event => {
+            console.log(event.target.value); // #00ff00
+        }
+
+        document.querySelector('[type=datetime-local]').onchange = event => {
+            console.log(event.target.value); // 2018-07-04T01:01
+        }
+    }
+</script>
+
+</html>
