@@ -2,7 +2,7 @@ import re
 import json
 
 
-chapters_file = '../testData/txtData/chapter.txt'
+chapters_file = '../resource/testData/txtData/chapter.txt'
 chapters_dict = {}
 with open(chapters_file, 'r', encoding='utf-8') as fr:
     content = fr.read()
@@ -25,7 +25,7 @@ for car_type in chapters_dict:
     for number in chapters_dict[car_type]:
         number2chapter[number] = chapters_dict[car_type][number]
 
-ques_file = '../testData/txtData/questions.txt'
+ques_file = '../resource/testData/txtData/questions.txt'
 with open(ques_file, 'r', encoding='utf-8') as fr:
     # 截取数据
     content = fr.read()
@@ -46,10 +46,10 @@ with open(ques_file, 'r', encoding='utf-8') as fr:
         # print(match)
         try:
             question = {}
-            question['number'] = match[1]
-            question['subject'] = subjects[int(match[2]) - 1]
+            question['number'] = match[1].strip()
+            question['subject'] = subjects[int(match[2].strip()) - 1]
             question['car_types'] = ''
-            car_type = bin(int(match[3]))[2:].zfill(3)
+            car_type = bin(int(match[3].strip()))[2:].zfill(3)
             for index, char in enumerate(car_type):
                 question['car_types'] += car_types[index] if char == '1' else ''
             try:
@@ -57,7 +57,7 @@ with open(ques_file, 'r', encoding='utf-8') as fr:
             except Exception as e:
                 question['chapter'] = '未获取'
                 losed_chapter.append({'number': match[1], 'chapter': match[4]})
-            _type = match[5]
+            _type = match[5].strip()
 
             if _type == '0':
                 question['type'] = '判断题'
@@ -70,12 +70,12 @@ with open(ques_file, 'r', encoding='utf-8') as fr:
                 if c in match[6]:
                     answer += number2answer[int(c) - 1]
             question['answer'] = answer
-            question['hasPic'] = match[7]
+            question['hasPic'] = match[7].strip()
             question['title'] = match[8].strip()[1:]
             options = [match[9], match[10], match[11], match[12]]
             question['options'] = [option.strip()[1:] for option in options]
             question['detail'] = match[13].strip()[1 : ]
-            qs_dict[match[1]] = question
+            qs_dict[match[1].strip()] = question
         except Exception as e:
             print('题目:', match[0])
             print(e)

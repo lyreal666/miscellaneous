@@ -29,9 +29,9 @@ for index, item_title in enumerate(item_titles):
     bottom = item_rights[index].select('.item_bottom')
     if not len(bottom) == 0:
         download_hrefs = [a.get('href') for a in bottom[0].select('a')]
-        item_obj['baidu-download'] = download_hrefs[0]
-        item_obj['local-download'] = download_hrefs[1]
-        item_obj['use-instructions'] = download_hrefs[2]
+        item_obj['baiduDownload'] = download_hrefs[0]
+        item_obj['localDownload'] = download_hrefs[1]
+        item_obj['useInstructions'] = download_hrefs[2]
     
     part2_left = item_rights[index].find_parent(class_='index_part2_left_item')
     title_div = part2_left.find_previous_sibling(class_="index_part2_left_title")
