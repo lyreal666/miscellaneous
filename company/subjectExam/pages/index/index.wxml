@@ -1,0 +1,31 @@
+<view class="index-container">
+    <view class="order-test">
+        <view class="navbar">
+            <view class="subject-text-wrapper"><text class="subject-text">科目一</text></view>
+            <view class="subject-text-wrapper"><text class="subject-text">科目四</text></view>
+        </view>
+        <view class="gauge">圆环进度条</view>
+        <view class="order-menu">
+            <block wx:for="{{orderIcons}}" wx:key="index">
+                <view class="order-menu-item">
+                    <view class="icon-wrapper {{ index==2 ? 'last-icon' : ''}}">
+                        <text-icon 
+                            icon-text="{{ item.iconText}}"
+                            img-src="{{ item.imgSrc }}"
+                            >
+                        </text-icon>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+    <view class="simulation-test">
+        <view class="gauge">圆环进度条</view>
+        <view class="simulation-menu">
+            <view class="simulation-menu-item">考试技巧</view>
+            <view class="simulation-menu-item">难题攻略</view>
+            <view class="simulation-menu-item">考试记录</view>
+        </view>
+    </view>
+    <text class="icon-wrong"></text>
+</view>

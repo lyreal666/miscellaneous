@@ -1,0 +1,32 @@
+{
+  "pages":[
+    "pages/index/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "俏苗学车",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "white",
+    "selectedColor": "#3270b0",
+    "borderStyle":"white",
+    "list": [{
+      "selectedIconPath": "common/icons/trafficSigns.png",
+      "iconPath": "common/icons/trafficSigns.png",
+      "pagePath": "pages/index/index",
+      "text": "交通标志"
+    }, {
+      "selectedIconPath": "common/icons/findSchool.png",
+      "iconPath": "common/icons/findSchool.png",
+      "pagePath": "pages/index/index",
+      "text": "寻找驾校"
+    }, {
+      "selectedIconPath": "common/icons/police.png",
+      "iconPath": "common/icons/police.png",
+      "pagePath": "pages/index/index",
+      "text": "交警手势"
+    }]
+  }
+}

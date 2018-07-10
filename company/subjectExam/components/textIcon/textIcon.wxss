@@ -1,0 +1,19 @@
+.icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "仿宋";
+}
+
+.icon-img {
+    width: 80rpx;
+    height: 80rpx;
+}
+
+.text-wrapper {
+
+}
+
+.icon-text {
+    font-weight: 18rpx;
+}
