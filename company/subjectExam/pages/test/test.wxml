@@ -1,0 +1,14 @@
+<view class="gauge">
+    <view class='progress_box'>
+        <canvas class="progress_bg" canvas-id="canvasProgressbg">
+        </canvas>
+        <canvas class="progress_canvas" canvas-id="canvasProgress">
+        </canvas>
+        <view class="progress-inner">
+            <image class="gauge-img" src="/common/imgs/orderPractice.png" mode="scaleToFil"></image>
+            <text class="title">顺序练习</text>
+            <text class="scale">{{ scale }}</text>
+            <text class="info">{{ info }}</text>
+        </view>
+    </view>
+</view>

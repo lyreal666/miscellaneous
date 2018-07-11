@@ -6,8 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./style.css">
     <title>Document</title>
+    <style>
+        .container {
+            position: relative;
+            margin: 0 auto;
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+        }
+
+        .abs {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: blue;
+        }
+
+        .rel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: red;
+        }
+    </style>
 </head>
 <body>
-    <span class="icon-wrong"></span>
+    <div class="container">
+        <div class="abs"></div>
+        <div class="rel"></div>
+    </div>
 </body>
 </html>

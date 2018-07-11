@@ -10,10 +10,9 @@
     height: 80rpx;
 }
 
-.text-wrapper {
-
-}
+.text-wrapper {}
 
 .icon-text {
-    font-weight: 18rpx;
+    font-size: 32rpx;
+    font-weight: 16rpx;
 }
