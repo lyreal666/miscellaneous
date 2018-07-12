@@ -10,7 +10,9 @@
     height: 80rpx;
 }
 
-.text-wrapper {}
+.text-wrapper {
+    
+}
 
 .icon-text {
     font-size: 32rpx;

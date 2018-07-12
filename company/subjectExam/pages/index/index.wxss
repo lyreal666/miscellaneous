@@ -9,6 +9,7 @@ page {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   background-color: #3270b0;
 }
 
@@ -16,9 +17,9 @@ page {
   width: 680rpx;
   height: 560rpx;
   display: flex;
+  margin-top: 10rpx;
   flex-direction: column;
   background-color: white;
-  margin-top: 40rpx;
   border-radius: 20rpx;
 }
 
@@ -35,14 +36,16 @@ page {
 
 .subject-text-wrapper {
   background-color: white;
+  width: 200rpx;
   height: 65rpx;
   padding: 0rpx;
-  border-top-left-radius: 8rpx;
-  border-top-right-radius: 8rpx;
+  text-align: center;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
 }
 
 .subject-text {
-  font-size: 45rpx;
+  font-size: 40rpx;
   letter-spacing: 15rpx;
   line-height: 65rpx;
 }
@@ -60,27 +63,27 @@ page {
   flex: 300rpx;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .progress_box {
   display: flex;
   position: relative;
-  width: 300rpx;
-  height: 300rpx;
+  width: 150px;
+  height: 150px;
   align-items: center;
   justify-content: center;
-  background-color: white;
 }
 
 .progress_bg {
   position: absolute;
-  width: 300rpx;
-  height: 300rpx;
+  width: 150px;
+  height: 150px;
 }
 
 .progress_canvas {
-  width: 300rpx;
-  height: 300rpx;
+  width: 150px;
+  height: 150px;
 }
 
 .progress-inner {
@@ -93,20 +96,23 @@ page {
 }
 
 .gauge-img {
-  width: 75rpx;
-  height: 75rpx;
+  width: 90rpx;
+  height: 90rpx;
 }
 
 .title {
   font-size: 36rpx;
+  letter-spacing: 8rpx;
 }
 
 .scale {
   font-size: 20rpx;
+  color: gray;
 }
 
 .info {
   font-size: 20rpx;
+  color: gray;
 }
 
 /* 顺序考部分 */
@@ -126,7 +132,7 @@ page {
 
 .icon-wrapper {
   margin-top: 10rpx;
-  border-right: 4rpx solid #6594c4;
+  border-right: 6rpx solid #6594c4;
 }
 
 .last-icon {
@@ -141,7 +147,7 @@ page {
   display: flex;
   flex-direction: column;
   background-color: white;
-  margin-top: 20rpx;
+  top: 20rpx;
   border-radius: 20rpx;
 }
 
@@ -157,4 +163,10 @@ page {
   flex: 1;
   text-align: center;
   border-top: 6rpx solid #6594c4;
+}
+
+/* 底部导航栏 */
+.tab-bar {
+  width: 100%;
+  margin-bottom: 0;
 }

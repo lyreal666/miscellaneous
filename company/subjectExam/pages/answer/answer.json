@@ -1,0 +1,11 @@
+{
+  "navigationBarBackgroundColor": "#3371b0",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "俏苗学车",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "text-icon": "/components/textIcon/textIcon",
+    "my-tab-bar": "/components/myTabBar/myTabBar"
+  }
+}

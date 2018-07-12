@@ -1,22 +1,14 @@
 <view class="index-container">
     <view class="order-test">
         <view class="navbar">
-            <view 
-                class=" {{ selectedSubject == '科目一' ? 'subject-text-wrapper whitebc' : 'subject-text-wrapper bluebc'}}" 
-                data-subject-text="科目一" 
-                bindtap="selectSubject"
-                >
+            <view class=" {{ selectedSubject == '科目一' ? 'subject-text-wrapper whitebc' : 'subject-text-wrapper bluebc'}}" data-subject-text="科目一" bindtap="selectSubject">
                 <text class="subject-text">科目一</text>
             </view>
-            <view 
-                class=" {{ selectedSubject == '科目一' ? 'subject-text-wrapper bluebc' : 'subject-text-wrapper whitebc'}}" 
-                data-subject-text="科目二" 
-                bindtap="selectSubject"
-                >
+            <view class=" {{ selectedSubject == '科目一' ? 'subject-text-wrapper bluebc' : 'subject-text-wrapper whitebc'}}" data-subject-text="科目二" bindtap="selectSubject">
                 <text class="subject-text">科目四</text>
             </view>
         </view>
-        <view class="gauge">
+        <view class="gauge" bindtap="toOrderPractice">
             <view class='progress_box'>
                 <canvas class="progress_bg" canvas-id="canvasProgressbg"></canvas>
                 <canvas class="progress_canvas" canvas-id="canvasProgress"></canvas>
@@ -44,7 +36,7 @@
                 <canvas class="progress_bg" canvas-id="canvasProgressbg1"></canvas>
                 <canvas class="progress_canvas" canvas-id="canvasProgress1"></canvas>
                 <view class="progress-inner">
-                    <image class="gauge-img" src="/common/imgs/orderPractice.png" mode="scaleToFil"></image>
+                    <image class="gauge-img" src="/common/imgs/simulation.png" mode="scaleToFil"></image>
                     <text class="title">顺序练习</text>
                     <text class="scale">{{ scale2 }}</text>
                     <text class="info">{{ info2 }}</text>
@@ -62,4 +54,8 @@
         </view>
     </view>
     <text class="icon-wrong"></text>
+    <view class="tab-bar">
+        <my-tab-bar>
+        </my-tab-bar>
+    </view>
 </view>
