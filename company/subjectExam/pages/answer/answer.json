@@ -6,6 +6,7 @@
   "backgroundTextStyle": "light",
   "usingComponents": {
     "text-icon": "/components/textIcon/textIcon",
-    "my-tab-bar": "/components/myTabBar/myTabBar"
+    "my-tab-bar": "/components/myTabBar/myTabBar",
+    "question": "/components/question/question"
   }
 }

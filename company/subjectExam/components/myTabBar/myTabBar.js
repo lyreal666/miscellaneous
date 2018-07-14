@@ -1,3 +1,11 @@
+/*
+ * @Author: ytj 
+ * @Date: 2018-07-13 07:53:59 
+ * @Last Modified by: ytj
+ * @Last Modified time: 2018-07-13 08:04:30
+ */
+
+
 Component({
     data: {
         
@@ -15,7 +23,7 @@ Component({
             type: Array,
             value: ['gray', 'gray', 'gray'],
         },
-        hsaText: {
+        hasText: {
             type: Boolean,
             value: true
         }

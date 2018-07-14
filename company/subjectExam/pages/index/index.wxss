@@ -59,6 +59,7 @@ page {
 }
 
 /* 圆环进度条 */
+
 .gauge {
   flex: 300rpx;
   display: flex;
@@ -116,6 +117,7 @@ page {
 }
 
 /* 顺序考部分 */
+
 .order-menu {
   flex: 170rpx;
   display: flex;
@@ -139,8 +141,8 @@ page {
   border-right: none;
 }
 
-
 /*模拟考部分 */
+
 .simulation-test {
   width: 680rpx;
   height: 470rpx;
@@ -166,6 +168,7 @@ page {
 }
 
 /* 底部导航栏 */
+
 .tab-bar {
   width: 100%;
   margin-bottom: 0;

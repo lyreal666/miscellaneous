@@ -1,39 +1,9 @@
 <view class="container">
-    <view class="title">
-        <text class="page-name">{{ '<顺序练习' }}</text>
-        <text class="question-type">单选题</text>
-        <text class="question-number">1/1325</text>
-    </view>
-    <view class="content">
-        <image src="/common/imgs/question.jpg" mode="scaleToFill" class="content-img"></image>
-        <view class="question-heading">驾驶机动车在道路上违反道路交通安全法的行为，属于什么行为？</view>
-        <view class="options">
-            <view class="question-option">
-                <view class="option-circle"><text class="option-flag">A</text></view>
-                <text class="option-content">过失行为</text>
-            </view>
-            <view class="question-option">
-                <view class="option-circle"><text class="option-flag">B</text></view>
-                <text class="option-content">违规行为</text>
-            </view>
-            <view class="question-option">
-                <view class="option-circle"><text class="option-flag">C</text></view>
-                <text class="option-content">违章行为</text>
-            </view>
-            <view class="question-option">
-                <view class="option-circle"><text class="option-flag">D</text></view>
-                <text class="option-content">违法行为</text>
-            </view>
-        </view>
-        <view class="question-detail">
-            <view class="detail-title-wrapper"><text class="dot">.</text> <text class="detail-title">试题详解</text></view>
-            <text class="detail-content">违反《道路交通安全法》，属于违法行为。官方已无违规、违章的说法。</text>
-        </view>
-    </view>
+    <scroll-view class="questions" scroll-x>
+        <question></question>
+        <question></question>
+    </scroll-view>
     <view class="tab-container">
-        <my-tab-bar
-            tabs="{{ tabs }}"
-        >
-        </my-tab-bar>
-        </view>
+        <my-tab-bar tabs="{{ tabs }}"></my-tab-bar>
+    </view>
 </view>

@@ -8,134 +8,17 @@ page {
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-
-/* title part */
-.title {
-    width: 100%;
-    height: 50rpx;
-    display: flex;
     justify-content: space-between;
     align-items: center;
-    text-align: center;
 }
 
-.page-name {
-    text-align: center;
-    margin-left: 35rpx;
-    font-size: 0.8rem;
-}
-
-.question-type {
-    text-align: center;
-    font-size: 0.65rem;
-}
-
-.question-number {
-    text-align: center;
-    margin-right: 35rpx;
-    font-size: 0.8rem;    
-}
-
-
-/* content part */
-.content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 720rpx;
-    height: 1000rpx;
-    border-top: 4rpx solid #3371b0;
-    border-bottom: 4rpx solid #3371b0;
-}
-
-.content-img {
-    width:520rpx;
-    height: 320rpx;
-    margin-top: 2rpx;
-    margin-bottom: 20rpx;
-}
-
-.question-heading {
-    font-size: 0.9rem;
-    margin-bottom: 30rpx;
-}
-
-.options {
+.questions {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-left: 80rpx;
-}
-
-.question-option {
-    text-align: left;
-    display: flex;
-    margin-top: 10rpx;
-    margin-bottom: 10rpx;
-}
-
-.option-circle {
-    width: 45rpx;
-    height: 45rpx;
-    border: 2rpx solid gray;
-    border-radius: 24rpx;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.option-flag {
-    font-size: 0.8rem;
-}
-
-.option-content {
-    margin-left: 20rpx;
-    font-size: 0.82rem;
-}
-
-/* detail part */
-.question-detail {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 10rpx;
-    text-align: left;
-}
-
-.detail-title {
-
-}
-
-.detail-title-wrapper {
-    display: flex;
-    height: 50rpx;
-    width: 100%;
-    padding-left: 60rpx;
-    position: relative;
-}
-
-.dot {
-    position: absolute;
-    bottom: -34rpx;
-    left: 0rpx;
-    font-size: 5rem;
-    color: #4fa1d9;
-}
-
-.detail-title {
-    font-size: 0.75rem;
-}
-
-.detail-content {
-    margin-top: 15rpx;
-    font-size: 0.7rem;
-    color: #4fa1d9;
+    height: 1100rpx;
+    white-space: nowrap;
 }
 
 .tab-container {
     width: 100%;
+    border-top: 4rpx solid #3371b0;
 }

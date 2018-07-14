@@ -1,0 +1,176 @@
+.question-item {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    white-space: normal;
+}
+
+.question-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* title part */
+.title {
+    width: 100%;
+    height: 50rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.page-name {
+    text-align: center;
+    margin-left: 35rpx;
+    font-size: 0.8rem;
+}
+
+.question-type {
+    text-align: center;
+    font-size: 0.65rem;
+}
+
+.practiced-count {
+    color: blue;
+}
+
+.question-number {
+    text-align: center;
+    margin-right: 35rpx;
+    font-size: 0.8rem;
+}
+
+/* content part */
+.content {
+    height: 1150rpx;
+    width: 700rpx;
+    display: flex;
+    white-space: nowrap;
+    flex-direction: column;
+    align-items: center;
+    border-top: 4rpx solid #3371b0;
+}
+
+.image-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.content-img {
+    width: 520rpx;
+    height: 320rpx;
+    display: block;
+    margin-top: 2rpx;
+    margin-bottom: 20rpx;
+}
+
+.question-heading {
+    white-space: normal;
+    font-size: 0.9rem;
+    margin-bottom: 30rpx;
+}
+
+/* option part */
+.options {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 80rpx;
+}
+
+.option {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.question-option {
+    text-align: left;
+    display: flex;
+    margin-top: 10rpx;
+    margin-bottom: 10rpx;
+}
+
+.answer-option {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10rpx;
+    margin-bottom: 10rpx;
+    color: gray;
+}
+
+.option-circle {
+    width: 45rpx;
+    height: 45rpx;
+    border: 2rpx solid gray;
+    border-radius: 24rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.option-flag {
+    font-size: 0.8rem;
+}
+
+.option-content {
+    margin-left: 20rpx;
+    font-size: 0.82rem;
+}
+
+.option-answer-flag {
+    margin-left: 50rpx;
+    font-size: 0.8rem;
+    color: black;
+}
+
+/* detail part */
+.question-detail {
+    /* width: 100% */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10rpx;
+    padding-bottom: 200rpx;
+    text-align: left;
+}
+
+.detail-title {}
+
+.detail-title-wrapper {
+    display: flex;
+    align-items: center;
+    height: 50rpx;
+    width: 100%;
+    padding-left: 20rpx;
+    margin-bottom: 15rpx;
+}
+
+.dot {
+    width: 25rpx;
+    height: 25rpx;
+    margin-right: 10rpx;
+}
+
+.detail-title {
+    font-size: 0.75rem;
+}
+
+.detail-content-wrapper {
+    width: 100%;
+    background-color: #EEE;
+    padding: 0;
+    box-sizing: content-box;
+    border: 0.5rpx solid #EEE;
+    border-radius: 10rpx;
+    font-size: 0.7rem;
+    white-space: normal;
+    color: #4fa1d9;
+}
+
+/* .detail-content-text{
+    display: block;
+} */
