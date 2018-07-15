@@ -1,14 +1,11 @@
 <view class="gauge">
-    <view class='progress_box'>
-        <canvas class="progress_bg" canvas-id="canvasProgressbg">
-        </canvas>
-        <canvas class="progress_canvas" canvas-id="canvasProgress">
-        </canvas>
-        <view class="progress-inner">
-            <image class="gauge-img" src="/common/imgs/orderPractice.png" mode="scaleToFil"></image>
-            <text class="title">顺序练习</text>
-            <text class="scale">{{ scale }}</text>
-            <text class="info">{{ info }}</text>
-        </view>
-    </view>
+    <text class="innerText">abc {{ msg}} {{ getText }}</text>
+    <button class="btn" type="primary" bindtap="handleTap">
+        点击弹toast
+    </button>
+    <!-- Component "pages/test/test" does not have a method "funcInMethods" to handle event "tap". -->
+    <button class="btn" type="primary" bindtap="funcInMethods">
+        点击弹调用funcInMethods
+    </button>
+    <test-component></test-component>
 </view>

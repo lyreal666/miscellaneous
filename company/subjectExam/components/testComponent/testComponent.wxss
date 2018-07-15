@@ -1,0 +1,50 @@
+.container {
+    border: 2px solid aquamarine;
+}
+
+.row-container {
+    width: 500rpx;
+    height: 200rpx;
+    border: 2rpx solid lightcoral;
+    white-space: nowrap;
+}
+
+/* 测试表明没有用 */
+/* .row-item:nth-child(0) {
+    background-color: yellow;
+}
+
+.row-container:nth-child(1) {
+    background-color: blue;
+}
+
+.row-container:nth-child(2) {
+    background-color: red;
+}
+
+.row-container:nth-child(3) {
+    background-color: brown;
+} */
+
+.row-item1 {
+    background-color: red;
+}
+
+.row-item2 {
+    background-color: yellow;
+}
+
+.row-item3 {
+    background-color: blue;
+}
+
+.row-item4 {
+    background-color: orange;
+}
+
+/* 子类选择器有用 */
+.row-container view {
+    width: 500rpx;
+    height: 200rpx;
+    display: inline-block;
+}

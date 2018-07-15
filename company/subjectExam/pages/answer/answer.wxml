@@ -1,9 +1,10 @@
 <view class="container">
     <scroll-view class="questions" scroll-x>
-        <question></question>
-        <question></question>
+        <question show-detail="{{ showDetail}}"></question>
+        <question show-detail="{{ showDetail}}"></question>
+        <question show-detail="{{ showDetail}}"></question>
     </scroll-view>
     <view class="tab-container">
-        <my-tab-bar tabs="{{ tabs }}"></my-tab-bar>
+        <my-tab-bar tabs="{{ tabs }}" bind:detail="handleShowDetail"></my-tab-bar>
     </view>
 </view>

@@ -1,6 +1,6 @@
 {
     "component": true,
     "usingComponents": {
-        
+        "options": "/components/options/options"
     }
 }

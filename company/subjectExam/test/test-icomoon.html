@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="./style.css">
     <title>Document</title>
     <style>
+        * {
+           margin: 0px;
+           padding: 0px;
+       }
+
         .container {
             position: relative;
             margin: 0 auto;
@@ -28,6 +33,34 @@
             height: 100%;
             background-color: red;
         }
+
+        .items {
+            width: 800px;
+            height: 200px;
+            background-color: lightcoral;
+            display: flex;
+            flex-direction: row;
+            white-space: nowrap;
+        }
+
+        .items>li {
+            display: inline-block;
+            width: 800px;
+            height: 200px;
+        }
+
+        .item1 {
+            background-color: blue;
+        }
+        .item2 {
+            background-color: yellow;
+        }
+        .item3 {
+            background-color: red;
+        }
+        .item4 {
+            background-color: gray;
+        }
     </style>
 </head>
 <body>
@@ -35,5 +68,16 @@
         <div class="abs"></div>
         <div class="rel"></div>
     </div>
+    <pre>test    component
+        data: {{ dataMsg }}
+        properties: {{ propMsg }}
+    </pre>
+
+    <ol class="items">
+        <li class="item1"></li>
+        <li class="item2"></li>
+        <li class="item3"></li>
+        <li class="item4"></li>
+    </ol>
 </body>
 </html>

@@ -2,24 +2,9 @@
  * @Author: ytj 
  * @Date: 2018-07-13 16:11:10 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-13 17:57:00
+ * @Last Modified time: 2018-07-15 17:47:16
  */
 
-// "number": "1",
-// "subject": "科目一",
-// "car_types": "小车客车货车",
-// "chapter": "道路交通安全法律，法规和规章。",
-// "type": "单选题",
-// "answer": "B",
-// "hasPic": "0",
-// "title": "驾驶机动车在道路上违反道路交通安全法的行为，属于什么行为？",
-// "options": [
-//     "过失行为",
-//     "违规行为",
-//     "违章行为",
-//     "违法行为"
-// ],
-// "detail": "违反《道路交通安全法》，属于违法行为。官方已无违规、违章的说法。"
 Component({
     properties: {
         num: {
@@ -49,12 +34,23 @@ Component({
         detail: {
             type: String,
             value: 'the detail of the question...'
+        },
+        showDetail: {
+            type: Boolean,
+            value: false
         }
     },
     data: {
-        showOptions: false
+        showOptions: false,
     },
     methods: {
-
-    }
+        onButtonClick() {
+            this.setData({
+                showDetail: !this.data.showDetail
+            })
+            console.log('click');
+        }
+    },
+    attached() {
+    },
 })

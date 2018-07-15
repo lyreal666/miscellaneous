@@ -1,0 +1,18 @@
+<view class="options">
+    <block wx:for="{{ computedOptions }}" wx:key="{{ index }}">
+        <view class="option" wx:if="{{ item.ifExist }}" data-option-flag="{{ item.letter }}" bindtap="handleOptionClick">
+            <view class="question-option">
+                <view class="option-circle">
+                    <text class="option-flag">{{ item.letter }}</text>
+                </view>
+                <text class="option-content">{{ item.content }}</text>
+            </view>
+            <view class="answer-option {{ item.classList }}" wx:if="{{ showAnswer }}">
+                <view class="option-circle">
+                    <text class="option-flag">{{ item.isRight ? '√' : '×' }}</text>
+                </view>
+                <text class="option-content">{{ item.content }}</text>
+            </view>
+        </view>
+    </block>
+</view>

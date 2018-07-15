@@ -1,0 +1,22 @@
+<view class="container">
+    <!-- 测试插值语法 -->
+    <text>
+        test              component
+        data: {{ dataMsg }}
+        
+
+
+        properties: {{ propMsg }}
+    </text>
+    <scroll-view 
+        class="row-container" 
+        scroll-x="{{true}}" 
+        scroll-with-animation="{{true}}"
+        scroll-into-view="three"
+        >
+        <view id="one" class="row-item1"></view>
+        <view id="two" class="row-item2"></view>
+        <view id="three" class="row-item3"></view>
+        <view id="four" class="row-item4"></view>
+    </scroll-view>
+</view>

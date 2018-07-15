@@ -15,71 +15,13 @@
                     <view class="question-heading">
                         <text>{{ title }}</text>
                     </view>
-                    <view class="options">
-                        <view class="option">
-                            <view class="question-option">
-                                <view class="option-circle">
-                                    <text class="option-flag">A</text>
-                                </view>
-                                <text class="option-content">过失行为</text>
-                            </view>
-                            <view class="answer-option" wx:if="{{ showOptions }}">
-                                <view class="option-circle option-answer-flag">
-                                    <text class="option-flag">A</text>
-                                </view>
-                                <text class="option-content">过失行为</text>
-                            </view>
-                        </view>
-                        <view class="option">
-                            <view class="question-option">
-                                <view class="option-circle">
-                                    <text class="option-flag">B</text>
-                                </view>
-                                <text class="option-content">过失行为</text>
-                            </view>
-                            <view class="answer-option" wx:if="{{ showOptions }}">
-                                <view class="option-circle option-answer-flag">
-                                    <text class="option-flag">B</text>
-                                </view>
-                                <text class="option-content">过失行为</text>
-                            </view>
-                        </view>
-                        <view class="option">
-                            <view class="question-option">
-                                <view class="option-circle">
-                                    <text class="option-flag">C</text>
-                                </view>
-                                <text class="option-content">过章行为</text>
-                            </view>
-                            <view class="answer-option" wx:if="{{ showOptions }}">
-                                <view class="option-circle option-answer-flag">
-                                    <text class="option-flag">C</text>
-                                </view>
-                                <text class="option-content">过章行为</text>
-                            </view>
-                        </view>
-                        <view class="option">
-                            <view class="question-option">
-                                <view class="option-circle">
-                                    <text class="option-flag">D</text>
-                                </view>
-                                <text class="option-content">违法行为</text>
-                            </view>
-                            <view class="answer-option" wx:if="{{ showOptions }}">
-                                <view class="option-circle option-answer-flag">
-                                    <text class="option-flag">D</text>
-                                </view>
-                                <text class="option-content">违法行为</text>
-                            </view>
-                        </view>
-                    </view>
-                    
+                    <options></options>
                     <view class="question-detail">
                         <view class="detail-title-wrapper">
                             <image class="dot" src="/common/imgs/point.png">.</image>
                             <text class="detail-title">试题详解</text>
                         </view>
-                        <view class="detail-content-wrapper">
+                        <view class="detail-content-wrapper" wx:if="{{ showDetail }}">
                             <text class="detail-content-text">
                             违反《道路交通安全法》，属于违法行为。官方已无违规、违章的说法。
                             我校部分高水平运动员和体育专业学生在2017—2018学年下学期参加各种体育比赛，

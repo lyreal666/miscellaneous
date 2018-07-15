@@ -2,9 +2,8 @@
  * @Author: ytj 
  * @Date: 2018-07-13 07:53:59 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-13 08:04:30
+ * @Last Modified time: 2018-07-15 17:32:31
  */
-
 
 Component({
     data: {
@@ -26,7 +25,7 @@ Component({
         hasText: {
             type: Boolean,
             value: true
-        }
+        },
     },
     methods: {
         toggleTab(event) {
@@ -36,6 +35,11 @@ Component({
             this.setData({
                 colors: this.data.colors
             })
-        }
-    }
+
+            if (index === 1) {
+                this.triggerEvent('detail', true, {bubbles: false})
+            }
+        },
+    },
+
 })
