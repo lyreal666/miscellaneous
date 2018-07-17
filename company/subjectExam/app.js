@@ -2,5 +2,7 @@
 App({
   globalMethods: {
       
+  },
+  globalData: {
   }
 })

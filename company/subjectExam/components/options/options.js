@@ -1,5 +1,11 @@
+let app = getApp();
+
 Component({
     properties: {
+        num: {
+            type: Number,
+            value: 0
+        },
         type: {
             type: String,
             value: '单选题'
@@ -68,4 +74,4 @@ Component({
     ready() {
         // console.log(this.data.computedOptions);
     }
-});
+}); 

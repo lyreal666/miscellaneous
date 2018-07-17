@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-13 16:11:10 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-15 17:47:16
+ * @Last Modified time: 2018-07-16 08:46:44
  */
 
 Component({
@@ -44,12 +44,6 @@ Component({
         showOptions: false,
     },
     methods: {
-        onButtonClick() {
-            this.setData({
-                showDetail: !this.data.showDetail
-            })
-            console.log('click');
-        }
     },
     attached() {
     },

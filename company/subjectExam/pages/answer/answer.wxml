@@ -1,9 +1,11 @@
 <view class="container">
-    <scroll-view class="questions" scroll-x>
-        <question show-detail="{{ showDetail}}"></question>
-        <question show-detail="{{ showDetail}}"></question>
-        <question show-detail="{{ showDetail}}"></question>
-    </scroll-view>
+    <swiper class="questions" bindchange="handleSwiperChange" indicator-dots="{{ false }}" autoplay="{{ false }}" duration="{{ 1000 }}">
+        <block wx:for="{{ questions }}" wx:key="{{ index }}">
+            <swiper-item>
+                <question id="{{ 'item' + index }}" num="{{ item.num }}" type="{{ item.type }}" answer="{{ item.answer }}" hasPic="{{ item.hasPic }}" title="{{ item.title }}" options="{{ item.options }}" detail="{{ item.detail }}" show-detail="{{ item.showDetail}}"></question>
+            </swiper-item>
+        </block>
+    </swiper>
     <view class="tab-container">
         <my-tab-bar tabs="{{ tabs }}" bind:detail="handleShowDetail"></my-tab-bar>
     </view>

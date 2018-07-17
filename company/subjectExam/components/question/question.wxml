@@ -15,7 +15,14 @@
                     <view class="question-heading">
                         <text>{{ title }}</text>
                     </view>
-                    <options></options>
+                    <options
+                        num="{{ num }}"
+                        type="{{ type }}"
+                        right-answer="{{ answer }}"
+                        options="{{ options }}"
+                        
+                    >
+                    </options>
                     <view class="question-detail">
                         <view class="detail-title-wrapper">
                             <image class="dot" src="/common/imgs/point.png">.</image>

@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-13 07:53:59 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-15 17:32:31
+ * @Last Modified time: 2018-07-16 11:41:13
  */
 
 Component({
@@ -37,7 +37,7 @@ Component({
             })
 
             if (index === 1) {
-                this.triggerEvent('detail', true, {bubbles: false})
+                this.triggerEvent('detail', 'studyMode', {bubbles: false})
             }
         },
     },
