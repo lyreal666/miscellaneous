@@ -47,7 +47,7 @@
             <block wx:for="{{ simulationIcons}}" wx:key="index">
                 <view class="order-menu-item">
                     <view class="icon-wrapper {{ index==2 ? 'last-icon' : ''}}">
-                        <text-icon icon-text="{{ item.iconText}}" img-src="{{ item.imgSrc }}"></text-icon>
+                        <text-icon bind:click-icon="handleClickIcon" icon-text="{{ item.iconText}}" img-src="{{ item.imgSrc }}"></text-icon>
                     </view>
                 </view>
             </block>
@@ -55,7 +55,7 @@
     </view>
     <text class="icon-wrong"></text>
     <view class="tab-bar">
-        <my-tab-bar use="index">
+        <my-tab-bar for-page="index">
         </my-tab-bar>
     </view>
 </view>

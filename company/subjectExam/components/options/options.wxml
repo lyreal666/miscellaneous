@@ -1,3 +1,5 @@
+
+
 <view class="options">
     <block wx:for="{{ computedOptions }}" wx:key="{{ index }}">
         <view class="option" wx:if="{{ item.ifExist }}" data-option-flag="{{ item.letter }}" bindtap="handleOptionClick">

@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-13 07:53:26 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-17 17:21:04
+ * @Last Modified time: 2018-07-18 11:34:46
  */
 
 
@@ -28,6 +28,10 @@ Page({
         if (event.detail === "章节练习") {
             wx.navigateTo({
                 url: '/pages/chapterList/chapterList'
+            })
+        } else if (event.detail === '考试记录') {
+            wx.navigateTo({
+                url: '/pages/testRecording/testRecording'
             })
         }
     },

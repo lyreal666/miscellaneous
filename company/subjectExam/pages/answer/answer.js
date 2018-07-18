@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-12 09:12:47 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-17 11:52:39
+ * @Last Modified time: 2018-07-18 15:12:08
  */
  
 let app = getApp();
@@ -22,20 +22,21 @@ Page({
     properties: {
         questions: [],
     } ,
-    handlePullUp(event) {
-        if (event.detail === 'pull up the panel') {
-            this.setData({
-                isPullUp: !this.data.isPullUp
-            });
-        }
-    },
-    handleShowDetail(event) {
-        if (event.detail === 'studyMode') {
+    handleToggletab(event) {
+        const index = event.detail.index;
+        // 0 represent collection, 1 represent studyMode, 2 represent float panel
+        if (index === 0) {
+
+        } else if (index === 1) {
             let question = this.data.questions.find(element => element.num === this.data.currentItem);
             question.showDetail  = !question.showDetail;
             this.setData({
                 questions: this.data.questions,
             })
+        } else if (index === 2) {
+            this.setData({
+                isPullUp: !this.data.isPullUp
+            });
         }
     },
     handleSwiperChange(event) {

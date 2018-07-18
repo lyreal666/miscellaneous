@@ -1,0 +1,126 @@
+Page {
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    width: 100%;
+    height: 50rpx;
+    border-bottom: 5rpx solid #2e70af;
+    text-align: left;
+    font-size: 26rpx;
+    font-weight: bolder;
+    line-height: 50rpx;
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+.score-list {
+    width: 680rpx;
+    height: 430rpx;
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    margin-bottom: 10rpx;
+}
+
+.score-item {
+    width: 100%;
+    height: 65rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 5rpx solid #2e70af;
+}
+
+.recording-score {
+    padding-left: 10rpx;
+}
+
+.passed-recording {
+    color: #2e70af;
+}
+
+.failed-recording {
+    color: red;
+}
+
+.recording-datetime {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.recording-date {
+    font-size: 28rpx;
+}
+
+.recording-time {
+    font-size: 20rpx;
+}
+
+.data-statistic {
+    width: 680rpx;
+    height: 580rpx;
+    background-color: #2e70af;
+    border-radius: 30rpx;
+}
+
+.statistic-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40rpx;
+    margin-top: 30rpx;
+    letter-spacing: 20rpx;
+}
+
+.statistic-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.circle-dot {
+    background-color: white;
+    width: 20rpx;
+    height: 20rpx;
+    border-radius: 50%;
+    margin-left: 60rpx;
+}
+
+.item-content {
+    margin-left: 20rpx;
+    letter-spacing: 5rpx;
+    font-size: 36rpx;
+}
+
+.test-again {
+    height: 120rpx;
+    width: 100%;
+    background-color: #2e70af;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    letter-spacing: 20rpx;
+    font-size: 60rpx;
+}

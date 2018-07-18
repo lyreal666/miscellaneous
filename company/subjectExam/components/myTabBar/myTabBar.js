@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-13 07:53:59 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-17 14:13:33
+ * @Last Modified time: 2018-07-18 15:13:07
  */
 
 Component({
@@ -26,7 +26,7 @@ Component({
             type: Boolean,
             value: true
         },
-        use: {
+        forPage: {
             type: String,
             value: 'index'
         }
@@ -34,19 +34,10 @@ Component({
     methods: {
         toggleTab(event) {
             const index = event.currentTarget.dataset.index;
-            if (this.data.use === 'subject1-order-practice') {
-                if (index === 1) {
-                    this.triggerEvent('detail', 'studyMode', {bubbles: false})
-                } else if (index === 2) {
-                    this.triggerEvent('pull-up', 'pull up the panel', {bubbles: false});
-                }
-            } else if (this.data.use === 'index') {
-                this.data.colors.fill('gray');
-                this.data.colors[index] = '#3270b0';
-                this.setData({
-                    colors: this.data.colors
-                })
-            }
+            this.triggerEvent('toggle-tab', {
+                index,
+                text: this.data.text || 'no text icon'
+            }, { bubbles: false })
         },
     },
 

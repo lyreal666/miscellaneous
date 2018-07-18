@@ -8,7 +8,7 @@
             </block>
         </swiper>
         <view class="tab-container">
-            <my-tab-bar tabs="{{ tabs }}" use="subject1-order-practice" bind:detail="handleShowDetail" bind:pull-up="handlePullUp"></my-tab-bar>
+            <my-tab-bar tabs="{{ tabs }}" for-page="subject1-order-practice" bind:toggle-tab="handleToggletab"></my-tab-bar>
         </view>
     </view>
     <float-top-panel isPanelUp="{{ isPullUp }}"></float-top-panel>
