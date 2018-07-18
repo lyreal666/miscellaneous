@@ -1,0 +1,29 @@
+<view class="container" style="transform: {{  isPullUp ? 'translateY(-100%)' : 'translateY(0)' }}">
+    <view class="gray-bg" bindtap="handleClickBg"></view>
+    <view class="content">
+        <view class="answer-infos">
+            <view class="infos-wrapper">
+                <view class="info">
+                    <image class="info-image" src="/common/imgs/right.png" mode="scaleToFill"></image>
+                    <text class="count">{{ rightCount }}</text>
+                </view>
+                <view class="info">
+                    <image class="info-image" src="/common/imgs/wrong.png" mode="scaleToFill"></image>
+                    <text class="count">{{ wrongCount }}</text>
+                </view>
+            </view>
+            <view class="delete-recording">清除记录</view>
+        </view>
+        <view class="question-select">
+            <block wx:for="{{ answerStatus }}" wx:key="{{ index }}">
+                <view 
+                    class="option {{ item.status === 1 ? 'answer-right-option' : '' }} {{ item.status === 2 ? 'answer-wrong-option' : '' }}"
+                    bindtap="handleClickOption"
+                    data-index="{{ index }}"
+                >
+                    {{ item.num }}
+                </view>
+            </block>
+        </view>
+    </view>
+</view>

@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-13 07:53:59 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-16 11:41:13
+ * @Last Modified time: 2018-07-17 14:13:33
  */
 
 Component({
@@ -26,18 +26,26 @@ Component({
             type: Boolean,
             value: true
         },
+        use: {
+            type: String,
+            value: 'index'
+        }
     },
     methods: {
         toggleTab(event) {
             const index = event.currentTarget.dataset.index;
-            this.data.colors.fill('gray');
-            this.data.colors[index] = '#3270b0';
-            this.setData({
-                colors: this.data.colors
-            })
-
-            if (index === 1) {
-                this.triggerEvent('detail', 'studyMode', {bubbles: false})
+            if (this.data.use === 'subject1-order-practice') {
+                if (index === 1) {
+                    this.triggerEvent('detail', 'studyMode', {bubbles: false})
+                } else if (index === 2) {
+                    this.triggerEvent('pull-up', 'pull up the panel', {bubbles: false});
+                }
+            } else if (this.data.use === 'index') {
+                this.data.colors.fill('gray');
+                this.data.colors[index] = '#3270b0';
+                this.setData({
+                    colors: this.data.colors
+                })
             }
         },
     },

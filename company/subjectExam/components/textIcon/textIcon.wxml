@@ -1,4 +1,4 @@
-<view clsss="icon-container">
+<view clsss="icon-container" bindtap="handleClickIcon">
     <image class="icon-img" src="{{ imgSrc }}" mode="scaleToFill"></image>
     <view class="text-wrapper">
         <text class="icon-text">{{ iconText }}</text>

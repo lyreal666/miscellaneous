@@ -1,12 +1,15 @@
-<view class="container">
-    <swiper class="questions" bindchange="handleSwiperChange" indicator-dots="{{ false }}" autoplay="{{ false }}" duration="{{ 1000 }}">
-        <block wx:for="{{ questions }}" wx:key="{{ index }}">
-            <swiper-item>
-                <question id="{{ 'item' + index }}" num="{{ item.num }}" type="{{ item.type }}" answer="{{ item.answer }}" hasPic="{{ item.hasPic }}" title="{{ item.title }}" options="{{ item.options }}" detail="{{ item.detail }}" show-detail="{{ item.showDetail}}"></question>
-            </swiper-item>
-        </block>
-    </swiper>
-    <view class="tab-container">
-        <my-tab-bar tabs="{{ tabs }}" bind:detail="handleShowDetail"></my-tab-bar>
+<view class="main-frame">
+    <view class="container">
+        <swiper class="questions" bindchange="handleSwiperChange" indicator-dots="{{ false }}" autoplay="{{ false }}" duration="{{ 1000 }}">
+            <block wx:for="{{ questions }}" wx:key="{{ index }}">
+                <swiper-item>
+                    <question id="{{ 'item' + index }}" num="{{ item.num }}" type="{{ item.type }}" answer="{{ item.answer }}" hasPic="{{ item.hasPic }}" title="{{ item.title }}" options="{{ item.options }}" detail="{{ item.detail }}" show-detail="{{ item.showDetail}}"></question>
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="tab-container">
+            <my-tab-bar tabs="{{ tabs }}" use="subject1-order-practice" bind:detail="handleShowDetail" bind:pull-up="handlePullUp"></my-tab-bar>
+        </view>
     </view>
+    <float-top-panel isPanelUp="{{ isPullUp }}"></float-top-panel>
 </view>

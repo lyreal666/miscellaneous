@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/chapterList/chapterList",
     "pages/answer/answer",
     "pages/test/test"
   ],

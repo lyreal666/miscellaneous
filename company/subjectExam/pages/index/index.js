@@ -1,8 +1,8 @@
 /*
  * @Author: ytj 
  * @Date: 2018-07-13 07:53:26 
- * @Last Modified by:   ytj 
- * @Last Modified time: 2018-07-13 07:53:26 
+ * @Last Modified by: ytj
+ * @Last Modified time: 2018-07-17 17:21:04
  */
 
 
@@ -15,7 +15,7 @@ Page({
         ],
         simulationIcons: [
             { imgSrc: '/common/imgs/testTricks.png', iconText: '考试技巧' },
-            { imgSrc: '/common/imgs/testFighting.png', iconText: '考试攻略' },
+            { imgSrc: '/common/imgs/testFighting.png', iconText: '难题攻略' },
             { imgSrc: '/common/imgs/testRecording.png', iconText: '考试记录' },
         ],
         scale1: '135/1315',
@@ -23,6 +23,13 @@ Page({
         scale2: '最高分: 84',
         info2: '平时用时: 15',
         selectedSubject: '科目一'
+    },
+    handleClickIcon(event) {
+        if (event.detail === "章节练习") {
+            wx.navigateTo({
+                url: '/pages/chapterList/chapterList'
+            })
+        }
     },
     selectSubject(event) {
         if (this.data.selectedSubject !== event.currentTarget.dataset.subjectText) {

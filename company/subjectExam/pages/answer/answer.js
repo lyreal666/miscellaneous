@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-12 09:12:47 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-16 11:40:47
+ * @Last Modified time: 2018-07-17 11:52:39
  */
  
 let app = getApp();
@@ -17,10 +17,18 @@ Page({
         showDetail: false,
         questionCompleted: false,
         currentItem: 0,
+        isPullUp: false
     },
     properties: {
         questions: [],
     } ,
+    handlePullUp(event) {
+        if (event.detail === 'pull up the panel') {
+            this.setData({
+                isPullUp: !this.data.isPullUp
+            });
+        }
+    },
     handleShowDetail(event) {
         if (event.detail === 'studyMode') {
             let question = this.data.questions.find(element => element.num === this.data.currentItem);
