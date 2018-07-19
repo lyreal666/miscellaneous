@@ -94,9 +94,11 @@ page {
   justify-content: center;
   align-items: center;
   text-align: center;
+  /* margin-left: 8rpx; */
 }
 
 .gauge-img {
+  margin-top: 30rpx;
   width: 90rpx;
   height: 90rpx;
 }

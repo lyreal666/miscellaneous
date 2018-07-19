@@ -1,20 +1,30 @@
-
-
-<view class="options">
-    <block wx:for="{{ computedOptions }}" wx:key="{{ index }}">
-        <view class="option" wx:if="{{ item.ifExist }}" data-option-flag="{{ item.letter }}" bindtap="handleOptionClick">
-            <view class="question-option">
+<template name="singleSelection">
+    <view class="options">
+        <block wx:for="{{ computedOptions }}" wx:key="{{ index }}">
+            <view wx:if="{{ item.ifExist }}" class="question-option {{ item.classList }}" bindtap="handleOptionClick" data-option-flag="{{ item.letter }}">
                 <view class="option-circle">
                     <text class="option-flag">{{ item.letter }}</text>
                 </view>
                 <text class="option-content">{{ item.content }}</text>
             </view>
-            <view class="answer-option {{ item.classList }}" wx:if="{{ showAnswer }}">
-                <view class="option-circle">
-                    <text class="option-flag">{{ item.isRight ? '√' : '×' }}</text>
+        </block>
+    </view>
+</template>
+
+<template name="multipleSelection">
+    <view class="container">
+        <view class="options">
+            <block wx:for="{{ computedOptions }}" wx:key="{{ index }}">
+                <view wx:if="{{ item.ifExist }}" class="question-option {{ item.classList }}" bindtap="handleOptionClick" data-option-flag="{{ item.letter }}">
+                    <view class="option-circle">
+                        <text class="option-flag">{{ item.letter }}</text>
+                    </view>
+                    <text class="option-content">{{ item.content }}</text>
                 </view>
-                <text class="option-content">{{ item.content }}</text>
-            </view>
+            </block>
         </view>
-    </block>
-</view>
+        <button size="default" type="default|primary|warn" plain="false" disabled="false"  hover-class="button-hover">确定</button>
+    </view>
+</template>
+
+<template is="singleSelection" data="{{ computedOptions }}"></template>

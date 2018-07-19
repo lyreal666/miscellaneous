@@ -21,8 +21,6 @@ Component({
     },
     data: {
         computedOptions: [],
-        selected: [],
-        showAnswer: false,
         completed: false,
     },
     methods: {
@@ -37,16 +35,11 @@ Component({
                 }
             });
 
-            // add option.isRight to option
-            ['A', 'B', 'C', 'D'].forEach((element, index) => {
-                computedOptions[index].isRight = this.properties.rightAnswer.includes(element) ? true : false;
-            })
-
             // add option.classList
             computedOptions = computedOptions.map(element => {
                 return {
                     ...element,
-                    classList: element.isRight ? 'right-answer' : 'wrong-answer'
+                    classList: ''
                 }
             })
 
@@ -55,18 +48,32 @@ Component({
             })
         },
         handleOptionClick(event) {
-            if (!this.data.showAnswer) {
-                let flag = event.currentTarget.dataset.optionFlag;
-                if (! this.data.rightAnswer.includes(flag)) {
-                    let selectedOption = this.data.computedOptions.find(element => element.letter === flag);
-                        selectedOption.classList = `${selectedOption.classList} selected-wrong-option`.replace('wrong-answer', '')
-                        this.setData({
-                            computedOptions: this.data.computedOptions,
-                        })
+            console.log('click');
+            let flag = event.currentTarget.dataset.optionFlag;
+            if (!this.data.completed) {
+                if (!this.data.rightAnswer.includes(flag)) {
+                    this.data.computedOptions.forEach(element => {
+                        if (element.letter === flag) {
+                            element.classList = 'selected-wrong-option';
+                            element.flag = 'x'
+                        } else if (this.data.rightAnswer.includes(element.letter)) {
+                            element.classList = 'right-option';
+                            element.letter = '√'
+                        }
+                        
+                    })
+                } else {
+                    let rightOption = this.data.computedOptions.find(element => element.letter === flag);
+                    rightOption.classList = 'right-option';
+                    rightOption.letter = '√'
                 }
             }
-            this.setData({ showAnswer: this.data.showAnswer || true })
+            this.setData({
+                computedOptions: this.data.computedOptions
+            })
+            this.data.completed = true;
         }
+        
     },
     attached() {
         this.initData();
@@ -74,4 +81,4 @@ Component({
     ready() {
         // console.log(this.data.computedOptions);
     }
-}); 
+});

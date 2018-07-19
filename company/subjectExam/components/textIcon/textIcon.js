@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-13 07:54:12 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-17 17:11:54
+ * @Last Modified time: 2018-07-18 15:16:58
  */
 
 
@@ -14,7 +14,7 @@ Component({
         },
         iconText: {
             type: String,
-            value: '文字图标默认文字'
+            value: 'text-icon'
         }
     },
     methods: {

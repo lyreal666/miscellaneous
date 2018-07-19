@@ -2,9 +2,8 @@
  * @Author: ytj 
  * @Date: 2018-07-13 07:53:26 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-18 11:34:46
+ * @Last Modified time: 2018-07-18 16:30:32
  */
-
 
 Page({
     data: {
@@ -47,36 +46,33 @@ Page({
             url: '/pages/answer/answer'
         })
     },
-    drawProgressbg: function (id) {
-        // 使用 wx.createContext 获取绘图上下文 context
-        let ctx = wx.createCanvasContext(id)
-        ctx.setLineWidth(10);// 设置圆环的宽度
-        ctx.setStrokeStyle('#3872b1'); // 设置圆环的颜色
-        ctx.setLineCap('square') // 设置圆环端点的形状
-        ctx.beginPath();//开始一个新的路径
-        ctx.arc(78, 78, 64, (135 / 360) * 2 * Math.PI, 2 * Math.PI, false);
-        //设置一个原点(100,100)，半径为90的圆的路径到当前路径
-        ctx.stroke();//对当前路径进行描边
-        ctx.arc(78, 78, 64, 0, (45 / 360) * 2 * Math.PI, false);
-        ctx.stroke();
-        ctx.draw();
-    },
-    drawProgress(id) {
-        let ctx = wx.createCanvasContext(id)
-        ctx.setLineWidth(1);// 设置圆环的宽度
-        ctx.setStrokeStyle('white'); // 设置圆环的颜色
-        ctx.setLineCap('square') // 设置圆环端点的形状
-        ctx.beginPath();//开始一个新的路径
-        ctx.arc(78, 78, 66, (135 / 360) * 2 * Math.PI, 2 * Math.PI, false);
-        ctx.stroke();//对当前路径进行描边
-        ctx.arc(78, 78, 66, 0, (45 / 360) * 2 * Math.PI, false);
-        ctx.stroke();
-        ctx.draw();
+    drawGauge(id1, id2) {
+        // 画大环
+        let ctx1 = wx.createCanvasContext(id1)
+        ctx1.setLineWidth(10);// 设置圆环的宽度
+        ctx1.setStrokeStyle('#3872b1'); // 设置圆环的颜色
+        ctx1.setLineCap('square') // 设置圆环端点的形状
+        ctx1.beginPath();//开始一个新的路径
+        ctx1.arc(75, 75, 64, (135 / 360) * 2 * Math.PI, 2 * Math.PI, false);
+        ctx1.stroke();//对当前路径进行描边
+        ctx1.arc(75, 75, 64, 0, (45 / 360) * 2 * Math.PI, false);
+        ctx1.stroke();
+        ctx1.draw();
+        
+        // 画小环
+        let ctx2 = wx.createCanvasContext(id2)
+        ctx2.setLineWidth(3);
+        ctx2.setStrokeStyle('white');
+        ctx2.setLineCap('square');
+        ctx2.beginPath();
+        ctx2.arc(75, 75, 64, (135 / 360) * 2 * Math.PI, 2 * Math.PI, false);
+        ctx2.stroke();
+        ctx2.arc(75, 75, 64, 0, (45 / 360) * 1.5 * Math.PI, false);
+        ctx2.stroke();
+        ctx2.draw();
     },
     onShow: function () {
-        this.drawProgressbg('canvasProgressbg');
-        this.drawProgress('canvasProgress');
-        this.drawProgressbg('canvasProgressbg1');
-        this.drawProgress('canvasProgress1');
+        this.drawGauge('canvasProgressBg1', 'canvasProgress1');
+        this.drawGauge('canvasProgressBg2', 'canvasProgress2');
     }
 })

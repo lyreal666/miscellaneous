@@ -10,8 +10,8 @@
         </view>
         <view class="gauge" bindtap="toOrderPractice">
             <view class='progress_box'>
-                <canvas class="progress_bg" canvas-id="canvasProgressbg"></canvas>
-                <canvas class="progress_canvas" canvas-id="canvasProgress"></canvas>
+                <canvas class="progress_bg" canvas-id="canvasProgressBg1"></canvas>
+                <canvas class="progress_canvas" canvas-id="canvasProgress1"></canvas>
                 <view class="progress-inner">
                     <image class="gauge-img" src="/common/imgs/orderPractice.png" mode="scaleToFil"></image>
                     <text class="title">顺序练习</text>
@@ -33,8 +33,8 @@
     <view class="simulation-test">
         <view class="gauge">
             <view class='progress_box'>
-                <canvas class="progress_bg" canvas-id="canvasProgressbg1"></canvas>
-                <canvas class="progress_canvas" canvas-id="canvasProgress1"></canvas>
+                <canvas class="progress_bg" canvas-id="canvasProgressBg2"></canvas>
+                <canvas class="progress_canvas" canvas-id="canvasProgress2"></canvas>
                 <view class="progress-inner">
                     <image class="gauge-img" src="/common/imgs/simulation.png" mode="scaleToFil"></image>
                     <text class="title">顺序练习</text>
