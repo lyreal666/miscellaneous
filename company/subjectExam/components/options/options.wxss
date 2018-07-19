@@ -50,4 +50,39 @@
     color: white;
 }
 
+.selected .option-content{
+    color: green;
+}
+
+.selected .option-circle {
+    background-color: green;
+    color: white;
+}
+
+.m-right-option .option-content{
+    color: #3270b0;
+}
+
+.m-right-option .option-circle {
+    background-color: #3270b0;
+    color: white;
+}
+
+.m-wrong-option .option-content{
+    color: red;
+}
+
+.m-wrong-option .option-circle {
+    background-color: red;
+    color: white;
+}
+
+.submitButton {
+    height: 65rpx;
+    line-height: 65rpx;
+    margin-top: 30rpx;
+    margin-bottom: 30rpx;
+}
+
+
 

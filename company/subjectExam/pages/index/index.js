@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-13 07:53:26 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-18 16:30:32
+ * @Last Modified time: 2018-07-19 11:41:33
  */
 
 Page({
@@ -44,6 +44,11 @@ Page({
     toOrderPractice() {
         wx.navigateTo({
             url: '/pages/answer/answer'
+        })
+    },
+    toMockExam() {
+        wx.navigateTo({
+            url: '/pages/mockExam/mockExam'
         })
     },
     drawGauge(id1, id2) {

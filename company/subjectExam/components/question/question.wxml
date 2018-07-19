@@ -10,7 +10,7 @@
                 </view>
                 <scroll-view class="content" scroll-y>
                     <view class="image-wrapper">
-                        <image src="/common/imgs/question.jpg" mode="scaleToFill" class="content-img"></image>
+                        <image wx:if="{{ hasPic }}" src="/common/imgs/question.jpg" mode="scaleToFill" class="content-img"></image>
                     </view>
                     <view class="question-heading">
                         <text>{{ title }}</text>
@@ -20,7 +20,7 @@
                         type="{{ type }}"
                         right-answer="{{ answer }}"
                         options="{{ options }}"
-                        
+                        show-answer="{{ showAnswer }}"
                     >
                     </options>
                     <view class="question-detail">

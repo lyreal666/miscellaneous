@@ -1,7 +1,7 @@
 <template name="singleSelection">
     <view class="options">
         <block wx:for="{{ computedOptions }}" wx:key="{{ index }}">
-            <view wx:if="{{ item.ifExist }}" class="question-option {{ item.classList }}" bindtap="handleOptionClick" data-option-flag="{{ item.letter }}">
+            <view wx:if="{{ item.ifExist }}" class="question-option {{ item.classList }}" bindtap="handleSingleOptionClick" data-option-flag="{{ item.letter }}">
                 <view class="option-circle">
                     <text class="option-flag">{{ item.letter }}</text>
                 </view>
@@ -15,7 +15,7 @@
     <view class="container">
         <view class="options">
             <block wx:for="{{ computedOptions }}" wx:key="{{ index }}">
-                <view wx:if="{{ item.ifExist }}" class="question-option {{ item.classList }}" bindtap="handleOptionClick" data-option-flag="{{ item.letter }}">
+                <view class="question-option {{ item.classList }}" bindtap="handleMultipleOptionClick" data-option-flag="{{ item.letter }}">
                     <view class="option-circle">
                         <text class="option-flag">{{ item.letter }}</text>
                     </view>
@@ -23,8 +23,10 @@
                 </view>
             </block>
         </view>
-        <button size="default" type="default|primary|warn" plain="false" disabled="false"  hover-class="button-hover">确定</button>
+        <button class="submitButton" size="default" type="primary" disabled="{{ disabled }}" hover-class="button-hover" bindtap="handleSubmit">
+            确定
+        </button>
     </view>
 </template>
 
-<template is="singleSelection" data="{{ computedOptions }}"></template>
+<template is="{{ type === '多选题' ? 'multipleSelection' : 'singleSelection'}}" data="{{ computedOptions, disabled }}"></template>

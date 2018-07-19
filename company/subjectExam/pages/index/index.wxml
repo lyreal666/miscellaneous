@@ -30,14 +30,14 @@
             </block>
         </view>
     </view>
-    <view class="simulation-test">
+    <view class="simulation-test" bindtap="toMockExam">
         <view class="gauge">
             <view class='progress_box'>
                 <canvas class="progress_bg" canvas-id="canvasProgressBg2"></canvas>
                 <canvas class="progress_canvas" canvas-id="canvasProgress2"></canvas>
                 <view class="progress-inner">
                     <image class="gauge-img" src="/common/imgs/simulation.png" mode="scaleToFil"></image>
-                    <text class="title">顺序练习</text>
+                    <text class="title">模拟测试</text>
                     <text class="scale">{{ scale2 }}</text>
                     <text class="info">{{ info2 }}</text>
                 </view>

@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-13 16:11:10 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-16 08:46:44
+ * @Last Modified time: 2018-07-19 11:57:22
  */
 
 Component({
@@ -36,6 +36,10 @@ Component({
             value: 'the detail of the question...'
         },
         showDetail: {
+            type: Boolean,
+            value: false
+        },
+        showAnswer: {
             type: Boolean,
             value: false
         }

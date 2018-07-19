@@ -25,9 +25,33 @@ page {
 
 .tab-container {
     width: 100%;
+    height: 100rpx;
     border-top: 4rpx solid #3371b0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
 
+.tab-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.count-down {
+    padding: 5rpx;
+    width: 100rpx;
+    height: 100rxp;
+    border: 2rpx solid #3371b0;
+    color: #3371b0;
+}
+
+.tab-image {
+    height: 60rpx;
+    width: 60rpx;
+}
 .float-top-panel {
     width: 100%;
     height: 100%;

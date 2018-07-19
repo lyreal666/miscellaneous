@@ -1,0 +1,30 @@
+<template name="tab-bar">
+    <view class="tab-container">
+        <view class="tab-wrapper">
+            <view class="count-down">
+            <text>{{ leftTimeStr }}</text>
+        </view>
+        </view>
+        <view class="tab-wrapper">
+            <image class="tab-image" catchtap="switchTab" data-operation="handed" src="{{ tabs[0].imgSrc }}" mode="scaleToFill"></image>
+        </view>
+        <view class="tab-wrapper">
+            <image class="tab-image" catchtap="switchTab" data-operation="pullUpPanel" src="{{ tabs[1].imgSrc }}" mode="scaleToFill"></image>
+        </view> 
+    </view>
+</template>
+
+<view class="main-frame">
+    <view class="container">
+        <swiper class="questions" bindchange="handleSwiperChange" indicator-dots="{{ false }}" autoplay="{{ false }}" duration="{{ 1000 }}">
+            <block wx:for="{{ questions }}" wx:key="{{ index }}">
+                <swiper-item>
+                    <question id="{{ 'item' + index }}" num="{{ item.num }}" type="{{ item.type }}" answer="{{ item.answer }}" hasPic="{{ item.hasPic }}" title="{{ item.title }}" options="{{ item.options }}" detail="{{ item.detail }}" show-detail="{{ item.showDetail}}"></question>
+                </swiper-item>
+            </block>
+        </swiper>
+        <template is="tab-bar" data="{{ tabs, leftTimeStr, switchTab}}"></template>
+    </view>
+    <float-top-panel isPanelUp="{{ isPullUp }}"></float-top-panel>
+</view>
+

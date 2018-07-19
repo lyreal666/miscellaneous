@@ -4,7 +4,8 @@
     "pages/testRecording/testRecording",
     "pages/test/test",
     "pages/chapterList/chapterList",
-    "pages/answer/answer"
+    "pages/answer/answer",
+    "pages/mockExam/mockExam"
   ],
   "window":{
     "backgroundTextStyle":"light",
