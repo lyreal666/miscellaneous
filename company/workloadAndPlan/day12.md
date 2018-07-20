@@ -7,7 +7,7 @@
 3. 修复学习模式点击不显示正确选项的问题
 4. 完成2个模拟考试子页面
 
-![子页面之一](https://github.com/lyreal666/miscellaneous/blob/master/company/screenShot/day7.png?raw=true)
+![子页面之一](https://github.com/lyreal666/miscellaneous/blob/master/company/screenShot/mockExam.png?raw=true)
 
 ### plan
 1. 设计整体数据配置
