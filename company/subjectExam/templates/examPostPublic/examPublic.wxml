@@ -1,0 +1,14 @@
+<template name="post-public">
+    <view class="public-container">
+        <view class="outter">
+            <view class="inner">
+                <text class="board-text">{{ boardText}}</text>
+            </view>
+        </view>
+        <view class="dot-wrapper">
+            <view class="dot"></view>
+            <view class="dot"></view>
+            <view class="dot"></view>
+        </view>
+    </view>
+</template>

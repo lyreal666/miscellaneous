@@ -1,8 +1,9 @@
 {
   "pages":[
+    "pages/examWelcome/examWelcome",
+    "pages/examResult/examResult",
     "pages/index/index",
     "pages/testRecording/testRecording",
-    "pages/test/test",
     "pages/chapterList/chapterList",
     "pages/answer/answer",
     "pages/mockExam/mockExam"

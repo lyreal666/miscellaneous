@@ -1,0 +1,14 @@
+<import src="/templates/examPostPublic/examPublic.wxml"></import>
+<view class="container">
+    <text class="title-wrapper">
+        <text class="title">{{ '< 模拟考试' }}</text>
+    </text>
+    <template is="post-public" data="{{ boardText }}"></template>
+    <view class="content">
+        <text class="contentItem">{{ '考试科目 ' + testSubject }}</text>
+        <text class="contentItem">{{ '试题数量 ' + questionCount }}</text>
+        <text class="contentItem">{{ '考试时间 ' + testTime }}</text>
+        <text class="contentItem">{{ '合格标准 ' + passStandard}}</text>
+        <view class="hole"></view>
+    </view>
+</view>
