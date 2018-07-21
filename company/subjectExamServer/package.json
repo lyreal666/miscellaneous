@@ -1,0 +1,23 @@
+{
+  "name": "subject-exam-server",
+  "version": "1.0.0",
+  "description": "deal the wxmini subjectExam",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "ly",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "log4js": "^3.0.1",
+    "mysql2": "^1.5.3",
+    "mz": "^2.7.0",
+    "node-uuid": "^1.4.8",
+    "sequelize": "^4.38.0"
+  }
+}

@@ -39,14 +39,14 @@ with open(ques_file, 'r', encoding='utf-8') as fr:
     number2answer = ['A', 'B', 'C', 'D']
     
     # 处理数据
-    qs_dict = {}
+    qs = []
     losed_chapter = []
     for match in matches:
         # print('题号:', match[1])
         # print(match)
         try:
             question = {}
-            question['number'] = match[1].strip()
+            question['number'] = int(match[1].strip())
             question['subject'] = subjects[int(match[2].strip()) - 1]
             question['car_types'] = ''
             car_type = bin(int(match[3].strip()))[2:].zfill(3)
@@ -70,15 +70,15 @@ with open(ques_file, 'r', encoding='utf-8') as fr:
                 if c in match[6]:
                     answer += number2answer[int(c) - 1]
             question['answer'] = answer
-            question['hasPic'] = match[7].strip()
+            question['hasPic'] = int(match[7].strip())
             question['title'] = match[8].strip()[1:]
             options = [match[9], match[10], match[11], match[12]]
             question['options'] = [option.strip()[1:] for option in options]
             question['detail'] = match[13].strip()[1 : ]
-            qs_dict[match[1].strip()] = question
+            qs.append(question)
         except Exception as e:
             print('题目:', match[0])
             print(e)
             exit()
-    json.dump(qs_dict, open('./questions.json', 'w', encoding='utf-8'), ensure_ascii=False)
+    json.dump(qs, open('./questions.json', 'w', encoding='utf-8'), ensure_ascii=False)
     print(losed_chapter)
