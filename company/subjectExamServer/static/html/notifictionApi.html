@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="xh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!--<link type="text/css" rel="stylesheet" href="../lib/animate.css"/>-->
+    <!--<link type="text/css" rel="stylesheet" href="../lib/bootstrap3.3.7.css"/>-->
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <!--
+
+    -->
+</head>
+<body>
+<div id="example">
+    <input type="button" value="点击发送通知" @click="handleClick"/>
+    <br/>
+    <a href="https://juejin.im/post/59ed37f5f265da431e15eaac">参考掘金一篇文章</a>
+</div>
+</body>
+<script>
+   /**
+   * 使用notifiction Api 注意点
+   * 1.使用前需要检查权限
+   * 2.测试表明file协议无法唤起notifiction
+   */
+    var vm = new Vue({
+        el: '#example',
+        data: {
+        },
+        methods: {
+            testNotice(autoClose=true) {
+                const notification = new Notification('这是通知标题', {
+                                    body: '这是通知内容',
+                                    // 通知唯一标示,相同的tag只打开一次
+                                    tag: 'test',
+                                    icon: '/common/images/goldenWood.jpg',
+                                    image: '/common/images/MengSister.png',
+                                    // 想要和通知关联的任务类型的数据。
+                                    data: {
+                                        url: 'http://120.78.173.232:8081'
+                                    },
+                                    // 请求互动为true时必须用户点击x,才能退出
+                                    requireInteraction: true
+                                });
+                // 关闭
+                autoClose ? setTimeout(() => notification.close(), 3000) : null;
+
+                // 事件
+                // 可以给通知设置事件
+                notification.onclick = () => {
+                    window.open(notification.data.url);
+                    notification.close();
+                }
+            },
+            handleClick() {
+                // 先检查权限
+                console.log(Notification.permission);
+                switch (Notification.permission) {
+                    case 'granted': {
+                        console.log('permission allow!');
+                        this.testNotice(false);
+                        break;
+                    };
+                    case 'denied': {
+                        console.log('permission denied!');
+                        break;
+                    };
+                    case 'default': {
+                        console.log('待请求权限!');
+                        // 請求權限 这是以前基于回调的语法已经弃用（当然在现在的浏览器中还是能用的），
+                        // 最新的规范已将此方法更新为基于 promise 的语法：
+                        Notification.requestPermission().then(result => {
+                            if (result === 'granted') {
+                                console.log('已获取用户通知权限');
+                                this.testNotice();
+                            } else if (result === 'denied') {
+                                console.log('Oh my fuck, the foolish master...');
+                            }
+                        }).catch(err => {
+                            console.error(err);
+                        })
+                    }
+                }
+            }
+        },
+        computed: {
+        }
+    })
+</script>
+</html>

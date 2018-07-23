@@ -1,5 +1,5 @@
 const config = {
-    database: 'ytj',
+    database: 'wxminitest',
 };
 
 module.exports = config;

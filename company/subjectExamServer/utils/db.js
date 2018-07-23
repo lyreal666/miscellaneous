@@ -5,9 +5,9 @@ const uuid = require('uuid');
 
 serverLogger.warn('Init sequelize...')
 
-const generateId = () => uuid().v4();
+const generateId = () => uuid.v4();
 
-var sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
+let sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
     host: dbConfig.host,
     dialect: dbConfig.dialect,
     pool: {
@@ -18,6 +18,7 @@ var sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.pas
 });
 
 const ID_TYPE = Sequelize.STRING(50);
+
 
 const defineModel = (name, attributes) => {
     let attrs = {};
@@ -49,6 +50,30 @@ const defineModel = (name, attributes) => {
         type: Sequelize.BIGINT,
         allowNull: false
     };
+    serverLogger.info('model defined for table: ' + name + '\n' + JSON.stringify(attrs, function (k, v) {
+        if (k === 'type') {
+            for (let key in Sequelize) {
+                if (key === 'ABSTRACT' || key === 'NUMBER') {
+                    continue;
+                }
+                let dbType = Sequelize[key];
+                if (dbType.prototype && typeof dbType === 'function') {
+                    
+                    if (v instanceof dbType) {
+                        if (v._length) {
+                            return `${dbType.key}(${v._length})`;
+                        }
+                        return dbType.key;
+                    }
+                    if (v === dbType) {
+                        return dbType.key;
+                    }
+                }
+            }
+        }
+        return v;
+    }, '    '));
+    
     return sequelize.define(name, attrs, {
         tableName: name,
         timestamps: false,
@@ -66,6 +91,22 @@ const defineModel = (name, attributes) => {
                     obj.updatedAt = Date.now();
                     obj.version++;
                 }
+            },
+            beforeBulkCreate(instances, options) {
+                instances.forEach(obj=> {
+                    let now = Date.now();
+                    if (obj.isNewRecord) {
+                        if (!obj.id) {
+                            obj.id = generateId();
+                        }
+                        obj.createdAt = now;
+                        obj.updatedAt = now;
+                        obj.version = 0;
+                    } else {
+                        obj.updatedAt = Date.now();
+                        obj.version++;
+                    }
+                })
             }
         }
     });

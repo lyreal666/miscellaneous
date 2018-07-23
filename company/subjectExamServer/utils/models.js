@@ -17,6 +17,4 @@ for (const f of js_files) {
     module.exports[name] = require(path.resolve(__dirname, `../models/${f}`));
 }
 
-module.exports.sync = () => {
-    db.sync();
-};
+module.exports.sync = db.sync;

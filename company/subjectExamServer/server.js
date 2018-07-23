@@ -2,28 +2,28 @@
  * @Author: ytj 
  * @Date: 2018-07-20 10:37:46 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-20 17:59:33
+ * @Last Modified time: 2018-07-22 21:06:02
  */
 
 const path = require('path');
 const Koa2 = require('koa');
-const accessServerLog = require('./middlewares/accessServerLog');
-const log4js = require('./utils/log4js-config');
+const accessServerLog = require('./middleware/accessServerLog');
 const staticServer = require('koa-static');
-const controller = require('./middlewares/controller');
+const bodyParser = require('koa-bodyparser');
+const restify = require('./middleware/restify');
+const controller = require('./middleware/controller');
 
 let server = new Koa2();
 
-// test env
 process.env.NODE_ENV = 'test';
 
+const log4js = require('./utils/log4js-config');
 const serverLogger = log4js.getLogger('serverStatus');
 const errorLogger = log4js.getLogger('error');
 
 
 server.use(accessServerLog);
 
-// static server
 const staticServerConfigs =[
     { relativePath: './static', options: { index: 'index.html'} },
 ] 
@@ -33,9 +33,10 @@ staticServerConfigs.forEach(config => {
     server.use(staticServer(absPath, config.options))
 })
 
-// add routes
+server.use(bodyParser());
+server.use(restify('/api/'));
 server.use(controller(path.resolve(__dirname, './controllers')));
 
-const port = 8848;
+const port = 8868;
 serverLogger.info(`Server is running in http://127.0.0.1:${port}/`);
 server.listen(port);

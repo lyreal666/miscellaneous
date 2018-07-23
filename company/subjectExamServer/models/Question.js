@@ -7,12 +7,12 @@ module.exports = db.defineModel('questions', {
         unique: true
     },
     subject: db.STRING(12),
-    car_types: db.STRING(20),
+    car_types: db.STRING(80),
     chapter: db.STRING(80),
     type: db.STRING(12),
     answer: db.STRING(8),
     hasPic: db.INTEGER,
-    title: db.STRING(120),
-    options: db.STRING(120),
-    detail: db.STRING(300)
+    title: db.STRING(600),
+    options: db.TEXT,
+    detail: db.TEXT
 })

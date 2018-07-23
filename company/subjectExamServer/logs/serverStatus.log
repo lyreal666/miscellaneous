@@ -1,22 +1,1108 @@
-[2018-07-20T14:24:05.013] [INFO] server - Use absPath as static server path
-[2018-07-20T14:24:05.015] [INFO] server - Server is running in http://127.0.0.1:8848/
-[2018-07-20T14:25:21.076] [INFO] server - Use absPath: F:\codingSpace\miscellaneous\company\subjectExamServer\static as static server path
-[2018-07-20T14:25:21.079] [INFO] server - Server is running in http://127.0.0.1:8848/
-[2018-07-20T16:08:35.091] [WARN] server - Process controller under directory: F:\codingSpace\miscellaneous\company\subjectExamServer\controllers...
-[2018-07-20T16:08:35.098] [INFO] server - Process controller: question.js...
-[2018-07-20T16:08:35.101] [INFO] server - Register URL mapping: GET /index.html
-[2018-07-20T16:08:35.101] [INFO] server - Register URL mapping: POST /index.html
-[2018-07-20T16:34:08.228] [INFO] server - Load ../configs/db-config-default.js...
-[2018-07-20T16:34:08.235] [ERROR] server - Cannot load ../configs/db-config-override.js.
-[2018-07-20T16:34:08.236] [INFO] server - Load ../configs/db-config-default.js...
-[2018-07-20T16:34:08.237] [ERROR] server - Cannot load ../configs/db-config-override.js.
-[2018-07-20T17:27:31.249] [WARN] server - Process controller under directory: F:\codingSpace\miscellaneous\company\subjectExamServer\controllers...
-[2018-07-20T17:27:31.255] [INFO] server - Process controller: question.js...
-[2018-07-20T17:27:31.258] [INFO] server - Register URL mapping: GET /index.html
-[2018-07-20T17:27:31.259] [INFO] server - Register URL mapping: POST /index.html
-[2018-07-20T17:27:46.041] [INFO] server - Load ../configs/db-config-default.js...
-[2018-07-20T17:27:46.045] [ERROR] server - Cannot load ../configs/db-config-override.js.
-[2018-07-20T17:27:46.046] [WARN] server - Init sequelize...
-[2018-07-20T17:27:58.205] [INFO] server - Load ../configs/db-config-default.js...
-[2018-07-20T17:27:58.209] [ERROR] server - Cannot load ../configs/db-config-override.js.
-[2018-07-20T17:27:58.210] [WARN] server - Init sequelize...
+'' 
+[2018-07-22T14:12:23.368] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-22T14:12:23.373] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-22T14:12:23.374] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-22T14:12:23.375] [WARN] server - Init sequelize...
+[2018-07-22T14:12:23.527] [WARN] server - Import model from file Question.js...
+[2018-07-22T14:12:23.529] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(20)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "hasPic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "STRING(120)",
+        "allowNull": false
+    },
+    "options": {
+        "type": "STRING(120)",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-22T14:12:23.537] [WARN] server - Init the database
+[2018-07-22T14:12:47.601] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-22T14:12:47.606] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-22T14:12:47.607] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-22T14:12:47.609] [WARN] server - Init sequelize...
+[2018-07-22T14:12:47.772] [WARN] server - Import model from file Question.js...
+[2018-07-22T14:12:47.775] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(20)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "hasPic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "STRING(120)",
+        "allowNull": false
+    },
+    "options": {
+        "type": "STRING(120)",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-22T14:12:47.782] [WARN] server - Init the database
+[2018-07-22T14:17:55.957] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-22T14:17:55.960] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-22T14:17:55.961] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-22T14:17:55.963] [WARN] server - Init sequelize...
+[2018-07-22T14:17:56.115] [WARN] server - Import model from file Question.js...
+[2018-07-22T14:17:56.118] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(20)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "hasPic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "STRING(120)",
+        "allowNull": false
+    },
+    "options": {
+        "type": "STRING(120)",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-22T14:17:56.126] [WARN] server - Init the database
+[2018-07-22T14:18:25.968] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-22T14:18:25.972] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-22T14:18:25.973] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-22T14:18:25.974] [WARN] server - Init sequelize...
+[2018-07-22T14:18:26.124] [WARN] server - Import model from file Question.js...
+[2018-07-22T14:18:26.126] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(20)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "hasPic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "STRING(120)",
+        "allowNull": false
+    },
+    "options": {
+        "type": "STRING(120)",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-22T14:20:52.202] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-22T14:20:52.207] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-22T14:20:52.208] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-22T14:20:52.209] [WARN] server - Init sequelize...
+[2018-07-22T14:20:52.357] [WARN] server - Import model from file Question.js...
+[2018-07-22T14:20:52.360] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(20)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "hasPic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "STRING(120)",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-22T14:20:52.367] [WARN] server - Init the database
+[2018-07-22T14:21:06.529] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-22T14:21:06.533] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-22T14:21:06.535] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-22T14:21:06.537] [WARN] server - Init sequelize...
+[2018-07-22T14:21:06.690] [WARN] server - Import model from file Question.js...
+[2018-07-22T14:21:06.692] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(20)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "hasPic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "STRING(120)",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-22T14:22:11.348] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-22T14:22:11.352] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-22T14:22:11.353] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-22T14:22:11.355] [WARN] server - Init sequelize...
+[2018-07-22T14:22:11.505] [WARN] server - Import model from file Question.js...
+[2018-07-22T14:22:11.508] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "hasPic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "STRING(600)",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-22T14:22:11.514] [WARN] server - Init the database
+[2018-07-22T14:22:17.788] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-22T14:22:17.792] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-22T14:22:17.793] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-22T14:22:17.794] [WARN] server - Init sequelize...
+[2018-07-22T14:22:17.943] [WARN] server - Import model from file Question.js...
+[2018-07-22T14:22:17.946] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "hasPic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "STRING(600)",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-22T14:24:41.332] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-22T14:24:41.336] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-22T14:24:41.337] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-22T14:24:41.339] [WARN] server - Init sequelize...
+[2018-07-22T14:24:41.494] [WARN] server - Import model from file Question.js...
+[2018-07-22T14:24:41.496] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "hasPic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "STRING(600)",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-22T14:25:37.478] [WARN] server - Process controller under directory: f:\codingSpace\miscellaneous\company\subjectExamServer\controllers...
+[2018-07-22T14:25:37.484] [INFO] server - Process controller: question.js...
+[2018-07-22T14:25:37.873] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-22T14:25:37.874] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-22T14:25:37.880] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-22T14:25:37.883] [WARN] server - Init sequelize...
+[2018-07-22T14:25:38.131] [WARN] server - Import model from file Question.js...
+[2018-07-22T14:25:38.133] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "hasPic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "STRING(600)",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-22T14:25:38.141] [INFO] server - Register URL mapping: GET /api/questions
+[2018-07-22T14:25:38.142] [INFO] server - Register URL mapping: POST /index.html
+[2018-07-22T14:26:19.615] [WARN] server - Process controller under directory: F:\codingSpace\miscellaneous\company\subjectExamServer\controllers...
+[2018-07-22T14:26:19.620] [INFO] server - Process controller: question.js...
+[2018-07-22T14:26:19.960] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-22T14:26:19.961] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-22T14:26:19.962] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-22T14:26:19.964] [WARN] server - Init sequelize...
+[2018-07-22T14:26:20.152] [WARN] server - Import model from file Question.js...
+[2018-07-22T14:26:20.154] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "hasPic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "STRING(600)",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-22T14:26:20.165] [INFO] server - Register URL mapping: GET /api/questions
+[2018-07-22T14:26:20.166] [INFO] server - Register URL mapping: POST /index.html
+[2018-07-22T14:26:36.055] [INFO] server - Process GET /...
+[2018-07-22T14:26:36.162] [INFO] server - Response GET / cost 72ms
+[2018-07-22T14:26:36.940] [INFO] server - Process GET /favicon.ico...
+[2018-07-22T14:26:36.942] [INFO] server - Response GET /favicon.ico cost 1ms
+[2018-07-22T14:26:52.007] [INFO] server - Process GET /api/questions...
+[2018-07-22T14:26:52.015] [INFO] server - Response GET /api/questions cost 8ms
+[2018-07-22T14:28:03.669] [WARN] server - Process controller under directory: F:\codingSpace\miscellaneous\company\subjectExamServer\controllers...
+[2018-07-22T14:28:03.674] [INFO] server - Process controller: question.js...
+[2018-07-22T14:28:04.010] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-22T14:28:04.012] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-22T14:28:04.013] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-22T14:28:04.015] [WARN] server - Init sequelize...
+[2018-07-22T14:28:04.210] [WARN] server - Import model from file Question.js...
+[2018-07-22T14:28:04.212] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "hasPic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "STRING(600)",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-22T14:28:04.223] [INFO] server - Register URL mapping: GET /api/questions
+[2018-07-22T14:28:04.223] [INFO] server - Register URL mapping: POST /index.html
+[2018-07-22T14:28:08.170] [INFO] server - Process GET /api/questions...
+[2018-07-22T14:28:08.184] [INFO] server - Response GET /api/questions cost 14ms
+[2018-07-22T14:28:42.381] [WARN] server - Process controller under directory: F:\codingSpace\miscellaneous\company\subjectExamServer\controllers...
+[2018-07-22T14:28:42.387] [INFO] server - Process controller: question.js...
+[2018-07-22T14:28:42.767] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-22T14:28:42.768] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-22T14:28:42.769] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-22T14:28:42.771] [WARN] server - Init sequelize...
+[2018-07-22T14:28:42.967] [WARN] server - Import model from file Question.js...
+[2018-07-22T14:28:42.970] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "hasPic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "STRING(600)",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-22T14:28:42.982] [INFO] server - Register URL mapping: GET /api/questions
+[2018-07-22T14:28:42.983] [INFO] server - Register URL mapping: POST /index.html
+[2018-07-22T14:28:45.296] [INFO] server - Process GET /api/questions...
+[2018-07-22T14:28:45.711] [INFO] server - Response GET /api/questions cost 414ms
+[2018-07-22T14:30:59.126] [WARN] server - Process controller under directory: F:\codingSpace\miscellaneous\company\subjectExamServer\controllers...
+[2018-07-22T14:30:59.132] [INFO] server - Process controller: question.js...
+[2018-07-22T14:30:59.471] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-22T14:30:59.472] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-22T14:30:59.473] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-22T14:30:59.475] [WARN] server - Init sequelize...
+[2018-07-22T14:30:59.677] [WARN] server - Import model from file Question.js...
+[2018-07-22T14:30:59.685] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "hasPic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "STRING(600)",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-22T14:30:59.695] [INFO] server - Register URL mapping: GET /api/questions
+[2018-07-22T14:30:59.696] [INFO] server - Register URL mapping: POST /index.html
+[2018-07-22T14:31:02.728] [INFO] server - Process GET /api/questions...
+[2018-07-22T14:31:03.119] [INFO] server - Response GET /api/questions cost 391ms
+[2018-07-22T21:05:34.121] [WARN] server - Process controller under directory: F:\codingSpace\miscellaneous\company\subjectExamServer\controllers...
+[2018-07-22T21:05:34.128] [INFO] server - Process controller: question.js...
+[2018-07-22T21:05:35.116] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-22T21:05:35.118] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-22T21:05:35.119] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-22T21:05:35.124] [WARN] server - Init sequelize...
+[2018-07-22T21:05:35.491] [WARN] server - Import model from file Question.js...
+[2018-07-22T21:05:35.493] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "STRING(12)",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "hasPic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "STRING(600)",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-22T21:05:35.504] [INFO] server - Register URL mapping: GET /api/questions
+[2018-07-22T21:05:35.504] [INFO] server - Register URL mapping: POST /index.html
+[2018-07-22T21:06:33.482] [INFO] server - Process GET /...
+[2018-07-22T21:06:33.530] [INFO] server - Response GET / cost 32ms
+[2018-07-22T21:07:03.830] [INFO] server - Process GET /html/notifictionApi.html...
+[2018-07-22T21:07:03.836] [INFO] server - Response GET /html/notifictionApi.html cost 3ms
+[2018-07-22T21:07:09.289] [INFO] server - Process GET /common/images/MengSister.png...
+[2018-07-22T21:07:09.293] [INFO] server - Process GET /common/images/goldenWood.jpg...
+[2018-07-22T21:07:09.296] [INFO] server - Response GET /common/images/MengSister.png cost 4ms
+[2018-07-22T21:07:09.298] [INFO] server - Response GET /common/images/goldenWood.jpg cost 3ms
+[2018-07-22T21:07:14.084] [INFO] server - Process GET /common/images/MengSister.png...
+[2018-07-22T21:07:14.086] [INFO] server - Process GET /common/images/goldenWood.jpg...
+[2018-07-22T21:07:14.088] [INFO] server - Response GET /common/images/MengSister.png cost 3ms
+[2018-07-22T21:07:14.089] [INFO] server - Response GET /common/images/goldenWood.jpg cost 1ms
+[2018-07-22T21:07:38.500] [INFO] server - Process GET /common/images/MengSister.png...
+[2018-07-22T21:07:38.501] [INFO] server - Process GET /common/images/goldenWood.jpg...
+[2018-07-22T21:07:38.502] [INFO] server - Response GET /common/images/MengSister.png cost 2ms
+[2018-07-22T21:07:38.504] [INFO] server - Response GET /common/images/goldenWood.jpg cost 3ms

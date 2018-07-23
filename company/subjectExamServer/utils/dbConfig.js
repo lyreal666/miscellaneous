@@ -2,7 +2,7 @@ const defaultConfig = '../configs/db-config-default.js';
 const overrideConfig = '../configs/db-config-override.js';
 const testConfig = '../configs/db-config-test.js';
 const serverLogger = require('../utils/log4js-config').getLogger('server');
-
+const errorLogger = require('../utils/log4js-config').getLogger('error');
 const fs = require('fs');
 
 const getDBConfig = () => {
@@ -13,7 +13,7 @@ const getDBConfig = () => {
 
     if (process.env.NODE_ENV === 'test') {
         serverLogger.info(`Load ${testConfig}...`)
-        config = Object.assign(require(testConfig));
+        config = Object.assign(config, require(testConfig));
     } else {
         try {
             if (fs.statSync(overrideConfig).isFile()) {
@@ -21,9 +21,10 @@ const getDBConfig = () => {
                 config = Object.assign(config, require(overrideConfig));
             }
         } catch (err) {
-            serverLogger.error(`Cannot load ${overrideConfig}.`)
+            errorLogger.error(`Cannot load ${overrideConfig}.`)
         }
     }
+    serverLogger.info('DB configuration:', config);
 
     return config;
 };
