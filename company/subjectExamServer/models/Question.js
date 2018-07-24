@@ -11,8 +11,9 @@ module.exports = db.defineModel('questions', {
     chapter: db.STRING(80),
     type: db.STRING(12),
     answer: db.STRING(8),
-    hasPic: db.INTEGER,
-    title: db.STRING(600),
+    has_pic: db.INTEGER,
+    title: db.TEXT,
     options: db.TEXT,
-    detail: db.TEXT
+    detail: db.TEXT,
+    failedTimes: db.INTEGER
 })

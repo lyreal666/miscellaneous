@@ -7,7 +7,10 @@ module.exports = {
     'GET /api/questions': async (ctx, next) => {
         try {
             const questions =  await questionService.fetchAllQuestions();
-            ctx.rest(questions);
+            ctx.rest({
+                count: questions.length,
+                questions
+            });
             next();
         } catch (e) {
             errorLogger.error('Fetch all questions occur exception, error: ', e);
@@ -17,7 +20,9 @@ module.exports = {
             throw error
         }
     },
-    'POST /index.html': async () => {
-
+    'GET /api/questions/:questionNumber': async (ctx, next) => {
+        const question = await questionService.fetchQuestionsByNumber(ctx.params.questionNumber);
+        ctx.rest(question);
+        next();
     }
 }

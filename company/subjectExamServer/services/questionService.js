@@ -3,6 +3,7 @@ process.env.NODE_ENV = 'test';
 const models = require('../utils/models');
 const path = require('path');
 const fs = require('mz/fs');
+const { sequelize } = require('../utils/db');
 const serverLogger = require('../utils/log4js-config').getLogger('server');
 const errorLogger = require('../utils/log4js-config').getLogger('error');
 
@@ -50,20 +51,38 @@ const fetchAllQuestions = async () => {
     }
 }
 
-const fetchOneQuestion = async () => {
-    
+const queryQuestions = async (sqlStr, arguments) => {
+    const questions = await sequelize
+        .query(sqlStr, { replacements: [...arguments], type: sequelize.QueryTypes.SELECT });
+}
+
+const fetchQuestionsByNumber = async (number) => {
+    const question = await Question.findOne({
+        where: {number} ,
+        attributes: [
+            'number',
+            'subject',
+            'car_types',
+            'chapter',
+            'type',
+            'answer',
+            'hasPic',
+            'title',
+            'options',
+            'detail',
+        ]
+    });
+    return question;
 }
 
 
 
 if (require.main === module) {
-    Promise.resolve(initQuestionTable());
-    Question.sync();
-    Question.findAll().then(data => {
-        console.log('data:', data);
-    })
+    fetchQuestions('select title from questions where number = ?', [100]);
 } else {
     module.exports = {
         fetchAllQuestions,
+        queryQuestions,
+        fetchQuestionsByNumber
     }
 }
