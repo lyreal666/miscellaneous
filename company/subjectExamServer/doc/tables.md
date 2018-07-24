@@ -15,11 +15,11 @@ module.exports = db.defineModel('questions', {
         type: db.INTEGER,
         unique: true
     },
-    subject: db.STRING(12),
+    subject: db.INTEGER, // 1/4
     car_types: db.STRING(80),
     chapter: db.STRING(80),
-    type: db.STRING(12),
-    answer: db.STRING(8),
+    type: db.INTEGER, // 0/单选, 1/判断题/, 2/多选题
+    answer: db.STRING(8), // 'ABC'
     has_pic: db.INTEGER, // 0: none, 1: has pic, 2: has video
     title: db.TEXT,
     options: db.TEXT,
@@ -50,33 +50,33 @@ module.exports = db.defineModel('questions_versions', {
 ```javascript
 module.exports = db.defineModel('users', {
     name: {
-        type: db.STRING(80),
+        type: db.STRING(80), // '好名字被...'
         unique: false
     },
     wx: {
-        type: db.STRING(80),
+        type: db.STRING(80), // wxnumber123456
         unique: true
     },
     collections: {
         type:db.JSON, // '[666, 888, 999]'s
         unique: false
     },
-    subject1failed: {
-        type: db.JSON,
-        unique: false
-    },
-    subject4failed: {
-        type: db.JSON,
-        unique: false
-    },
     subject1right: {
-        type: db.JSON,
+        type: db.JSON, // '[1, 3, 7]' 科目一对了1, 3, 7题
+        unique: false
+    },
+    subject1failed: {
+        type: db.JSON, // '[2, 4. 6]' 科目一错了2, 4, 6题
         unique: false
     },
     subject4right: {
         type: db.JSON,
         unique: false
     }
+    subject4failed: {
+        type: db.JSON,
+        unique: false
+    } 
 })
 ```
 
@@ -93,7 +93,7 @@ module.exports = db.define('exams', {
         unique: false
     },
     handed_time: {
-        type: db.DATE, // YYYY-MM-DD HH:MM:SS
+        type: db.DATE, // YYYY-MM-DD HH:MM:SS 交卷时间
         unique: false
     },
     score: {
@@ -101,7 +101,7 @@ module.exports = db.define('exams', {
      	unique: false   
     },
     cost_time: {
-        type: db.INTEGER, // 10 * 60s => 10分钟
+        type: db.INTEGER, // 1800 考试用时， 单位是秒
         unique: false
     }
 })
