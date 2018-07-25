@@ -17,6 +17,7 @@ const initQuestionTable = async () => {
     let questions = JSON.parse(content);
     questions = questions.map(element => {
         element.options = element.options.join('&&');
+        element.subject  = element.subject.trim() === '科目一' ? 1 : 4;
         return element;
     })
 
@@ -29,21 +30,23 @@ const initQuestionTable = async () => {
     }
 };
 
+const viaAttributes = [
+    'number',
+    'subject',
+    'car_types',
+    'chapter',
+    'type',
+    'answer',
+    'hasPic',
+    'title',
+    'options',
+    'detail',
+];
+
 const fetchAllQuestions = async () => {
     try {
         const allQuestion = await Question.findAll({
-            attributes: [
-                'number',
-                'subject',
-                'car_types',
-                'chapter',
-                'type',
-                'answer',
-                'hasPic',
-                'title',
-                'options',
-                'detail',
-            ]
+            attributes: viaAttributes
         });
         return allQuestion;
     } catch (e) {
@@ -59,18 +62,7 @@ const queryQuestions = async (sqlStr, arguments) => {
 const fetchQuestionsByNumber = async (number) => {
     const question = await Question.findOne({
         where: {number} ,
-        attributes: [
-            'number',
-            'subject',
-            'car_types',
-            'chapter',
-            'type',
-            'answer',
-            'hasPic',
-            'title',
-            'options',
-            'detail',
-        ]
+        attributes: viaAttributes
     });
     return question;
 }
@@ -78,7 +70,8 @@ const fetchQuestionsByNumber = async (number) => {
 
 
 if (require.main === module) {
-    fetchQuestions('select title from questions where number = ?', [100]);
+    // fetchQuestions('select title from questions where number = ?', [100]);
+    initQuestionTable();
 } else {
     module.exports = {
         fetchAllQuestions,

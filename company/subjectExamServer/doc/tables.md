@@ -49,10 +49,6 @@ module.exports = db.defineModel('questions_versions', {
 
 ```javascript
 module.exports = db.defineModel('users', {
-    name: {
-        type: db.STRING(80), // '好名字被...'
-        unique: false
-    },
     wx: {
         type: db.STRING(80), // wxnumber123456 微信号
         unique: true

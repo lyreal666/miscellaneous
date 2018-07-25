@@ -95,24 +95,17 @@ const defineModel = (name, attributes) => {
             beforeBulkCreate(instances, options) {
                 instances.forEach(obj=> {
                     let now = Date.now();
-                    if (obj.isNewRecord) {
-                        if (!obj.id) {
-                            obj.id = generateId();
-                        }
-                        obj.createdAt = now;
-                        obj.updatedAt = now;
-                        obj.version = 0;
-                    } else {
-                        obj.updatedAt = Date.now();
-                        obj.version++;
-                    }
+                    obj.id = generateId();
+                    obj.createdAt = now;
+                    obj.updatedAt = now;
+                    obj.version = 0;
                 })
             }
         }
     });
 }
 
-const TYPES = ['STRING', 'INTEGER', 'BIGINT', 'TEXT', 'DOUBLE', 'DATEONLY', 'BOOLEAN'];
+const TYPES = ['STRING', 'INTEGER', 'BIGINT', 'TEXT', 'DOUBLE', 'DATEONLY', 'BOOLEAN', 'DATE', 'JSON'];
 
 let exp = {
     defineModel: defineModel,

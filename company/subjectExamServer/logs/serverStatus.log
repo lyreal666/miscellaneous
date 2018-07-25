@@ -750,3 +750,1398 @@
 [2018-07-24T10:26:01.169] [INFO] server - Register URL mapping: GET /api/questions/:questionNumber
 [2018-07-24T10:26:08.034] [INFO] server - Process GET /api/questions/500...
 [2018-07-24T10:26:08.118] [INFO] server - Response GET /api/questions/500 cost 82ms
+[2018-07-24T16:29:18.330] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-24T16:29:18.339] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-24T16:29:18.340] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-24T16:29:18.341] [WARN] server - Init sequelize...
+[2018-07-24T16:29:18.555] [WARN] server - Import model from file Exam.js...
+[2018-07-24T16:29:18.563] [INFO] server - model defined for table: exams
+{
+    "wx": {
+        "type": "STRING(80)",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "handed_time": {
+        "type": {
+            "unique": false
+        },
+        "allowNull": false
+    },
+    "score": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "cost_time": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:29:18.573] [WARN] server - Import model from file Question.js...
+[2018-07-24T16:29:18.575] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "has_pic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "faile_times": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:29:18.578] [WARN] server - Import model from file QuestionVersion.js...
+[2018-07-24T16:29:18.580] [INFO] server - model defined for table: questions_versions
+{
+    "version_name": {
+        "type": "STRING(40)",
+        "unique": true,
+        "allowNull": false
+    },
+    "map2questions": {
+        "type": {
+            "unique": true
+        },
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:29:18.582] [WARN] server - Import model from file User.js...
+[2018-07-24T16:29:18.583] [INFO] server - model defined for table: users
+{
+    "wx": {
+        "type": "STRING(80)",
+        "unique": true,
+        "allowNull": false
+    },
+    "collections": {
+        "type": {
+            "unique": false
+        },
+        "allowNull": false
+    },
+    "subject1right": {
+        "type": {
+            "unique": false
+        },
+        "allowNull": false
+    },
+    "subject1failed": {
+        "type": {
+            "unique": false
+        },
+        "allowNull": false
+    },
+    "subject4right": {
+        "type": {
+            "unique": false
+        },
+        "allowNull": false
+    },
+    "subject4failed": {
+        "type": {
+            "unique": false
+        },
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:29:18.586] [WARN] server - Init the database
+[2018-07-24T16:32:09.851] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-24T16:32:09.856] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-24T16:32:09.857] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-24T16:32:09.859] [WARN] server - Init sequelize...
+[2018-07-24T16:32:10.073] [WARN] server - Import model from file Exam.js...
+[2018-07-24T16:32:10.079] [INFO] server - model defined for table: exams
+{
+    "wx": {
+        "type": "STRING(80)",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "handed_time": {
+        "type": "DATE",
+        "unique": false,
+        "allowNull": false
+    },
+    "score": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "cost_time": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:32:10.090] [WARN] server - Import model from file Question.js...
+[2018-07-24T16:32:10.092] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "has_pic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "faile_times": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:32:10.096] [WARN] server - Import model from file QuestionVersion.js...
+[2018-07-24T16:32:10.098] [INFO] server - model defined for table: questions_versions
+{
+    "version_name": {
+        "type": "STRING(40)",
+        "unique": true,
+        "allowNull": false
+    },
+    "map2questions": {
+        "type": "JSON",
+        "unique": true,
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:32:10.100] [WARN] server - Import model from file User.js...
+[2018-07-24T16:32:10.102] [INFO] server - model defined for table: users
+{
+    "wx": {
+        "type": "STRING(80)",
+        "unique": true,
+        "allowNull": false
+    },
+    "collections": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject1right": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject1failed": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject4right": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject4failed": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:32:10.104] [WARN] server - Init the database
+[2018-07-24T16:34:40.880] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-24T16:34:40.884] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-24T16:34:40.886] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-24T16:34:40.887] [WARN] server - Init sequelize...
+[2018-07-24T16:34:41.083] [WARN] server - Import model from file Exam.js...
+[2018-07-24T16:34:41.085] [INFO] server - model defined for table: exams
+{
+    "wx": {
+        "type": "STRING(80)",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "handed_time": {
+        "type": "DATE",
+        "unique": false,
+        "allowNull": false
+    },
+    "score": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "cost_time": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:34:41.095] [WARN] server - Import model from file Question.js...
+[2018-07-24T16:34:41.097] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "has_pic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "faile_times": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:34:41.099] [WARN] server - Import model from file QuestionVersion.js...
+[2018-07-24T16:34:41.101] [INFO] server - model defined for table: questions_versions
+{
+    "version_name": {
+        "type": "STRING(40)",
+        "unique": true,
+        "allowNull": false
+    },
+    "map_questions": {
+        "type": "JSON",
+        "unique": true,
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:34:41.104] [WARN] server - Import model from file User.js...
+[2018-07-24T16:34:41.105] [INFO] server - model defined for table: users
+{
+    "wx": {
+        "type": "STRING(80)",
+        "unique": true,
+        "allowNull": false
+    },
+    "collections": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject1right": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject1failed": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject4right": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject4failed": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:34:41.109] [WARN] server - Init the database
+[2018-07-24T16:43:47.792] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-24T16:43:47.800] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-24T16:43:47.802] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-24T16:43:47.803] [WARN] server - Init sequelize...
+[2018-07-24T16:43:48.023] [WARN] server - Import model from file Exam.js...
+[2018-07-24T16:43:48.025] [INFO] server - model defined for table: exams
+{
+    "wx": {
+        "type": "STRING(80)",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "handed_time": {
+        "type": "DATE",
+        "unique": false,
+        "allowNull": false
+    },
+    "score": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "cost_time": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:43:48.038] [WARN] server - Import model from file Question.js...
+[2018-07-24T16:43:48.048] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "has_pic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "faile_times": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:43:48.054] [WARN] server - Import model from file QuestionVersion.js...
+[2018-07-24T16:43:48.056] [INFO] server - model defined for table: questions_versions
+{
+    "version_name": {
+        "type": "STRING(40)",
+        "unique": true,
+        "allowNull": false
+    },
+    "questions": {
+        "type": "JSON",
+        "unique": true,
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:43:48.064] [WARN] server - Import model from file User.js...
+[2018-07-24T16:43:48.067] [INFO] server - model defined for table: users
+{
+    "wx": {
+        "type": "STRING(80)",
+        "unique": true,
+        "allowNull": false
+    },
+    "collections": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject1right": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject1failed": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject4right": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject4failed": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:43:48.071] [WARN] server - Init the database
+[2018-07-24T16:56:05.132] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-24T16:56:05.139] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-24T16:56:05.140] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-24T16:56:05.141] [WARN] server - Init sequelize...
+[2018-07-24T16:56:05.340] [WARN] server - Import model from file Exam.js...
+[2018-07-24T16:56:05.343] [INFO] server - model defined for table: exams
+{
+    "wx": {
+        "type": "STRING(80)",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "handed_time": {
+        "type": "DATE",
+        "unique": false,
+        "allowNull": false
+    },
+    "score": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "cost_time": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:56:05.354] [WARN] server - Import model from file Question.js...
+[2018-07-24T16:56:05.356] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "has_pic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "faile_times": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:56:05.358] [WARN] server - Import model from file QuestionVersion.js...
+[2018-07-24T16:56:05.364] [INFO] server - model defined for table: questions_versions
+{
+    "version_name": {
+        "type": "STRING(40)",
+        "unique": true,
+        "allowNull": false
+    },
+    "map2questions": {
+        "type": "JSON",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:56:05.368] [WARN] server - Import model from file User.js...
+[2018-07-24T16:56:05.372] [INFO] server - model defined for table: users
+{
+    "wx": {
+        "type": "STRING(80)",
+        "unique": true,
+        "allowNull": false
+    },
+    "collections": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject1right": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject1failed": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject4right": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject4failed": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:56:05.376] [WARN] server - Init the database
+[2018-07-24T16:56:51.225] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-24T16:56:51.231] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-24T16:56:51.233] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-24T16:56:51.234] [WARN] server - Init sequelize...
+[2018-07-24T16:56:51.451] [WARN] server - Import model from file Exam.js...
+[2018-07-24T16:56:51.454] [INFO] server - model defined for table: exams
+{
+    "wx": {
+        "type": "STRING(80)",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "handed_time": {
+        "type": "DATE",
+        "unique": false,
+        "allowNull": false
+    },
+    "score": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "cost_time": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:56:51.468] [WARN] server - Import model from file Question.js...
+[2018-07-24T16:56:51.471] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "has_pic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "faile_times": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:56:51.476] [WARN] server - Import model from file QuestionVersion.js...
+[2018-07-24T16:56:51.478] [INFO] server - model defined for table: questions_versions
+{
+    "version_name": {
+        "type": "STRING(40)",
+        "unique": true,
+        "allowNull": false
+    },
+    "map2questions": {
+        "type": "JSON",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:56:51.481] [WARN] server - Import model from file User.js...
+[2018-07-24T16:56:51.483] [INFO] server - model defined for table: users
+{
+    "wx": {
+        "type": "STRING(80)",
+        "unique": true,
+        "allowNull": false
+    },
+    "collections": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject1right": {
+        "type": "JSON",
+        "allowNull": false
+    },
+    "subject1failed": {
+        "type": "JSON",
+        "allowNull": false
+    },
+    "subject4right": {
+        "type": "JSON",
+        "allowNull": false
+    },
+    "subject4failed": {
+        "type": "JSON",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:56:51.488] [WARN] server - Init the database
+[2018-07-24T16:58:22.063] [INFO] server - Load ../configs/db-config-default.js...
+[2018-07-24T16:58:22.072] [INFO] server - Load ../configs/db-config-test.js...
+[2018-07-24T16:58:22.073] [INFO] server - DB configuration: { dialect: 'mysql',
+  database: 'wxminitest',
+  username: 'ytj',
+  password: '5391848',
+  host: 'localhost',
+  port: 3306 }
+[2018-07-24T16:58:22.075] [WARN] server - Init sequelize...
+[2018-07-24T16:58:22.264] [WARN] server - Import model from file Exam.js...
+[2018-07-24T16:58:22.271] [INFO] server - model defined for table: exams
+{
+    "wx": {
+        "type": "STRING(80)",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "handed_time": {
+        "type": "DATE",
+        "unique": false,
+        "allowNull": false
+    },
+    "score": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "cost_time": {
+        "type": "INTEGER",
+        "unique": false,
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:58:22.283] [WARN] server - Import model from file Question.js...
+[2018-07-24T16:58:22.287] [INFO] server - model defined for table: questions
+{
+    "number": {
+        "type": "INTEGER",
+        "unique": true,
+        "allowNull": false
+    },
+    "subject": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "car_types": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "chapter": {
+        "type": "STRING(80)",
+        "allowNull": false
+    },
+    "type": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "answer": {
+        "type": "STRING(8)",
+        "allowNull": false
+    },
+    "has_pic": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "title": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "options": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "detail": {
+        "type": "TEXT",
+        "allowNull": false
+    },
+    "faile_times": {
+        "type": "INTEGER",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:58:22.290] [WARN] server - Import model from file QuestionVersion.js...
+[2018-07-24T16:58:22.292] [INFO] server - model defined for table: questions_versions
+{
+    "version_name": {
+        "type": "STRING(40)",
+        "unique": true,
+        "allowNull": false
+    },
+    "map2questions": {
+        "type": "JSON",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
+[2018-07-24T16:58:22.294] [WARN] server - Import model from file User.js...
+[2018-07-24T16:58:22.295] [INFO] server - model defined for table: users
+{
+    "wx": {
+        "type": "STRING(80)",
+        "unique": true,
+        "allowNull": false
+    },
+    "collections": {
+        "type": "JSON",
+        "unique": false,
+        "allowNull": false
+    },
+    "subject1right": {
+        "type": "JSON",
+        "allowNull": false
+    },
+    "subject1failed": {
+        "type": "JSON",
+        "allowNull": false
+    },
+    "subject4right": {
+        "type": "JSON",
+        "allowNull": false
+    },
+    "subject4failed": {
+        "type": "JSON",
+        "allowNull": false
+    },
+    "id": {
+        "type": "STRING(50)",
+        "primaryKey": true
+    },
+    "createdAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "updatedAt": {
+        "type": "BIGINT",
+        "allowNull": false
+    },
+    "version": {
+        "type": "BIGINT",
+        "allowNull": false
+    }
+}
