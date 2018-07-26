@@ -2,8 +2,9 @@
  * @Author: ytj 
  * @Date: 2018-07-13 16:11:10 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-19 11:57:22
+ * @Last Modified time: 2018-07-25 17:10:21
  */
+let app = getApp();
 
 Component({
     properties: {
@@ -46,9 +47,30 @@ Component({
     },
     data: {
         showOptions: false,
+        QC: 1500,
+        imageSrc: ''
     },
     methods: {
+        initData() {
+            const QC = app.globalData.currentSubject === '科目一' ? app.globalData.subject1QC : app.globalData.subject4QC
+            const imgNum = String(this.properties.num).padStart(4, '0');
+            this.properties.hasPic = true;
+            let imageSrc;
+            if (this.properties.hasPic === 0) {
+                this.properties.hasPic = false;
+            } else if (this.properties.hasPic ==1 ) {
+                imageSrc = `http://127.0.0.1:8848/questionResource/${imgNum}.jpg`
+            } else {
+                imageSrc = `http://127.0.0.1:8848/questionResource/${imgNum}.mp4`
+
+            }
+            this.setData({
+                QC,
+                imageSrc
+            })
+        }
     },
     attached() {
+        this.initData();
     },
 })

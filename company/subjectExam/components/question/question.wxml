@@ -1,41 +1,30 @@
 <view class="question-item">
-            <view class="question-wrapper">
-                <view class="title">
-                    <text class="page-name">顺序训练</text>
-                    <text class="question-type">{{ type }}</text>
-                    <view>
-                        <text class="practiced-count">{{ num }}</text>
-                        <text class="question-number">/1325</text>
-                    </view>
-                </view>
-                <scroll-view class="content" scroll-y>
-                    <view class="image-wrapper">
-                        <image wx:if="{{ hasPic }}" src="/common/imgs/question.jpg" mode="scaleToFill" class="content-img"></image>
-                    </view>
-                    <view class="question-heading">
-                        <text>{{ title }}</text>
-                    </view>
-                    <options
-                        num="{{ num }}"
-                        type="{{ type }}"
-                        right-answer="{{ answer }}"
-                        options="{{ options }}"
-                        show-answer="{{ showAnswer }}"
-                    >
-                    </options>
-                    <view class="question-detail">
-                        <view class="detail-title-wrapper">
-                            <image class="dot" src="/common/imgs/point.png">.</image>
-                            <text class="detail-title">试题详解</text>
-                        </view>
-                        <view class="detail-content-wrapper" wx:if="{{ showDetail }}">
-                            <text class="detail-content-text">
-                            违反《道路交通安全法》，属于违法行为。官方已无违规、违章的说法。
-                            我校部分高水平运动员和体育专业学生在2017—2018学年下学期参加各种体育比赛，
-                            
-                        </text>
-                        </view>
-                    </view>
-                </scroll-view>
+    <view class="question-wrapper">
+        <view class="title">
+            <text class="page-name">顺序训练</text>
+            <text class="question-type">{{ type }}</text>
+            <view>
+                <text class="practiced-count">{{ num }}</text>
+                <text class="question-number">{{ '/' + QC }}</text>
             </view>
         </view>
+        <scroll-view class="content" scroll-y>
+            <view class="image-wrapper">
+                <image wx:if="{{ hasPic }}" src="{{ imageSrc }}" mode="scaleToFill" class="content-img"></image>
+            </view>
+            <view class="question-heading">
+                <text>{{ title }}</text>
+            </view>
+            <options num="{{ num }}" type="{{ type }}" right-answer="{{ answer }}" options="{{ options }}" show-answer="{{ showAnswer }}"></options>
+            <view class="question-detail">
+                <view class="detail-title-wrapper">
+                    <image class="dot" src="/common/imgs/point.png">.</image>
+                    <text class="detail-title">试题详解</text>
+                </view>
+                <view class="detail-content-wrapper" wx:if="{{ showDetail }}">
+                    <text class="detail-content-text">{{ detail }}</text>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+</view>

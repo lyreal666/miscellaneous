@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-20 10:37:46 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-22 21:06:02
+ * @Last Modified time: 2018-07-25 09:29:39
  */
 
 const path = require('path');
@@ -37,6 +37,6 @@ server.use(bodyParser());
 server.use(restify('/api/'));
 server.use(controller(path.resolve(__dirname, './controllers')));
 
-const port = 8868;
+const port = 8848;
 serverLogger.info(`Server is running in http://127.0.0.1:${port}/`);
 server.listen(port);

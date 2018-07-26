@@ -58,6 +58,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-top: 30rpx;
 }
 
 .content-img {

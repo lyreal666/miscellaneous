@@ -1,5 +1,3 @@
-process.env.NODE_ENV = 'test';
-
 const models = require('../utils/models');
 const path = require('path');
 const fs = require('mz/fs');
@@ -16,10 +14,19 @@ const initQuestionTable = async () => {
     });
     let questions = JSON.parse(content);
     questions = questions.map(element => {
-        element.options = element.options.join('&&');
+        element.options = JSON.stringify(element.options);
         element.subject  = element.subject.trim() === '科目一' ? 1 : 4;
+        if (element.type.trim() === '单选题') {
+            element.type = 0;
+        } else if (element.type.trim() === '判断题') {
+            element.type = 1;
+        } else {
+            element.type = 2;
+        }
+
+        element.failed_times = 0;
         return element;
-    })
+    });
 
     // console.log(await Question.findAll());
     try {
@@ -37,7 +44,7 @@ const viaAttributes = [
     'chapter',
     'type',
     'answer',
-    'hasPic',
+    'has_pic',
     'title',
     'options',
     'detail',
@@ -57,6 +64,7 @@ const fetchAllQuestions = async () => {
 const queryQuestions = async (sqlStr, arguments) => {
     const questions = await sequelize
         .query(sqlStr, { replacements: [...arguments], type: sequelize.QueryTypes.SELECT });
+    return questions
 }
 
 const fetchQuestionsByNumber = async (number) => {
@@ -76,6 +84,7 @@ if (require.main === module) {
     module.exports = {
         fetchAllQuestions,
         queryQuestions,
-        fetchQuestionsByNumber
+        fetchQuestionsByNumber,
+        viaAttributes
     }
 }

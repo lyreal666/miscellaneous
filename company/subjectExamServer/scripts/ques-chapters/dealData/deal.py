@@ -70,7 +70,7 @@ with open(ques_file, 'r', encoding='utf-8') as fr:
                 if c in match[6]:
                     answer += number2answer[int(c) - 1]
             question['answer'] = answer
-            question['hasPic'] = int(match[7].strip())
+            question['has_pic'] = int(match[7].strip())
             question['title'] = match[8].strip()[1:]
             options = [match[9], match[10], match[11], match[12]]
             question['options'] = [option.strip()[1:] for option in options]

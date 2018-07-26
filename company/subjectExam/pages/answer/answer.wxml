@@ -1,17 +1,26 @@
 <view class="main-frame">
     <view class="container">
         <swiper class="questions" bindchange="handleSwiperChange" indicator-dots="{{ false }}" autoplay="{{ false }}" duration="{{ 1000 }}">
-            <block wx:for="{{ questions }}" wx:key="{{ index }}">
+            <block wx:for="{{ loadedQuestions }}" wx:key="{{ index }}">
                 <swiper-item>
                     <question 
-                    id="{{ 'item' + index }}" 
-                    num="{{ item.num }}" 
-                    type="{{ item.type }}" answer="{{ item.answer }}" hasPic="{{ item.hasPic }}" title="{{ item.title }}" options="{{ item.options }}" detail="{{ item.detail }}" show-detail="{{ item.showDetail}}" show-answer="{{ item.showAnswer }}"></question>
+                        id="{{ 'item' + index }}" 
+                        num="{{ item.number }}" 
+                        type="{{ item.type }}" 
+                        answer="{{ item.answer }}" 
+                        hasPic="{{ item.has_pic }}" 
+                        title="{{ item.title }}" 
+                        options="{{ item.options }}"
+                        detail="{{ item.detail }}" 
+                        show-detail="{{ item.showDetail}}" 
+                        show-answer="{{ item.showAnswer }}"
+                    >
+                    </question>
                 </swiper-item>
             </block>
         </swiper>
         <view class="tab-container">
-            <my-tab-bar tabs="{{ tabs }}"  bind:toggle-tab="handleToggletab"></my-tab-bar>
+            <my-tab-bar tabs="{{ tabs }}"  bind:toggle-tab="handleToggleTab"></my-tab-bar>
         </view>
     </view>
     <float-top-panel isPanelUp="{{ isPullUp }}"></float-top-panel>
