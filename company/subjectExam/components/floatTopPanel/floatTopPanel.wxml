@@ -16,7 +16,7 @@
         </view>
         <view class="question-select">
             <block wx:for="{{ answerStatus }}" wx:key="{{ index }}">
-                <view 
+                <view
                     class="option {{ item.status === 1 ? 'answer-right-option' : '' }} {{ item.status === 2 ? 'answer-wrong-option' : '' }}"
                     bindtap="handleClickOption"
                     data-index="{{ index }}"

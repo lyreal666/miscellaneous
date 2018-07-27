@@ -1,18 +1,18 @@
 <view class="main-frame">
     <view class="container">
         <swiper class="questions" bindchange="handleSwiperChange" indicator-dots="{{ false }}" autoplay="{{ false }}" duration="{{ 1000 }}">
-            <block wx:for="{{ loadedQuestions }}" wx:key="{{ index }}">
+            <block wx:for="{{ downloadQuestions }}" wx:key="{{ index }}">
                 <swiper-item>
-                    <question 
-                        id="{{ 'item' + index }}" 
-                        num="{{ item.number }}" 
-                        type="{{ item.type }}" 
-                        answer="{{ item.answer }}" 
-                        hasPic="{{ item.has_pic }}" 
-                        title="{{ item.title }}" 
+                    <question
+                        id="{{ 'item' + index }}"
+                        num="{{ item.number }}"
+                        type="{{ item.type }}"
+                        answer="{{ item.answer }}"
+                        hasPic="{{ item.has_pic }}"
+                        title="{{ item.title }}"
                         options="{{ item.options }}"
-                        detail="{{ item.detail }}" 
-                        show-detail="{{ item.showDetail}}" 
+                        detail="{{ item.detail }}"
+                        show-detail="{{ item.showDetail}}"
                         show-answer="{{ item.showAnswer }}"
                     >
                     </question>

@@ -26,14 +26,14 @@
 }
 
 .answer-infos {
-    flex-basis: 60rpx;
+    flex-basis: 90rpx;
     flex-grow: 0;
     display: flex;
     align-items: center;
     flex-direction: row;
     flex-shrink: 0;
     border-bottom: 5rpx solid #3270b0; 
-    font-size: 0.6rem;
+    font-size: 36rpx;
 }
 
 .infos-wrapper {
@@ -78,6 +78,7 @@
     text-align: center;
     font-size: 0.8rem;
     font-weight: lighter;
+    background-color: lightblue;
 }
 
 .answer-right-option {

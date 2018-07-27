@@ -38,11 +38,11 @@ const defineModel = (name, attributes) => {
         type: ID_TYPE,
         primaryKey: true
     };
-    attrs.createdAt = {
+    attrs.created_at = {
         type: Sequelize.BIGINT,
         allowNull: false
     };
-    attrs.updatedAt = {
+    attrs.updated_at = {
         type: Sequelize.BIGINT,
         allowNull: false
     };
@@ -58,7 +58,7 @@ const defineModel = (name, attributes) => {
                 }
                 let dbType = Sequelize[key];
                 if (dbType.prototype && typeof dbType === 'function') {
-                    
+
                     if (v instanceof dbType) {
                         if (v._length) {
                             return `${dbType.key}(${v._length})`;
@@ -73,7 +73,7 @@ const defineModel = (name, attributes) => {
         }
         return v;
     }, '    '));
-    
+
     return sequelize.define(name, attrs, {
         tableName: name,
         timestamps: false,
@@ -84,23 +84,23 @@ const defineModel = (name, attributes) => {
                     if (!obj.id) {
                         obj.id = generateId();
                     }
-                    obj.createdAt = now;
-                    obj.updatedAt = now;
+                    obj.created_at = now;
+                    obj.updated_at = now;
                     obj.version = 0;
                 } else {
-                    obj.updatedAt = Date.now();
+                    obj.updated_at = Date.now();
                     obj.version++;
                 }
             },
             beforeBulkCreate(instances, options) {
-                instances.forEach(obj=> {
+                instances.forEach(obj => {
                     let now = Date.now();
                     obj.id = generateId();
-                    obj.createdAt = now;
-                    obj.updatedAt = now;
+                    obj.created_at = now;
+                    obj.updated_at = now;
                     obj.version = 0;
                 })
-            }
+            },
         }
     });
 }
@@ -112,7 +112,9 @@ let exp = {
     sync: () => {
         // only allow create ddl in non-production environment:
         if (process.env.NODE_ENV !== 'production') {
-            sequelize.sync({ force: true });
+            sequelize.sync({
+                force: true
+            });
         } else {
             throw new Error('Cannot sync() when NODE_ENV is set to \'production\'.');
         }

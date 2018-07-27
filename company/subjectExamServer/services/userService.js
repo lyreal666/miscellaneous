@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'test';
+
 const models = require('../utils/models');
 const path = require('path');
 const fs = require('mz/fs');
@@ -6,17 +8,45 @@ const serverLogger = require('../utils/log4js-config').getLogger('server');
 const errorLogger = require('../utils/log4js-config').getLogger('error');
 
 const User = models.User;
+const viaAttributes = [
+    'wx',
+    'collections',
+    'subject1right',
+    'subject1failed',
+    'subject4right',
+    'subject4failed'
+]
 
-const createUser = async (userInfo) => {
+
+const fetchOneUserByWX = async (wx) => {
+    const user = await User.findOne({
+        where: {wx},
+        attributes: viaAttributes
+    });
     
+    return user;
 }
 
-const fetchOneUser = async () => {
-
+const createUser = async (userObj) => {
+    const viaFields = [
+        ...viaAttributes,
+        'id',
+        'created_at',
+        'updated_at',
+        'version'
+    ]
+    for (let key of viaFields) {
+        if (!userObj[key]) {
+            // 目前创建新用户wx号一定存在,其它都是json类型
+            userObj[key] = '{}';
+        }
+    }
+    await User.create(userObj, { fields: viaFields })
 }
 
 
 if (require.main === module) {
+    fetchOneUserByWX('123456888')
 } else {
     module.exports = {
     }

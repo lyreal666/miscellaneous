@@ -10,8 +10,10 @@
         </view>
         <scroll-view class="content" scroll-y>
             <view class="image-wrapper">
-                <image wx:if="{{ hasPic }}" src="{{ imageSrc }}" mode="scaleToFill" class="content-img"></image>
+                <image wx:if="{{ hasPic === 1 }}" src="{{ imageSrc }}" mode="scaleToFill" class="content-img"></image>
+                <video wx:if="{{ hasPic === 2 }}" id="myVideo" class="content-img" src="{{ imageSrc }}" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
             </view>
+
             <view class="question-heading">
                 <text>{{ title }}</text>
             </view>

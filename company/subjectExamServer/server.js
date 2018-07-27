@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-20 10:37:46 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-25 09:29:39
+ * @Last Modified time: 2018-07-26 11:54:40
  */
 
 const path = require('path');
@@ -26,7 +26,7 @@ server.use(accessServerLog);
 
 const staticServerConfigs =[
     { relativePath: './static', options: { index: 'index.html'} },
-] 
+]
 staticServerConfigs.forEach(config => {
     const absPath = path.resolve(__dirname, config.relativePath);
     serverLogger.info(`Use absPath: ${absPath} as static server path`)

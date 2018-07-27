@@ -1,8 +1,8 @@
 /*
- * @Author: ytj 
- * @Date: 2018-07-12 09:12:47 
+ * @Author: ytj
+ * @Date: 2018-07-12 09:12:47
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-25 17:37:16
+ * @Last Modified time: 2018-07-26 15:05:54
  */
 
 let app = getApp();
@@ -26,6 +26,22 @@ Page({
         downloadQuestions: [],
         loadedQuestions: []
     },
+    dealQuestions(downloadQuestions) {
+        downloadQuestions.forEach(question => {
+            if (question.type === 0) {
+                question.type = '单选题';
+            } else if (question.type === 1) {
+                question.type = '判断题';
+            } else {
+                question.type = '多选题';
+            }
+
+            question.options = JSON.parse(question.options);
+            question.subject = question.subject === 1 ? '科目一' : '科目四';
+            question.showAnswer = false;
+            question.showDetail = false;
+        });
+    },
     handleToggleTab(event) {
         const index = event.detail.index;
         // 0 represent collection, 1 represent studyMode, 2 represent float panel
@@ -45,54 +61,69 @@ Page({
             });
         }
     },
+    handleSelectNumber(event) {
+        const current = event.detail.number;
+        const questionNumbers = new Set(this.data.downloadQuestions.map(qs => qs.number));
+        if (!questionNumbers.has(currentNumber)) {
+            const startIndex = Math.trunc(currentNumber / 10) * 10;
+            const endIndex = startIndex + 20;
+            wx.request({
+                url: `http://127.0.0.1:8848/api/questions/${startIndex}/${endIndex}`, //仅为示例，并非真实的接口地址
+                method: 'GET',
+                header: {
+                    'content-type': 'application/json' // 默认值
+                },
+                success: (result) => {
+                    let downloadQuestions = result.data.data;
+                    this.dealQuestions(downloadQuestions);
+                    this.setData({
+                        downloadQuestions: [...this.data.downloadQuestions, ...downloadQuestions],
+                    })
+                }
+            })
+        }
+    },
     handleSwiperChange(event) {
-        this.setData({
-            currentItem: event.detail.current + 1
-        })
+        const current = event.detail.current;
+        let downloadQuestions = this.data.downloadQuestions;
+        if (current === downloadQuestions.length - 1) {
+            setTimeout(() => {
+                const lastQuestionNumber = downloadQuestions[downloadQuestions.length - 1].number;
+                wx.request({
+                    url: `http://127.0.0.1:8848/api/questions/${lastQuestionNumber + 1}/${lastQuestionNumber + 20}`, //仅为示例，并非真实的接口地址
+                    method: 'GET',
+                    header: {
+                        'content-type': 'application/json'
+                    },
+                    success: (result) => {
+                        let downloadQuestions = result.data.data;
+                        this.dealQuestions(downloadQuestions);
+                        this.setData({
+                            downloadQuestions: [...this.data.downloadQuestions, ...downloadQuestions],
+                            currentItem: current + 1
+                        })
+                    }
+                })
+            }, 1000)
+
+        } else {
+            this.setData({
+                currentItem: current + 1
+            })
+        }
     },
     initData() {
         wx.request({
-            url: 'http://127.0.0.1:8848/api/questions/1/100', //仅为示例，并非真实的接口地址
+            url: 'http://127.0.0.1:8848/api/questions/3800/3820', //仅为示例，并非真实的接口地址
             method: 'GET',
             header: {
                 'content-type': 'application/json' // 默认值
             },
             success: (result) => {
                 let downloadQuestions = result.data.data;
-                downloadQuestions.forEach(element => {
-                    if (element.type === 0) {
-                        element.type = '单选题';
-                    } else if (element.type === 1) {
-                        element.type = '判断题';
-                    } else {
-                        element.type = '多选题';
-                    }
-                    
-                    element.options = JSON.parse(element.options);
-                    element.subject = element.subject === 1 ? '科目一' : '科目四';
-                    element.showAnswer = false;
-                    element.showDetail = false;
-                });
-
-                // loadedQuestions = [
-                //     {
-                //         num: 2,
-                //         type: '判断题',
-                //         answer: 'B',
-                //         hasPic: 'false',
-                //         title: "对违法驾驶发生重大交通事故且构成犯罪的，不追究其刑事责任。",
-                //         options: [
-                //             "正确",
-                //             "错误",
-                //             "",
-                //             ""
-                //         ],
-                //         detail: "《道路交通安全法》第一百零一条：违反道路交通安全法律、法规的规定，发生重大交通事故，构成犯罪的，依法追究刑事责任，并由公安机关交通管理部门吊销机动车驾驶证。",
-                //     }
-                // ];
+                this.dealQuestions(downloadQuestions);
                 this.setData({
-                    downloadQuestions,
-                    loadedQuestions: downloadQuestions.slice(28, 40)
+                    downloadQuestions
                 })
             }
         })

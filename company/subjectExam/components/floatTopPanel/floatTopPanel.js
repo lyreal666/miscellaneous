@@ -10,7 +10,7 @@ Component({
                 return {
                     num: index + 1,
                     // 0 shows the question to be done, 1 shows answer right, 2 false show wrong
-                    status: 2,
+                    status: 0,
                 }
             }),
         },
