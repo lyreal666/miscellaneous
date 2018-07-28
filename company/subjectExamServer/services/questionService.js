@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'test';
+
 const models = require('../utils/models');
 const path = require('path');
 const fs = require('mz/fs');

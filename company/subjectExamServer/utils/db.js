@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const dbConfig = require('./dbConfig');
 const serverLogger = require('../utils/log4js-config').getLogger('server');
-const uuid = require('uuid');
+const uuid = require('node-uuid');
 
 serverLogger.warn('Init sequelize...')
 

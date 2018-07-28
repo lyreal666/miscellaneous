@@ -2,7 +2,7 @@ const db = require('../utils/db');
 
 
 module.exports = db.defineModel('users', {
-    wx: {
+    open_id: {
         type: db.STRING(80), // wxnumber123456 微信号
         unique: true
     },

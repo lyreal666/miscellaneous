@@ -1,30 +1,39 @@
 {
-  "name": "subject-exam-server",
+  "name": "subjectExamServer",
   "version": "1.0.0",
-  "description": "deal the wxmini subjectExam",
+  "description": "",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "clog": "echo '' > ./logs/error2file.log && echo '' > ./logs/serverStatus.log"
+  "bin": {
+    "subjectExamServer": "init-db.js"
   },
-  "author": "ly",
-  "license": "ISC",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
   "dependencies": {
     "bluebird": "^3.5.1",
+    "body-parser": "^1.18.3",
+    "faker": "^4.1.0",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "log4js": "^3.0.1",
-    "mocha": "^5.2.0",
     "mysql2": "^1.5.3",
     "mz": "^2.7.0",
     "node-uuid": "^1.4.8",
     "redis": "^2.8.0",
-    "sequelize": "^4.38.0"
+    "sequelize": "^4.38.0",
+    "superagent": "^3.8.3"
   },
   "devDependencies": {
-    "faker": "^4.1.0"
-  }
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

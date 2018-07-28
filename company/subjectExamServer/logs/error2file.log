@@ -1,0 +1,4 @@
+[2018-07-27T16:48:42.563] [ERROR] error - 用户登入获取用户信息时: ReferenceError: response is not defined
+    at POST /login (F:\codingSpace\miscellaneous\company\subjectExamServer\controllers\user.js:54:13)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)

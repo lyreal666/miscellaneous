@@ -2,7 +2,7 @@
  * @Author: ytj
  * @Date: 2018-07-12 09:12:47
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-26 15:05:54
+ * @Last Modified time: 2018-07-28 08:02:00
  */
 
 let app = getApp();
@@ -49,7 +49,6 @@ Page({
 
         } else if (index === 1) {
             let question = this.data.loadedQuestions.find((element, index) => index + 1 === this.data.currentItem);
-            console.log(typeof question);
             question.showDetail = !question.showDetail;
             question.showAnswer = true;
             this.setData({

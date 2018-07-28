@@ -9,7 +9,7 @@ const errorLogger = require('../utils/log4js-config').getLogger('error');
 
 const User = models.User;
 const viaAttributes = [
-    'wx',
+    'open_id',
     'collections',
     'subject1right',
     'subject1failed',
@@ -18,13 +18,13 @@ const viaAttributes = [
 ]
 
 
-const fetchOneUserByWX = async (wx) => {
+const fetchUserByopen_id = async (open_id) => {
     const user = await User.findOne({
-        where: {wx},
+        where: {open_id},
         attributes: viaAttributes
     });
     
-    return user;
+    return user.dataValues;
 }
 
 const createUser = async (userObj) => {
@@ -37,7 +37,7 @@ const createUser = async (userObj) => {
     ]
     for (let key of viaFields) {
         if (!userObj[key]) {
-            // 目前创建新用户wx号一定存在,其它都是json类型
+            // 目前创建新用户open_id号一定存在,其它都是json类型
             userObj[key] = '{}';
         }
     }
@@ -46,8 +46,10 @@ const createUser = async (userObj) => {
 
 
 if (require.main === module) {
-    fetchOneUserByWX('123456888')
+    fetchUserByopen_id('123456888')
 } else {
     module.exports = {
+        fetchUserByopen_id,
+        createUser
     }
 }
