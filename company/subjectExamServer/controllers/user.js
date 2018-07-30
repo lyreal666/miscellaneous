@@ -1,5 +1,3 @@
-"use strict";
-
 const userService = require('../services/userService');
 const questionService = require('../services/questionService');
 const serverCFG = require('../configs/server-config');
@@ -8,30 +6,92 @@ const serverLogger = require('../utils/log4js-config').getLogger('server');
 const errorLogger = require('../utils/log4js-config').getLogger('error');
 
 module.exports = {
-    'POST /user/subject1/submitOrderPractice': async (ctx, next) => {
-        const open_id = ctx.request.body.open_id;
-        const number = ctx.request.body.number;
-        const answerStatus = ctx.request.body.answerStatus;
+    'POST /user/submitOrderPractice': async (ctx, next) => {
+        const {
+            number,
+            openID,
+            subject,
+            answerStatus,
+            selection
+        } = ctx.request.body;
 
-        const user = userService.fetchUserByopen_id(open_id);
-        console.log(typeof user.subject1right);
+        let user = await userService.fetchUserByopen_id(openID);
+        ctx.response.type = 'application/json';
+        ctx.response.status = 200;
+        if (user) {
+            let modifyField;
+            let newItem = {
+                number,
+                selection
+            }
+            if (answerStatus.trim() === 'right') {
+                if (subject.trim() === '科目一') {
+                    const oldSubject1right = user.subject1right.trim();
+                    if (oldSubject1right) {
+                        user.subject1right = JSON.stringify(JSON.parse(oldSubject1right).push(newItem));
+                    } else {
+                        user.subject1right = JSON.stringify([newItem])
+                    }
+                    modifyField = 'subject1right'
+                } else {
+                    const oldSubject4right = user.subject4right.trim();
+                    if (oldSubject4right) {
+                        user.subject4right = JSON.stringify(JSON.parse(oldSubject4right).push(newItem));
+                    } else {
+                        user.subject4right = JSON.stringify([newItem])
+                    }
+                    modifyField = 'subject4right'
+                }
+            } else {
+                if (subject.trim() === '科目一') {
+                    console.log(user);
+                    console.log('typeof user.subject1right:', typeof user.subject1failed, user.subject1failed);
+                    const oldSubject1failed = user.subject1failed.trim();
+                    if (oldSubject1failed) {
+                        user.subject1failed = JSON.stringify(JSON.parse(oldSubject1failed).push(newItem));
+                    } else {
+                        user.subject1failed = JSON.stringify([newItem])
+                    }
+                    modifyField = 'subject1failed'
+                } else {
+                    const oldSubject4failed = user.subject4failed.trim();
+                    if (oldSubject4failed) {
+                        user.subject4failed = JSON.stringify(JSON.parse(oldSubject4failed).push(newItem));
+                    } else {
+                        user.subject4failed = JSON.stringify([newItem])
+                    }
+                    modifyField = 'subject4failed'
+                }
+            }
+            console.log('modifyField:' ,modifyField);
+            console.log('user[modifyField]:', user[modifyField]);
+            let sqlStr = `update users set ${modifyField}=${JSON.stringify(user[modifyField])} where open_id=?`;
+            const executeResult = userService.query(sqlStr, [openID])
+            ctx.body = {
+                success: executeResult
+            }
+        } else {
+            ctx.body = {
+                success: true
+            }
+            throw new Error(`acquire user failed by oenpID ${openID}`)
+        }
+        await next()
     },
     'POST /api/user/launch': async (ctx, next) => {
         console.log('#request body', ctx.request.body);
         const sqlStr = `select count(*) as count from questions where type=?`
         const subject1count = (await questionService.queryQuestions(sqlStr, [0]))[0].count;
-        const subject2count = (await questionService.queryQuestions(sqlStr, [1]))[0].count;
+        const subject4count = (await questionService.queryQuestions(sqlStr, [1]))[0].count;
 
         const openID = ctx.request.body.openID;
-        console.log(ctx.request.body);
         const user = await userService.fetchUserByopen_id(openID);
 
         let resultData = {
-            subject1count: subject1count,
-            subject2count: subject2count
+            subject1count,
+            subject4count
         };
 
-        
         if (user) {
             resultData.userInfo = {
                 ...user,
@@ -47,7 +107,6 @@ module.exports = {
                 isNewUser: true
             }
         }
-        console.log(`#resultData: ${resultData}`);
         ctx.rest(resultData);
         await next();
     },

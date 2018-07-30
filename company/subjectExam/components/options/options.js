@@ -70,7 +70,17 @@ Component({
         handleSingleOptionClick(event) {
             let flag = event.currentTarget.dataset.optionFlag;
             if (!this.data.completed) {
+                const openID = app.globalData.openID;
+                const subject = app.globalData.currentSubject;
+                let answerStatus;
+                let selection = flag;
                 if (!this.data.rightAnswer.includes(flag)) {
+                    answerStatus = 'wrong';
+                    if (app.globalData.currentSubject === '科目一') {
+                        app.globalData.subject1failed.push({number: this.properties.num, selection})
+                    } else {
+                        app.globalData.subject4failed.push({number: this.properties.num, selection})
+                    }
                     this.data.computedOptions.forEach(element => {
                         if (element.letter === flag) {
                             element.classList = 'selected-wrong-option';
@@ -79,18 +89,39 @@ Component({
                             element.classList = 'right-option';
                             element.letter = '√'
                         }
-                        
                     })
                 } else {
+                    if (app.globalData.currentSubject === '科目一') {
+                        app.globalData.subject1right.push({number: this.properties.num, selection})
+                    } else {
+                        app.globalData.subject4right.push({number: this.properties.num, selection})
+                    }
+                    answerStatus = 'right';
                     let rightOption = this.data.computedOptions.find(element => element.letter === flag);
                     rightOption.classList = 'right-option';
                     rightOption.letter = '√'
                 }
+                wx.request({
+                    url: 'http://127.0.0.1:8848/user/submitOrderPractice',
+                    method: 'POST',
+                    data: {
+                        number: this.properties.num,
+                        openID,
+                        subject,
+                        answerStatus,
+                        selection
+                    },
+                    success: (result) => {
+                        console.log(result);
+                    }
+                });
             }
             this.setData({
                 computedOptions: this.data.computedOptions
             })
+
             this.data.completed = true;
+            this.triggerEvent('singleOptionClick', {}, { bubbles: false })
         },
         handleMultipleOptionClick(event) {
             if (!this.data.completed) {
@@ -109,6 +140,8 @@ Component({
             this.setData({
                 computedOptions: this.data.computedOptions,
             });
+
+            this.triggerEvent('multipleOptionClick', {}, { bubbles: false })
         },
         handleSubmit() {
             let selectedOptions = this.data.selectedOptions;

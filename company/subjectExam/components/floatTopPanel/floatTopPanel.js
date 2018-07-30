@@ -1,3 +1,5 @@
+let app = getApp();
+
 Component({
     properties: {
         questionsCount: {
@@ -22,11 +24,17 @@ Component({
                     isPullUp: !this.data.isPullUp
                 })
              }
+        },
+        rightCount: {
+            type: Number,
+            value: 0,
+        },
+        failedCount: {
+            type: Number,
+            value: 0,
         }
     },
     data: {
-        rightCount: 7,
-        wrongCount: 33,
         isPullUp: false
     },
     methods: {
@@ -46,7 +54,7 @@ Component({
     },
     
     attached() {
-        // this.initData();
+        this.initData();
     },
     ready() {
     }

@@ -9,7 +9,7 @@
                 </view>
                 <view class="info">
                     <image class="info-image" src="/common/imgs/wrong.png" mode="scaleToFill"></image>
-                    <text class="count">{{ wrongCount }}</text>
+                    <text class="count">{{ failedCount }}</text>
                 </view>
             </view>
             <view class="delete-recording">清除记录</view>

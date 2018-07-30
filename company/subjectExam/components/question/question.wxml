@@ -17,7 +17,9 @@
             <view class="question-heading">
                 <text>{{ title }}</text>
             </view>
-            <options num="{{ num }}" type="{{ type }}" right-answer="{{ answer }}" options="{{ options }}" show-answer="{{ showAnswer }}"></options>
+            <options num="{{ num }}" type="{{ type }}" right-answer="{{ answer }}" options="{{ options }}" show-answer="{{ showAnswer }}"
+                bind:singleOptionClick="handleSingleOptionClick"
+            ></options>
             <view class="question-detail">
                 <view class="detail-title-wrapper">
                     <image class="dot" src="/common/imgs/point.png">.</image>

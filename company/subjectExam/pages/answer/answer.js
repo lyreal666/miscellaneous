@@ -2,7 +2,7 @@
  * @Author: ytj
  * @Date: 2018-07-12 09:12:47
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-28 08:02:00
+ * @Last Modified time: 2018-07-28 17:14:54
  */
 
 let app = getApp();
@@ -24,7 +24,9 @@ Page({
         currentItem: 1,
         isPullUp: false,
         downloadQuestions: [],
-        loadedQuestions: []
+        downloadQuestions: [],
+        rightCount: 0,
+        failedCount: 0
     },
     dealQuestions(downloadQuestions) {
         downloadQuestions.forEach(question => {
@@ -42,23 +44,41 @@ Page({
             question.showDetail = false;
         });
     },
+    setAnswerCount() {
+        let globalData = app.globalData;
+        console.log(globalData);
+        if (globalData.currentSubject === '科目一') {
+            this.setData({
+                rightCount: globalData.subject1right.length,
+                failedCount: globalData.subject1failed.length
+            })
+        } else {
+            this.setData({
+                rightCount: globalData.subject4right.length,
+                failedCount: globalData.subject4failed.length
+            })
+        }
+    },
     handleToggleTab(event) {
         const index = event.detail.index;
         // 0 represent collection, 1 represent studyMode, 2 represent float panel
         if (index === 0) {
 
         } else if (index === 1) {
-            let question = this.data.loadedQuestions.find((element, index) => index + 1 === this.data.currentItem);
+            let question = this.data.downloadQuestions.find((element, index) => index + 1 === this.data.currentItem);
             question.showDetail = !question.showDetail;
             question.showAnswer = true;
             this.setData({
-                loadedQuestions: this.data.loadedQuestions,
+                downloadQuestions: this.data.downloadQuestions,
             })
         } else if (index === 2) {
             this.setData({
                 isPullUp: !this.data.isPullUp
             });
         }
+    },
+    handleSingleOptionClick() {
+        this.setAnswerCount();
     },
     handleSelectNumber(event) {
         const current = event.detail.number;
@@ -112,8 +132,9 @@ Page({
         }
     },
     initData() {
+        this.setAnswerCount();
         wx.request({
-            url: 'http://127.0.0.1:8848/api/questions/3800/3820', //仅为示例，并非真实的接口地址
+            url: 'http://127.0.0.1:8848/api/questions/1/20', //仅为示例，并非真实的接口地址
             method: 'GET',
             header: {
                 'content-type': 'application/json' // 默认值

@@ -55,7 +55,9 @@
     </view>
     <text class="icon-wrong"></text>
     <view class="tab-bar">
-        <my-tab-bar for-page="index">
+        <my-tab-bar
+            for-page="index"
+        >
         </my-tab-bar>
     </view>
 </view>
