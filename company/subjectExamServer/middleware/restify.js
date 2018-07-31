@@ -1,3 +1,6 @@
+const serverLogger = require('../utils/log4js-config').getLogger('server');
+const errorLogger = require('../utils/log4js-config').getLogger('error');
+
 module.exports = (pathPrefix='/api/') => {
     return async (ctx, next) => {
         // 是否是REST API前缀?
@@ -16,6 +19,7 @@ module.exports = (pathPrefix='/api/') => {
                 await next();
             } catch(e) {
                 // 返回错误:
+                errorLogger.error(e)
                 ctx.response.status = 400;
                 ctx.response.type = 'application/json';
                 ctx.response.body = {

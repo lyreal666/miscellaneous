@@ -20,7 +20,6 @@ App({
                         }
                     },
                     fail(error) {
-                        console.log(error);
                     }
                 })
             }
@@ -65,17 +64,23 @@ App({
                                 },
                                 success: (result) => {
                                     const data = result.data.data;
+                                    // console.log(data);
                                     const globalData = this.globalData;
                                     globalData.subject1QC = data.subject1count;
                                     globalData.subject4QC = data.subject4count;
+                                    globalData.latestQuestion1 = data.userInfo.latest_question1 || 1;
+                                    globalData.latestQuestion4 = data.userInfo.latest_question4 || 1;
                                     for (let attr of ['collections', 'subject1right', 'subject1failed', 'subject4right', 'subject4failed']) {
                                         if (!data.userInfo.isNewUser) {
-                                            globalData[attr] = data.userInfo[attr]
+                                            if (data.userInfo[attr] === '[]') {
+                                                globalData[attr] = []
+                                            } else {
+                                                globalData[attr] = data.userInfo[attr]
+                                            }
                                         } else {
                                             globalData[attr] = []
                                         }
                                     }
-                                    console.log('#app.js launch globalData', globalData);
                                 }
                             });
                             this.globalData.currentSubject = '科目一';
@@ -83,7 +88,6 @@ App({
 
                     },
                     fail(error) {
-                        console.log(error);
                     }
                 })
             }

@@ -21,7 +21,7 @@ Component({
         showAnswer: {
             type: Boolean,
             value: false,
-            observer: function(newVal, oldVal, changedPath) {
+            observer: function (newVal, oldVal, changedPath) {
                 this.data.computedOptions.forEach(element => {
                     if (this.data.rightAnswer.includes(element.letter)) {
                         element.classList = 'right-option';
@@ -32,7 +32,7 @@ Component({
                     computedOptions: this.data.computedOptions
                 })
                 this.data.completed = true;
-             }
+            }
         }
     },
     data: {
@@ -63,6 +63,56 @@ Component({
                 }
             })
 
+            let globalData = app.globalData;
+            if (globalData.currentSubject === '科目一') {
+                for (let item of globalData.subject1right) {
+                    if (this.data.num === item.number) {
+                        const flag = item.selection;
+                        let rightOption = computedOptions.find(element => element.letter === flag);
+                        rightOption.classList = 'right-option';
+                        rightOption.letter = '√';
+                    }
+                }
+
+                for (let item of globalData.subject1failed) {
+                    if (this.data.num === item.number) {
+                        const flag = item.selection;
+                        computedOptions.forEach(element => {
+                            if (element.letter === flag) {
+                                element.classList = 'selected-wrong-option';
+                                element.flag = 'x'
+                            } else if (this.data.rightAnswer.includes(element.letter)) {
+                                element.classList = 'right-option';
+                                element.letter = '√'
+                            }
+                        })
+                    }
+                }
+            } else {
+                for (let item of globalData.subject4right) {
+                    if (this.data.num === item.number) {
+                        const flag = item.selection;
+                        let rightOption = computedOptions.find(element => element.letter === flag);
+                        rightOption.classList = 'right-option';
+                        rightOption.letter = '√';
+                    }
+                }
+
+                for (let item of globalData.subject4failed) {
+                    if (this.data.num === item.number) {
+                        const flag = item.selection;
+                        computedOptions.forEach(element => {
+                            if (element.letter === flag) {
+                                element.classList = 'selected-wrong-option';
+                                element.flag = 'x'
+                            } else if (this.data.rightAnswer.includes(element.letter)) {
+                                element.classList = 'right-option';
+                                element.letter = '√'
+                            }
+                        })
+                    }
+                }
+            }
             this.setData({
                 computedOptions
             })
@@ -77,9 +127,15 @@ Component({
                 if (!this.data.rightAnswer.includes(flag)) {
                     answerStatus = 'wrong';
                     if (app.globalData.currentSubject === '科目一') {
-                        app.globalData.subject1failed.push({number: this.properties.num, selection})
+                        app.globalData.subject1failed.push({
+                            number: this.properties.num,
+                            selection
+                        })
                     } else {
-                        app.globalData.subject4failed.push({number: this.properties.num, selection})
+                        app.globalData.subject4failed.push({
+                            number: this.properties.num,
+                            selection
+                        })
                     }
                     this.data.computedOptions.forEach(element => {
                         if (element.letter === flag) {
@@ -92,9 +148,15 @@ Component({
                     })
                 } else {
                     if (app.globalData.currentSubject === '科目一') {
-                        app.globalData.subject1right.push({number: this.properties.num, selection})
+                        app.globalData.subject1right.push({
+                            number: this.properties.num,
+                            selection
+                        })
                     } else {
-                        app.globalData.subject4right.push({number: this.properties.num, selection})
+                        app.globalData.subject4right.push({
+                            number: this.properties.num,
+                            selection
+                        })
                     }
                     answerStatus = 'right';
                     let rightOption = this.data.computedOptions.find(element => element.letter === flag);
@@ -102,7 +164,7 @@ Component({
                     rightOption.letter = '√'
                 }
                 wx.request({
-                    url: 'http://127.0.0.1:8848/user/submitOrderPractice',
+                    url: 'http://127.0.0.1:8848/api/user/submitOrderPractice',
                     method: 'POST',
                     data: {
                         number: this.properties.num,
@@ -112,7 +174,6 @@ Component({
                         selection
                     },
                     success: (result) => {
-                        console.log(result);
                     }
                 });
             }
@@ -121,14 +182,15 @@ Component({
             })
 
             this.data.completed = true;
-            this.triggerEvent('singleOptionClick', {}, { bubbles: false })
+            this.triggerEvent('singleOptionClick', {}, {
+                bubbles: false
+            })
         },
         handleMultipleOptionClick(event) {
             if (!this.data.completed) {
-                console.log(this.data.selectedOptions);
                 let flag = event.currentTarget.dataset.optionFlag;
 
-                let selectOption =  this.data.computedOptions.find(element => element.letter === flag);
+                let selectOption = this.data.computedOptions.find(element => element.letter === flag);
                 if (selectOption.classList.trim() === '') {
                     selectOption.classList = 'selected';
                     this.data.selectedOptions.add(flag);
@@ -141,7 +203,9 @@ Component({
                 computedOptions: this.data.computedOptions,
             });
 
-            this.triggerEvent('multipleOptionClick', {}, { bubbles: false })
+            this.triggerEvent('multipleOptionClick', {}, {
+                bubbles: false
+            })
         },
         handleSubmit() {
             let selectedOptions = this.data.selectedOptions;
@@ -150,7 +214,7 @@ Component({
                     title: '多选题至少两项',
                     icon: 'none',
                     duration: 2000
-                  })
+                })
             } else {
                 this.data.computedOptions.forEach(element => {
                     if (this.data.rightAnswer.includes(element.letter)) {

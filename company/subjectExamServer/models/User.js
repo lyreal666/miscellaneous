@@ -1,6 +1,5 @@
 const db = require('../utils/db');
 
-
 module.exports = db.defineModel('users', {
     open_id: {
         type: db.STRING(80), // wxnumber123456 微信号
@@ -21,5 +20,7 @@ module.exports = db.defineModel('users', {
     },
     subject4failed: {
         type: db.JSON,
-    } 
+    },
+    latest_question1: db.INTEGER,
+    latest_question4: db.INTEGER
 })

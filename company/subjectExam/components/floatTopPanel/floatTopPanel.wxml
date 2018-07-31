@@ -15,11 +15,11 @@
             <view class="delete-recording">清除记录</view>
         </view>
         <view class="question-select">
-            <block wx:for="{{ answerStatus }}" wx:key="{{ index }}">
+            <block wx:for="{{ options }}" wx:key="{{ index }}">
                 <view
                     class="option {{ item.status === 1 ? 'answer-right-option' : '' }} {{ item.status === 2 ? 'answer-wrong-option' : '' }}"
                     bindtap="handleClickOption"
-                    data-index="{{ index }}"
+                    data-index="{{ index + 1 }}"
                 >
                     {{ item.num }}
                 </view>

@@ -1,4 +1,9 @@
-[2018-07-27T16:48:42.563] [ERROR] error - 用户登入获取用户信息时: ReferenceError: response is not defined
-    at POST /login (F:\codingSpace\miscellaneous\company\subjectExamServer\controllers\user.js:54:13)
+[2018-07-30T11:43:59.447] [ERROR] error - ReferenceError: innerItem is not defined
+    at POST /api/user/submitOrderPractice (F:\codingSpace\miscellaneous\company\subjectExamServer\controllers\user.js:73:38)
     at <anonymous>
-    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2018-07-30T11:44:06.514] [ERROR] error - ReferenceError: innerItem is not defined
+    at POST /api/user/submitOrderPractice (F:\codingSpace\miscellaneous\company\subjectExamServer\controllers\user.js:73:38)
+    at <anonymous>
+[2018-07-30T11:55:09.429] [ERROR] error - ReferenceError: innerItem is not defined
+    at POST /api/user/submitOrderPractice (F:\codingSpace\miscellaneous\company\subjectExamServer\controllers\user.js:73:38)
+    at <anonymous>

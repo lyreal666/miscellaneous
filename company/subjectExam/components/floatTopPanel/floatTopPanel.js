@@ -6,39 +6,71 @@ Component({
             type: Number,
             value: 1330
         },
-        answerStatus: {
-            type: Array,
-            value: Array.from({ length: 1334 }, (element, index) => {
-                return {
-                    num: index + 1,
-                    // 0 shows the question to be done, 1 shows answer right, 2 false show wrong
-                    status: 0,
-                }
-            }),
-        },
         isPanelUp: {
             type: Boolean,
             value: false,
-            observer: function(newVal, oldVal, changedPath) {
+            observer: function (newVal, oldVal, changedPath) {
                 this.setData({
                     isPullUp: !this.data.isPullUp
                 })
-             }
+            }
         },
         rightCount: {
             type: Number,
             value: 0,
+            observer: function (newVal, oldVal, changedPath) {
+                this.setOptions();
+            }
         },
         failedCount: {
             type: Number,
             value: 0,
+            observer: function (newVal, oldVal, changedPath) {
+                this.setOptions();
+            }
         }
     },
     data: {
-        isPullUp: false
+        isPullUp: false,
+        options: [{
+            num: 1,
+            status: 0
+        }]
     },
     methods: {
+        setOptions() {
+            let rightNumbers;
+            let failedNumbers;
+            let globalData = app.globalData;
+            if (globalData.currentSubject === '科目一') {
+                rightNumbers = new Set(globalData.subject1right.map(element => element.number))
+                failedNumbers = new Set(globalData.subject1failed.map(element => element.number))
+            } else if (globalData.currentSubject === '科目四') {
+                rightNumbers = new Set(globalData.subject4right.map(element => element.number))
+                failedNumbers = new Set(globalData.subject4failed.map(element => element.number))
+            }
+
+            let options = Array.from({
+                length: globalData.currentSubject === '科目一' ? globalData.subject1QC : globalData.subject4QC
+            }, (element, index) => {
+                let option = {
+                    num: index + 1,
+                    status: 0
+                };
+                if (rightNumbers.has(index + 1)) {
+                    option.status = 1;
+                } else if (failedNumbers.has(index + 1)) {
+                    option.status = 2;
+                }
+                return option;
+            });
+
+            this.setData({
+                options
+            })
+        },
         initData() {
+             this.setOptions();
         },
         handleClickBg() {
             this.setData({
@@ -49,13 +81,14 @@ Component({
             this.setData({
                 isPullUp: false,
             });
-            this.triggerEvent('select', event.currentTarget.dataset.index, {bubbles: false})
+            this.triggerEvent('select', event.currentTarget.dataset.index, {
+                bubbles: false
+            })
         }
     },
-    
+
     attached() {
         this.initData();
     },
-    ready() {
-    }
+    ready() {}
 })

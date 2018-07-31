@@ -14,7 +14,9 @@ const viaAttributes = [
     'subject1right',
     'subject1failed',
     'subject4right',
-    'subject4failed'
+    'subject4failed',
+    'latest_question1',
+    'latest_question4'
 ]
 
 
@@ -35,12 +37,18 @@ const createUser = async (userObj) => {
         'updated_at',
         'version'
     ]
-    for (let key of viaAttributes) {
-        if (!userObj[key]) {
-            // 目前创建新用户open_id号一定存在,其它都是json类型
-            userObj[key] = '[]';
-        }
+    if (!userObj.open_id) {
+        throw new Error("Can't create user without openID")
     }
+
+    userObj.collections = userObj.collections || '[]';
+    userObj.subject1right = userObj.subject1right || '[]';
+    userObj.subject1failed = userObj.subject1failed || '[]';
+    userObj.subject4right = userObj.subject4right || '[]';
+    userObj.subject4failed = userObj.subject4failed || '[]';
+    userObj.latest_question1 = userObj.latest_question1 || 1;
+    userObj.latest_question4 = userObj.latest_question4 || 1;
+
     await User.create(userObj, { fields: viaFields })
 }
 

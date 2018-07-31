@@ -5,6 +5,6 @@ bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 
 
-client.hsetAsync('object', 'name', 'value').then();
+client.setAsync('name', 'value').then();
 
-client.hgetAsync('object', 'name').then((data) => console.log(data));
+client.getAsync('name').then((data) => console.log(data));

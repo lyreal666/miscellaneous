@@ -6,7 +6,7 @@ const serverLogger = require('../utils/log4js-config').getLogger('server');
 const errorLogger = require('../utils/log4js-config').getLogger('error');
 
 module.exports = {
-    'POST /user/submitOrderPractice': async (ctx, next) => {
+    'POST /api/user/submitOrderPractice': async (ctx, next) => {
         const {
             number,
             openID,
@@ -16,70 +16,71 @@ module.exports = {
         } = ctx.request.body;
 
         let user = await userService.fetchUserByopen_id(openID);
-        ctx.response.type = 'application/json';
-        ctx.response.status = 200;
         if (user) {
             let modifyField;
             let newItem = {
                 number,
                 selection
             }
-            if (answerStatus.trim() === 'right') {
-                if (subject.trim() === '科目一') {
-                    const oldSubject1right = user.subject1right.trim();
-                    if (oldSubject1right) {
-                        user.subject1right = JSON.stringify(JSON.parse(oldSubject1right).push(newItem));
+            if (answerStatus === 'right') {
+                if (subject === '科目一') {
+                    const oldSubject1right = user.subject1right;
+                    if (oldSubject1right === '[]') {
+                        user.subject1right = [newItem]
                     } else {
-                        user.subject1right = JSON.stringify([newItem])
+                        user.subject1right = [...oldSubject1right, newItem];
                     }
                     modifyField = 'subject1right'
                 } else {
-                    const oldSubject4right = user.subject4right.trim();
-                    if (oldSubject4right) {
-                        user.subject4right = JSON.stringify(JSON.parse(oldSubject4right).push(newItem));
+                    const oldSubject4right = user.subject4right;
+                    if (oldSubject4right === '[]') {
+                        user.subject4right = [newItem]
                     } else {
-                        user.subject4right = JSON.stringify([newItem])
+                        user.subject4right = [...oldSubject4right, newItem];
                     }
                     modifyField = 'subject4right'
                 }
             } else {
-                if (subject.trim() === '科目一') {
-                    console.log(user);
-                    console.log('typeof user.subject1right:', typeof user.subject1failed, user.subject1failed);
-                    const oldSubject1failed = user.subject1failed.trim();
-                    if (oldSubject1failed) {
-                        user.subject1failed = JSON.stringify(JSON.parse(oldSubject1failed).push(newItem));
+                if (subject === '科目一') {
+                    const oldSubject1failed = user.subject1failed;
+                    if (oldSubject1failed === '[]') {
+                        user.subject1failed = [newItem]
                     } else {
-                        user.subject1failed = JSON.stringify([newItem])
+                        user.subject1failed = [...oldSubject1failed, newItem];
                     }
                     modifyField = 'subject1failed'
                 } else {
-                    const oldSubject4failed = user.subject4failed.trim();
-                    if (oldSubject4failed) {
-                        user.subject4failed = JSON.stringify(JSON.parse(oldSubject4failed).push(newItem));
+                    const oldSubject4failed = user.subject4failed;
+                    if (oldSubject4failed === '[]') {
+                        user.subject4failed = [newItem]
                     } else {
-                        user.subject4failed = JSON.stringify([newItem])
+                        user.subject4failed = [...oldSubject4failed, ...newItem];
                     }
                     modifyField = 'subject4failed'
                 }
             }
-            console.log('modifyField:' ,modifyField);
-            console.log('user[modifyField]:', user[modifyField]);
-            let sqlStr = `update users set ${modifyField}=${JSON.stringify(user[modifyField])} where open_id=?`;
-            const executeResult = userService.query(sqlStr, [openID])
-            ctx.body = {
-                success: executeResult
+            let sqlStr = `update users set ${modifyField}=? where open_id=?`;
+            // 去除重复item
+            let resultArray = [];
+            for (const item of user[modifyField]) {
+                let flag = true;
+                for (const innerItem of resultArray) {
+                    if (innerItem.number === item.number) {
+                        flag = false;
+                    }
+                }
+                if (flag) {
+                    resultArray.push(item)
+                }
             }
+            userService.query(sqlStr, [JSON.stringify(resultArray), openID])
+            ctx.rest({})
         } else {
-            ctx.body = {
-                success: true
-            }
             throw new Error(`acquire user failed by oenpID ${openID}`)
         }
         await next()
     },
     'POST /api/user/launch': async (ctx, next) => {
-        console.log('#request body', ctx.request.body);
         const sqlStr = `select count(*) as count from questions where type=?`
         const subject1count = (await questionService.queryQuestions(sqlStr, [0]))[0].count;
         const subject4count = (await questionService.queryQuestions(sqlStr, [1]))[0].count;
@@ -121,7 +122,6 @@ module.exports = {
             const {
                 text: authMsg
             } = await requests.get(url);
-            console.log(authMsg);
             ctx.response.type = 'application/json';
             ctx.response.body = {
                 success: true,
@@ -136,7 +136,28 @@ module.exports = {
                 msg: '登入失败'
             }
         }
+        await next();
+    },
+    'POST /api/user/collection': async (ctx, next) => {
+        const { openID, number } = ctx.request.body;
+        let user = await userService.fetchUserByopen_id(openID);
+        if (user) {
+            const newCollections = user.collections === '[]' ? [number] : Array.from(new Set([...user.collections, number]));
+            const sqlStr = `update users set collections=? where open_id=?`;
+            await userService.query(sqlStr, [JSON.stringify(newCollections), openID]);
+            ctx.rest({})
+            await next()
+        } else {
+            throw new Error(`acquire user failed by oenpID ${openID}`)
+        }
+    },
+    'POST /api/user/latestQuestion': async (ctx, next) => {
+        const { subject, latestQuestion } = ctx.request.body;
+        console.log(ctx.request.body);
+        const sqlStr = `update users set ${ subject === 1 ? 'latest_question1' : 'latest_question4'}=?`
 
-
+        await userService.query(sqlStr, [latestQuestion]);
+        ctx.rest({})
+        await next()
     }
 }

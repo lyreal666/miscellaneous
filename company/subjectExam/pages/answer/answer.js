@@ -2,7 +2,7 @@
  * @Author: ytj
  * @Date: 2018-07-12 09:12:47
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-28 17:14:54
+ * @Last Modified time: 2018-07-30 17:20:52
  */
 
 let app = getApp();
@@ -46,7 +46,6 @@ Page({
     },
     setAnswerCount() {
         let globalData = app.globalData;
-        console.log(globalData);
         if (globalData.currentSubject === '科目一') {
             this.setData({
                 rightCount: globalData.subject1right.length,
@@ -63,7 +62,15 @@ Page({
         const index = event.detail.index;
         // 0 represent collection, 1 represent studyMode, 2 represent float panel
         if (index === 0) {
-
+            wx.request({
+                url: 'http://127.0.0.1:8848/api/user/collection',
+                data: {
+                    openID: app.globalData.openID,
+                    number: this.data.currentItem
+                },
+                method: 'POST',
+                success: (result) => {}
+            })
         } else if (index === 1) {
             let question = this.data.downloadQuestions.find((element, index) => index + 1 === this.data.currentItem);
             question.showDetail = !question.showDetail;
@@ -80,8 +87,8 @@ Page({
     handleSingleOptionClick() {
         this.setAnswerCount();
     },
-    handleSelectNumber(event) {
-        const current = event.detail.number;
+    handleSelectOption(event) {
+        const currentNumber = event.detail;
         const questionNumbers = new Set(this.data.downloadQuestions.map(qs => qs.number));
         if (!questionNumbers.has(currentNumber)) {
             const startIndex = Math.trunc(currentNumber / 10) * 10;
@@ -95,10 +102,18 @@ Page({
                 success: (result) => {
                     let downloadQuestions = result.data.data;
                     this.dealQuestions(downloadQuestions);
+                    downloadQuestions = [...this.data.downloadQuestions, ...downloadQuestions];
+                    const index = downloadQuestions.findIndex(element => element.number === currentNumber)
                     this.setData({
-                        downloadQuestions: [...this.data.downloadQuestions, ...downloadQuestions],
+                        downloadQuestions,
+                        currentItem: index + 1
                     })
                 }
+            })
+        } else {
+            const index = this.data.downloadQuestions.findIndex(element => element.number === currentNumber);
+            this.setData({
+                currentItem: index + 1
             })
         }
     },
@@ -143,12 +158,36 @@ Page({
                 let downloadQuestions = result.data.data;
                 this.dealQuestions(downloadQuestions);
                 this.setData({
-                    downloadQuestions
+                    downloadQuestions,
+                    currentItem: app.globalData.currentSubject === '科目一' ? app.globalData.latestQuestion1 : app.globalData.latestQuestion4
                 })
+                // console.log('app.globalData.latestQuestion1:', app.globalData.latestQuestion1 );
             }
         })
     },
     onLoad() {
         this.initData();
+    },
+    onUnload() {
+        wx.request({
+            url: 'http://127.0.0.1:8848/api/user/latestQuestion', //仅为示例，并非真实的接口地址
+            method: 'POST',
+            header: {
+                'content-type': 'application/json' // 默认值
+            },
+            data: {
+                subject: app.globalData.currentSubject === '科目一' ? 1 : 4,
+                latestQuestion: this.data.currentItem
+            },
+            success: (result) => {
+                // console.log(result);
+            }
+        })
+
+        if (app.globalData.currentSubject === '科目一') {
+            app.globalData.latestQuestion1 = this.data.currentItem;
+        } else {
+            app.globalData.latestQuestion4 = this.data.currentItem;
+        }
     }
 })
