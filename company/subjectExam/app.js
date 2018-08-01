@@ -64,7 +64,7 @@ App({
                                 },
                                 success: (result) => {
                                     const data = result.data.data;
-                                    // console.log(data);
+                                    console.log(data);
                                     const globalData = this.globalData;
                                     globalData.subject1QC = data.subject1count;
                                     globalData.subject4QC = data.subject4count;

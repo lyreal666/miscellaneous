@@ -2,7 +2,7 @@
  * @Author: ytj
  * @Date: 2018-07-12 09:12:47
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-30 17:20:52
+ * @Last Modified time: 2018-07-31 15:57:00
  */
 
 let app = getApp();
@@ -26,18 +26,11 @@ Page({
         downloadQuestions: [],
         downloadQuestions: [],
         rightCount: 0,
-        failedCount: 0
+        failedCount: 0,
+        resetQuestion: true
     },
     dealQuestions(downloadQuestions) {
         downloadQuestions.forEach(question => {
-            if (question.type === 0) {
-                question.type = '单选题';
-            } else if (question.type === 1) {
-                question.type = '判断题';
-            } else {
-                question.type = '多选题';
-            }
-
             question.options = JSON.parse(question.options);
             question.subject = question.subject === 1 ? '科目一' : '科目四';
             question.showAnswer = false;
@@ -149,45 +142,57 @@ Page({
     initData() {
         this.setAnswerCount();
         wx.request({
-            url: 'http://127.0.0.1:8848/api/questions/1/20', //仅为示例，并非真实的接口地址
-            method: 'GET',
+            url: 'http://127.0.0.1:8848/api/questions/range',
+            method: 'POST',
             header: {
-                'content-type': 'application/json' // 默认值
+                'content-type': 'application/json'
+            },
+            data: {
+                subject: app.globalData.currentSubject === '科目一' ? 1 : 4,
+                start: 1,
+                end: 20
             },
             success: (result) => {
                 let downloadQuestions = result.data.data;
+                console.log('initData downloadQuestions:', downloadQuestions);
                 this.dealQuestions(downloadQuestions);
                 this.setData({
                     downloadQuestions,
-                    currentItem: app.globalData.currentSubject === '科目一' ? app.globalData.latestQuestion1 : app.globalData.latestQuestion4
+                    currentItem: (app.globalData.currentSubject === '科目一' ? app.globalData.latestQuestion1 : app.globalData.latestQuestion4) || 1
                 })
-                // console.log('app.globalData.latestQuestion1:', app.globalData.latestQuestion1 );
+             console.log(this.data.currentItem);
             }
         })
     },
     onLoad() {
+        if (app.globalData.afterDelRec) {
+            app.globalData.afterDelRec = false;
+        }
+
         this.initData();
     },
     onUnload() {
-        wx.request({
-            url: 'http://127.0.0.1:8848/api/user/latestQuestion', //仅为示例，并非真实的接口地址
-            method: 'POST',
-            header: {
-                'content-type': 'application/json' // 默认值
-            },
-            data: {
-                subject: app.globalData.currentSubject === '科目一' ? 1 : 4,
-                latestQuestion: this.data.currentItem
-            },
-            success: (result) => {
-                // console.log(result);
+        if (!app.globalData.afterDelRec) {
+            wx.request({
+                url: 'http://127.0.0.1:8848/api/user/latestQuestion', //仅为示例，并非真实的接口地址
+                method: 'POST',
+                header: {
+                    'content-type': 'application/json' // 默认值
+                },
+                data: {
+                    subject: app.globalData.currentSubject === '科目一' ? 1 : 4,
+                    latestQuestion: this.data.currentItem
+                },
+                success: (result) => {
+                    // console.log(result);
+                }
+            })  
+            
+            if (app.globalData.currentSubject === '科目一') {
+                app.globalData.latestQuestion1 = this.data.currentItem;
+            } else {
+                app.globalData.latestQuestion4 = this.data.currentItem;
             }
-        })
-
-        if (app.globalData.currentSubject === '科目一') {
-            app.globalData.latestQuestion1 = this.data.currentItem;
-        } else {
-            app.globalData.latestQuestion4 = this.data.currentItem;
         }
     }
 })

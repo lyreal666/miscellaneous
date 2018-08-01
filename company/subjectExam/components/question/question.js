@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-13 16:11:10 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-28 17:02:39
+ * @Last Modified time: 2018-07-31 15:56:37
  */
 let app = getApp();
 
@@ -10,11 +10,15 @@ Component({
     properties: {
         num: {
             type: Number,
-            value: 9999
+            value: 0
+        },
+        index: {
+            type: Number,
+            value: 0,
         },
         type: {
-            type: String,
-            value: 'question type'
+            type: Number,
+            value: 0
         },
         answer: {
             type: String,

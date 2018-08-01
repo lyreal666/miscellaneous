@@ -12,7 +12,7 @@
                     <text class="count">{{ failedCount }}</text>
                 </view>
             </view>
-            <view class="delete-recording">清除记录</view>
+            <view class="delete-recording" bind:tap="handleDeleteRecording">清除记录</view>
         </view>
         <view class="question-select">
             <block wx:for="{{ options }}" wx:key="{{ index }}">

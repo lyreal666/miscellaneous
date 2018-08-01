@@ -22,7 +22,7 @@ module.exports = {
                 number,
                 selection
             }
-            if (answerStatus === 'right') {
+            if (answerStatus) {
                 if (subject === '科目一') {
                     const oldSubject1right = user.subject1right;
                     if (oldSubject1right === '[]') {
@@ -54,7 +54,7 @@ module.exports = {
                     if (oldSubject4failed === '[]') {
                         user.subject4failed = [newItem]
                     } else {
-                        user.subject4failed = [...oldSubject4failed, ...newItem];
+                        user.subject4failed = [...oldSubject4failed, newItem];
                     }
                     modifyField = 'subject4failed'
                 }
@@ -81,9 +81,9 @@ module.exports = {
         await next()
     },
     'POST /api/user/launch': async (ctx, next) => {
-        const sqlStr = `select count(*) as count from questions where type=?`
+        const sqlStr = `select count(*) as count from questions where subject=?`
         const subject1count = (await questionService.queryQuestions(sqlStr, [0]))[0].count;
-        const subject4count = (await questionService.queryQuestions(sqlStr, [1]))[0].count;
+        const subject4count = (await questionService.queryQuestions(sqlStr, [4]))[0].count;
 
         const openID = ctx.request.body.openID;
         const user = await userService.fetchUserByopen_id(openID);
@@ -155,9 +155,32 @@ module.exports = {
         const { subject, latestQuestion } = ctx.request.body;
         console.log(ctx.request.body);
         const sqlStr = `update users set ${ subject === 1 ? 'latest_question1' : 'latest_question4'}=?`
+        try {
+            await userService.query(sqlStr, [latestQuestion]);
+            ctx.rest({})
+            await next()
+        } catch(error) {
+            errorLogger.error(error);
+            throw new Error('获取用户上次做题位置出错');
+        }
+        
+    },
+    'POST /api/user/questionDelete': async (ctx, next) => {
+        const { openID, operation, subject } = ctx.request.body;
+        if (operation === 'delete question recording') {
+            const sqlStr = `update users set ${subject === 1 ? 'subject1right="[]",subject1failed="[]",latest_question1=1' : 'subject4right="[]",subject4failed="[]",latest_question4=1'} where open_id=?`
 
-        await userService.query(sqlStr, [latestQuestion]);
-        ctx.rest({})
-        await next()
+            try {
+                await userService.query(sqlStr, [openID]);
+                ctx.rest({})
+                await next()
+            } catch(error) {
+                errorLogger.error(error);
+                throw new Error('清除用户答题记录出错');
+            }
+            
+        }
+       
     }
+
 }

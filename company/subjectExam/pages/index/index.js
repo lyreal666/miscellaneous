@@ -2,9 +2,10 @@
  * @Author: ytj 
  * @Date: 2018-07-13 07:53:26 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-28 09:38:49
+ * @Last Modified time: 2018-07-31 08:49:15
  */
-
+let app = getApp();
+ 
 Page({
     data: {
         orderIcons: [{
@@ -52,11 +53,11 @@ Page({
     },
     selectSubject(event) {
         if (this.data.selectedSubject !== event.currentTarget.dataset.subjectText) {
-            const nowSubject = this.data.selectedSubject === '科目一' ? '科目二' : '科目四';
+            const nowSubject = this.data.selectedSubject === '科目一' ? '科目四' : '科目一';
             this.setData({
                 selectedSubject: nowSubject
             })
-            globalData.currentSubject = nowSubject;
+            app.globalData.currentSubject = nowSubject;
         }
     },
     toOrderPractice() {

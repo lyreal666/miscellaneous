@@ -4,7 +4,7 @@
             <text class="page-name">顺序训练</text>
             <text class="question-type">{{ type }}</text>
             <view>
-                <text class="practiced-count">{{ num }}</text>
+                <text class="practiced-count">{{ index + 1 }}</text>
                 <text class="question-number">{{ '/' + QC }}</text>
             </view>
         </view>

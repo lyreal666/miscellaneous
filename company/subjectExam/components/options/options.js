@@ -7,8 +7,8 @@ Component({
             value: 0
         },
         type: {
-            type: String,
-            value: '单选题'
+            type: Number,
+            value: 0
         },
         options: {
             type: Array,
@@ -89,28 +89,56 @@ Component({
                     }
                 }
             } else {
-                for (let item of globalData.subject4right) {
-                    if (this.data.num === item.number) {
-                        const flag = item.selection;
-                        let rightOption = computedOptions.find(element => element.letter === flag);
-                        rightOption.classList = 'right-option';
-                        rightOption.letter = '√';
+                if (this.data.type !== 2) {
+                    for (let item of globalData.subject4right) {
+                        if (this.data.num === item.number) {
+                            const flag = item.selection;
+                            let rightOption = computedOptions.find(element => element.letter === flag);
+                            rightOption.classList = 'right-option';
+                            rightOption.letter = '√';
+                        }
                     }
-                }
 
-                for (let item of globalData.subject4failed) {
-                    if (this.data.num === item.number) {
-                        const flag = item.selection;
-                        computedOptions.forEach(element => {
-                            if (element.letter === flag) {
-                                element.classList = 'selected-wrong-option';
-                                element.flag = 'x'
-                            } else if (this.data.rightAnswer.includes(element.letter)) {
-                                element.classList = 'right-option';
-                                element.letter = '√'
-                            }
-                        })
+                    for (let item of globalData.subject4failed) {
+                        if (this.data.num === item.number) {
+                            const flag = item.selection;
+                            computedOptions.forEach(element => {
+                                if (element.letter === flag) {
+                                    element.classList = 'selected-wrong-option';
+                                    element.flag = 'x'
+                                } else if (this.data.rightAnswer.includes(element.letter)) {
+                                    element.classList = 'right-option';
+                                    element.letter = '√'
+                                }
+                            })
+                        }
                     }
+                } else {
+                    for (let item of globalData.subject4right) {
+                        if (this.data.num === item.number) {
+                            computedOptions.forEach(option => {
+                                if (item.selection.includes(option.letter)) {
+                                    option.classList = 'm-right-option'
+                                    option.letter = '√';
+                                }
+                            })
+                        }
+                    }
+
+                    for (let item of globalData.subject4failed) {
+                        if (this.data.num === item.number) {
+                            computedOptions.forEach(option => {
+                                if (this.data.rightAnswer.includes(option.letter)) {
+                                    option.classList = 'm-right-option'
+                                    option.letter = '√';
+                                } else if (item.selection.includes(option.letter)) {
+                                    option.classList = "m-wrong-option";
+                                    option.letter = 'x';
+                                }
+                            })
+                        }
+                    }
+
                 }
             }
             this.setData({
@@ -125,7 +153,7 @@ Component({
                 let answerStatus;
                 let selection = flag;
                 if (!this.data.rightAnswer.includes(flag)) {
-                    answerStatus = 'wrong';
+                    answerStatus = false;
                     if (app.globalData.currentSubject === '科目一') {
                         app.globalData.subject1failed.push({
                             number: this.properties.num,
@@ -158,7 +186,7 @@ Component({
                             selection
                         })
                     }
-                    answerStatus = 'right';
+                    answerStatus = true;
                     let rightOption = this.data.computedOptions.find(element => element.letter === flag);
                     rightOption.classList = 'right-option';
                     rightOption.letter = '√'
@@ -173,8 +201,7 @@ Component({
                         answerStatus,
                         selection
                     },
-                    success: (result) => {
-                    }
+                    success: (result) => {}
                 });
             }
             this.setData({
@@ -216,6 +243,11 @@ Component({
                     duration: 2000
                 })
             } else {
+                // 多选题只有科目四有
+                let globalData = app.globalData;
+                const selection = [...this.data.selectedOptions].sort().join('');
+
+                let answerStatus = selection === this.data.rightAnswer;
                 this.data.computedOptions.forEach(element => {
                     if (this.data.rightAnswer.includes(element.letter)) {
                         element.classList = 'm-right-option'
@@ -225,11 +257,38 @@ Component({
                         element.letter = 'x';
                     }
                 })
+
+                if (answerStatus) {
+                    globalData.subject4right.push({
+                        number: this.data.num,
+                        selection
+                    })
+                } else {
+                    globalData.subject4failed.push({
+                        number: this.data.num,
+                        selection
+                    })
+                }
                 this.data.completed = true;
                 this.setData({
                     computedOptions: this.data.computedOptions,
                     disabled: true
                 });
+
+                wx.request({
+                    url: 'http://127.0.0.1:8848/api/user/submitOrderPractice',
+                    method: 'POST',
+                    data: {
+                        number: this.properties.num,
+                        openID: globalData.openID,
+                        subject: globalData.currentSubject,
+                        answerStatus,
+                        selection
+                    },
+                    success: (result) => {
+                        console.log(result);
+                    }
+                })
             }
         }
     },

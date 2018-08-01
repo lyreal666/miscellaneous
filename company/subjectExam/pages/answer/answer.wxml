@@ -1,11 +1,11 @@
 <view class="main-frame">
     <view class="container">
         <swiper class="questions" bindchange="handleSwiperChange" indicator-dots="{{ false }}" 
-        autoplay="{{ false }}" duration="{{ 1000 }}" current-item-id="{{ currentItem }}"
+        autoplay="{{ false }}" duration="{{ 0 }}" current-item-id="{{ currentItem }}"
         skip-hidden-item-layout="true">
             <block wx:for="{{ downloadQuestions }}" wx:key="{{ index }}">
                 <swiper-item  item-id="{{ index + 1 }}" >
-                    <question num="{{ item.number }}" type="{{ item.type }}" answer="{{ item.answer }}" hasPic="{{ item.has_pic }}" title="{{ item.title }}" options="{{ item.options }}" detail="{{ item.detail }}" show-detail="{{ item.showDetail}}" show-answer="{{ item.showAnswer }}" bind:singleOptionClick="handleSingleOptionClick"></question>
+                    <question num="{{ item.number }}" index="{{ index }}" type="{{ item.type }}" answer="{{ item.answer }}" hasPic="{{ item.has_pic }}" title="{{ item.title }}" options="{{ item.options }}" detail="{{ item.detail }}" show-detail="{{ item.showDetail}}" show-answer="{{ item.showAnswer }}" bind:singleOptionClick="handleSingleOptionClick"></question>
                 </swiper-item>
             </block>
         </swiper>
@@ -13,5 +13,5 @@
             <my-tab-bar tabs="{{ tabs }}" bind:toggle-tab="handleToggleTab"></my-tab-bar>
         </view>
     </view>
-    <float-top-panel bind:select="handleSelectOption" isPanelUp="{{ isPullUp }}" right-count="{{ rightCount }}" failed-count="{{ failedCount }}"></float-top-panel>
+    <float-top-panel bind:select="handleSelectOption" isPanelUp="{{ isPullUp }}" right-count="{{ rightCount }}" failed-count="{{ failedCount }}" resetQuestion="{{ resetQuestion }}"></float-top-panel>
 </view>

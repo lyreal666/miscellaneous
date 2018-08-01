@@ -56,10 +56,10 @@ const createUser = async (userObj) => {
 const query = async (sqlStr, args) => {
     try {
         const rs = await sequelize.query(sqlStr, { replacements: [...args]});
-        return true
+        return rs
     } catch(error) {
         serverLogger.error(error)
-        return false
+        throw error;
     }
 }
 

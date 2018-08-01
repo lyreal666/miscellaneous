@@ -1,4 +1,5 @@
 const questionService = require('../services/questionService');
+let redisClient = require('../configs/redis-config');
 const serverLogger = require('../utils/log4js-config').getLogger('server');
 const errorLogger = require('../utils/log4js-config').getLogger('error');
 
@@ -8,7 +9,7 @@ const selectFields = questionService.viaAttributes.join();
 module.exports = {
     'GET /api/questions': async (ctx, next) => {
         try {
-            const questions =  await questionService.fetchAllQuestions();
+            const questions = await questionService.fetchAllQuestions();
             ctx.rest({
                 count: questions.length,
                 questions
@@ -38,6 +39,27 @@ module.exports = {
         const count = await questionService.queryQuestions(sqlStr, []);
         ctx.rest(count[0]);
         await next();
+    },
+    'POST /api/questions/range': async (ctx, next) => {
+        const {
+            subject,
+            start,
+            end
+        } = ctx.request.body;
+        const sqlStr = `select ${selectFields} from questions where subject=? order by number limit ?, ?`;
+        try {
+            const questions = await questionService
+                .queryQuestions(sqlStr, [subject, start - 1, end - start + 1]);
+            ctx.rest(questions);
+            await next();
+        } catch (error) {
+            errorLogger.warn('范围读取题库出现问题');
+            errorLogger.error(error);
+        }
+    },
+    'POST /api/question/random': async(ctx, next) => {
+        const { subject, count} = ctx.request.body;
+        const ques
+        
     }
-    
 }

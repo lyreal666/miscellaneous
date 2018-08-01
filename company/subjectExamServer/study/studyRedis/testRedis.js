@@ -5,6 +5,14 @@ bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 
 
-client.setAsync('name', 'value').then();
+const test = async () => {
+    client.setAsync('name', 'value').then();
+    const value = await client.getAsync('name');
+    console.log(value);
+}
 
-client.getAsync('name').then((data) => console.log(data));
+if (require.main === module) {
+    test();
+} else {
+    
+}

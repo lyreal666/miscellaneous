@@ -70,7 +70,7 @@ Component({
             })
         },
         initData() {
-             this.setOptions();
+            this.setOptions();
         },
         handleClickBg() {
             this.setData({
@@ -84,9 +84,36 @@ Component({
             this.triggerEvent('select', event.currentTarget.dataset.index, {
                 bubbles: false
             })
-        }
-    },
+        },
+        handleDeleteRecording() {
+            let globalData = app.globalData;
+            wx.request({
+                url: 'http://127.0.0.1:8848/api/user/questionDelete',
+                method: 'POST',
+                data: {
+                    openID: globalData.openID,
+                    subject: globalData.currentSubject === '科目一' ? 1 : 4,
+                    operation: 'delete question recording',
+                }
+            });
 
+            if (globalData.currentSubject === '科目一') {
+                globalData.subject1right = [];
+                globalData.subject1failed = [];
+                app.globalData.latestQuestion1 = 1;
+            } else {
+                globalData.subject4right = [];
+                globalData.subject4failed = [];
+                app.globalData.latestQuestion4 = 1;
+            }
+
+            globalData.afterDelRec = true;
+            wx.redirectTo({
+                url: '/pages/answer/answer'
+            })
+
+        },
+    },
     attached() {
         this.initData();
     },

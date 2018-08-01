@@ -29,4 +29,4 @@
     </view>
 </template>
 
-<template is="{{ type === '多选题' ? 'multipleSelection' : 'singleSelection'}}" data="{{ computedOptions, disabled }}"></template>
+<template is="{{ type === 2 ? 'multipleSelection' : 'singleSelection'}}" data="{{ computedOptions, disabled }}"></template>
