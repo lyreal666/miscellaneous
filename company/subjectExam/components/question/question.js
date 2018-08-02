@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-13 16:11:10 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-31 15:56:37
+ * @Last Modified time: 2018-08-01 11:52:14
  */
 let app = getApp();
 
@@ -52,30 +52,36 @@ Component({
     data: {
         showOptions: false,
         QC: 1500,
-        imageSrc: ''
+        imageSrc: '',
+        questionType: '单选题'
     },
     methods: {
         initData() {
             const QC = app.globalData.currentSubject === '科目一' ? app.globalData.subject1QC : app.globalData.subject4QC
+            console.log(QC);
             const imgNum = String(this.properties.num).padStart(4, '0');
             let imageSrc;
             if (this.properties.hasPic === 0) {
                 this.setData({
-                    QC
+                    QC,
+                    questionType: this.data.type === 0 ? '单选题' : this.data.type === 1 ? '判断题' : '多选题'
                 })
                 return;
-            } else if (this.properties.hasPic ==1 ) {
+            } else if (this.properties.hasPic == 1) {
                 imageSrc = `http://127.0.0.1:8848/questionResource/${imgNum}.jpg`
             } else {
                 imageSrc = `http://127.0.0.1:8848/questionResource/${imgNum}.mp4`
             }
             this.setData({
                 QC,
-                imageSrc
+                imageSrc,
+                questionType: this.data.type === 0 ? '单选题' : this.data.type === 1 ? '判断题' : '多选题'
             })
         },
         handleSingleOptionClick() {
-            this.triggerEvent('singleOptionClick', {}, { bubbles: false })
+            this.triggerEvent('singleOptionClick', {}, {
+                bubbles: false
+            })
         }
     },
     attached() {

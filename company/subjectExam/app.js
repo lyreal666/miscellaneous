@@ -81,6 +81,14 @@ App({
                                             globalData[attr] = []
                                         }
                                     }
+
+                                    globalData.subject1randomNumbers = Array
+                                        .from({ length: data.subject1count })
+                                        .map((element, index) => index + 1);
+
+                                    globalData.subject4randomNumbers = Array
+                                        .from({ length: data.subject4count })
+                                        .map((element, index) => index + 1);
                                 }
                             });
                             this.globalData.currentSubject = '科目一';

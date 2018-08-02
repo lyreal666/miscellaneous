@@ -1,5 +1,7 @@
 const questionService = require('../services/questionService');
 let redisClient = require('../configs/redis-config');
+const Chance = require('chance');
+let chance = new Chance();
 const serverLogger = require('../utils/log4js-config').getLogger('server');
 const errorLogger = require('../utils/log4js-config').getLogger('error');
 
@@ -28,12 +30,6 @@ module.exports = {
         ctx.rest(question);
         await next();
     },
-    'GET /api/questions/:questionsStart/:questionsEnd': async (ctx, next) => {
-        const questions = await questionService
-            .queryQuestions(`select ${selectFields} from questions where number between ? and ?`, [~~ctx.params.questionsStart, ~~ctx.params.questionsEnd])
-        ctx.rest(questions);
-        await next();
-    },
     'GET /api/questions/count/:subjectType/': async (ctx, next) => {
         const sqlStr = `select count(*) as count from questions where type=${ctx.params.subjectType}`
         const count = await questionService.queryQuestions(sqlStr, []);
@@ -57,9 +53,18 @@ module.exports = {
             errorLogger.error(error);
         }
     },
-    'POST /api/question/random': async(ctx, next) => {
-        const { subject, count} = ctx.request.body;
-        const ques
+    'POST /api/questions/random': async(ctx, next) => {
+        const { subject, start, end } = ctx.request.body;
         
+        let questions;
+        
+        if (~~subject === 1) {
+            questions = JSON.parse(await redisClient.getAsync('randomSubject1questions')).slice(start - 1, end);
+        } else {
+            questions = JSON.parse(await redisClient.getAsync('randomSubject4questions')).slice(start -1, end);
+        }
+        ctx.rest(questions);
+        console.log(questions);
+        await next();
     }
 }

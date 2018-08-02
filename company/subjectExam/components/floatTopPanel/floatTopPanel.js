@@ -38,6 +38,9 @@ Component({
         }]
     },
     methods: {
+        /**
+         * TODO: 科目四下选题界面选项样式不生效
+         */
         setOptions() {
             let rightNumbers;
             let failedNumbers;
@@ -52,7 +55,8 @@ Component({
 
             let options = Array.from({
                 length: globalData.currentSubject === '科目一' ? globalData.subject1QC : globalData.subject4QC
-            }, (element, index) => {
+            });
+            options = options.map((element, index) => {
                 let option = {
                     num: index + 1,
                     status: 0
@@ -63,7 +67,8 @@ Component({
                     option.status = 2;
                 }
                 return option;
-            });
+            })
+
 
             this.setData({
                 options

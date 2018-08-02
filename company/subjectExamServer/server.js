@@ -2,11 +2,12 @@
  * @Author: ytj 
  * @Date: 2018-07-20 10:37:46 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-26 11:54:40
+ * @Last Modified time: 2018-08-01 17:13:44
  */
 
 const path = require('path');
 const Koa2 = require('koa');
+const redisClient = require('./configs/redis-config');
 const accessServerLog = require('./middleware/accessServerLog');
 const staticServer = require('koa-static');
 const bodyParser = require('koa-bodyparser');

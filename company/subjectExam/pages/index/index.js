@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-13 07:53:26 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-07-31 08:49:15
+ * @Last Modified time: 2018-08-01 11:44:40
  */
 let app = getApp();
  
@@ -49,6 +49,22 @@ Page({
             wx.navigateTo({
                 url: '/pages/testRecording/testRecording'
             })
+        } else if (event.detail === '随机练习') {
+            wx.request({
+                url: 'http://127.0.0.1:8848/api/questions/random',
+                method: 'POST',
+                data: {
+                    subject: app.globalData.currentSubject,
+                    count: 50
+                },
+                success: (result) => {
+                    console.log(result);
+                    wx.navigateTo({
+                        url: '/pages/answer/answer'
+                    })
+                }
+            })
+
         }
     },
     selectSubject(event) {
@@ -94,6 +110,10 @@ Page({
         ctx2.arc(75, 75, 64, 0, (45 / 360) * 1.5 * Math.PI, false);
         ctx2.stroke();
         ctx2.draw();
+    },
+    onLoad() {
+        let globalData;
+        // scale1 = app.globalData.currentSubject === '科目一'
     },
     onShow: function () {
         this.drawGauge('canvasProgressBg1', 'canvasProgress1');

@@ -82,7 +82,7 @@ module.exports = {
     },
     'POST /api/user/launch': async (ctx, next) => {
         const sqlStr = `select count(*) as count from questions where subject=?`
-        const subject1count = (await questionService.queryQuestions(sqlStr, [0]))[0].count;
+        const subject1count = (await questionService.queryQuestions(sqlStr, [1]))[0].count;
         const subject4count = (await questionService.queryQuestions(sqlStr, [4]))[0].count;
 
         const openID = ctx.request.body.openID;

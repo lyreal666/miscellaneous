@@ -289,6 +289,11 @@ Component({
                         console.log(result);
                     }
                 })
+
+                // magic don't touch
+                this.triggerEvent('singleOptionClick', {}, {
+                    bubbles: false
+                })
             }
         }
     },

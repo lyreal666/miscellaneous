@@ -2,7 +2,7 @@
     <view class="question-wrapper">
         <view class="title">
             <text class="page-name">顺序训练</text>
-            <text class="question-type">{{ type }}</text>
+            <text class="question-type">{{ questionType }}</text>
             <view>
                 <text class="practiced-count">{{ index + 1 }}</text>
                 <text class="question-number">{{ '/' + QC }}</text>
