@@ -6,7 +6,8 @@
     "pages/testRecording/testRecording",
     "pages/chapterList/chapterList",
     "pages/answer/answer",
-    "pages/mockExam/mockExam"
+    "pages/mockExam/mockExam",
+    "pages/randomPractice/randomPractice"
   ],
   "window":{
     "backgroundTextStyle":"light",

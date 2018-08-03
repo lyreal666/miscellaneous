@@ -2,7 +2,7 @@
  * @Author: ytj 
  * @Date: 2018-07-13 07:53:26 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-08-01 11:44:40
+ * @Last Modified time: 2018-08-02 11:35:44
  */
 let app = getApp();
  
@@ -50,21 +50,9 @@ Page({
                 url: '/pages/testRecording/testRecording'
             })
         } else if (event.detail === '随机练习') {
-            wx.request({
-                url: 'http://127.0.0.1:8848/api/questions/random',
-                method: 'POST',
-                data: {
-                    subject: app.globalData.currentSubject,
-                    count: 50
-                },
-                success: (result) => {
-                    console.log(result);
-                    wx.navigateTo({
-                        url: '/pages/answer/answer'
-                    })
-                }
+            wx.navigateTo({
+                url: '/pages/randomPractice/randomPractice'
             })
-
         }
     },
     selectSubject(event) {

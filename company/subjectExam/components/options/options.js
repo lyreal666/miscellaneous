@@ -1,4 +1,6 @@
 let app = getApp();
+let globalData = app.globalData;
+let subjectData = globalData.currentSubject === 1 ? globalData.subject1data : globalData.subject4data; 
 
 Component({
     properties: {
@@ -63,9 +65,9 @@ Component({
                 }
             })
 
-            let globalData = app.globalData;
-            if (globalData.currentSubject === '科目一') {
-                for (let item of globalData.subject1right) {
+            // 恢复上次退出时的状态
+            if (subjectData.subject === '1') {
+                for (let item of subjectData.rightQuestions) {
                     if (this.data.num === item.number) {
                         const flag = item.selection;
                         let rightOption = computedOptions.find(element => element.letter === flag);
@@ -74,7 +76,7 @@ Component({
                     }
                 }
 
-                for (let item of globalData.subject1failed) {
+                for (let item of subjectData.failedQuestions) {
                     if (this.data.num === item.number) {
                         const flag = item.selection;
                         computedOptions.forEach(element => {
@@ -90,7 +92,7 @@ Component({
                 }
             } else {
                 if (this.data.type !== 2) {
-                    for (let item of globalData.subject4right) {
+                    for (let item of subjectData.rightQuestions) {
                         if (this.data.num === item.number) {
                             const flag = item.selection;
                             let rightOption = computedOptions.find(element => element.letter === flag);
@@ -99,7 +101,7 @@ Component({
                         }
                     }
 
-                    for (let item of globalData.subject4failed) {
+                    for (let item of subjectData.failedQuestions) {
                         if (this.data.num === item.number) {
                             const flag = item.selection;
                             computedOptions.forEach(element => {
@@ -114,7 +116,7 @@ Component({
                         }
                     }
                 } else {
-                    for (let item of globalData.subject4right) {
+                    for (let item of subjectData.rightQuestions) {
                         if (this.data.num === item.number) {
                             computedOptions.forEach(option => {
                                 if (item.selection.includes(option.letter)) {
@@ -125,7 +127,7 @@ Component({
                         }
                     }
 
-                    for (let item of globalData.subject4failed) {
+                    for (let item of subjectData.failedQuestions) {
                         if (this.data.num === item.number) {
                             computedOptions.forEach(option => {
                                 if (this.data.rightAnswer.includes(option.letter)) {
@@ -148,23 +150,17 @@ Component({
         handleSingleOptionClick(event) {
             let flag = event.currentTarget.dataset.optionFlag;
             if (!this.data.completed) {
-                const openID = app.globalData.openID;
-                const subject = app.globalData.currentSubject;
+                const openID = globalData.openID;
+                const subject = subjectData.subject;
                 let answerStatus;
                 let selection = flag;
                 if (!this.data.rightAnswer.includes(flag)) {
                     answerStatus = false;
-                    if (app.globalData.currentSubject === '科目一') {
-                        app.globalData.subject1failed.push({
-                            number: this.properties.num,
-                            selection
-                        })
-                    } else {
-                        app.globalData.subject4failed.push({
-                            number: this.properties.num,
-                            selection
-                        })
-                    }
+                    subjectData.failedQuestions.push({
+                        number: this.properties.num,
+                        selection
+                    })
+
                     this.data.computedOptions.forEach(element => {
                         if (element.letter === flag) {
                             element.classList = 'selected-wrong-option';
@@ -175,17 +171,11 @@ Component({
                         }
                     })
                 } else {
-                    if (app.globalData.currentSubject === '科目一') {
-                        app.globalData.subject1right.push({
-                            number: this.properties.num,
-                            selection
-                        })
-                    } else {
-                        app.globalData.subject4right.push({
-                            number: this.properties.num,
-                            selection
-                        })
-                    }
+                    subjectData.rightQuestions.push({
+                        number: this.properties.num,
+                        selection
+                    })
+
                     answerStatus = true;
                     let rightOption = this.data.computedOptions.find(element => element.letter === flag);
                     rightOption.classList = 'right-option';
@@ -244,7 +234,6 @@ Component({
                 })
             } else {
                 // 多选题只有科目四有
-                let globalData = app.globalData;
                 const selection = [...this.data.selectedOptions].sort().join('');
 
                 let answerStatus = selection === this.data.rightAnswer;
@@ -259,12 +248,12 @@ Component({
                 })
 
                 if (answerStatus) {
-                    globalData.subject4right.push({
+                    subjectData.rightQuestions.push({
                         number: this.data.num,
                         selection
                     })
                 } else {
-                    globalData.subject4failed.push({
+                    subjectData.failedQuestions.push({
                         number: this.data.num,
                         selection
                     })
@@ -281,7 +270,7 @@ Component({
                     data: {
                         number: this.properties.num,
                         openID: globalData.openID,
-                        subject: globalData.currentSubject,
+                        subject: subjectData.subject,
                         answerStatus,
                         selection
                     },

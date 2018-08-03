@@ -2,9 +2,12 @@
  * @Author: ytj 
  * @Date: 2018-07-13 16:11:10 
  * @Last Modified by: ytj
- * @Last Modified time: 2018-08-01 11:52:14
+ * @Last Modified time: 2018-08-03 12:59:38
  */
+
 let app = getApp();
+let globalData = app.globalData;
+let subjectData = globalData.currentSubject === 1 ? globalData.subject1data : globalData.subject4data; 
 
 Component({
     properties: {
@@ -57,8 +60,7 @@ Component({
     },
     methods: {
         initData() {
-            const QC = app.globalData.currentSubject === '科目一' ? app.globalData.subject1QC : app.globalData.subject4QC
-            console.log(QC);
+            const QC = subjectData.subjectQC;
             const imgNum = String(this.properties.num).padStart(4, '0');
             let imageSrc;
             if (this.properties.hasPic === 0) {

@@ -11,31 +11,15 @@ const errorLogger = require('../utils/log4js-config').getLogger('error');
 const userService = require('../services/userService');
 const questionService = require('../services/questionService');
 
-const updateRandomQuestions =  async () => {
-    const sqlStr = `select ${ questionService.viaAttributes.join(',') } from questions where subject=?`;
+const configRedis = async () => {
+    const sqlStr = `select ${ questionService.viaAttributes.join(',') } from questions where subject=? order by number`;
     const questions1 = await questionService.queryQuestions(sqlStr, [1]);
-    questions1.sort(() => {
-        return 0.5 - Math.random()
-    });
-    await client.setAsync('randomSubject1questions', JSON.stringify(questions1));
+    await client.setAsync('qc1', questions1.length);
+    await client.setAsync('subject1questions', JSON.stringify(questions1));
 
     const questions4 = await questionService.queryQuestions(sqlStr, [4]);
-    questions4.sort(() => {
-        return 0.5 - Math.random()
-    });
-    await client.setAsync('randomSubject4questions', JSON.stringify(questions4));
-}
-
-const configRedis = async () => {
-    const qcQR = await userService.query('select count(*) as counts from questions', []);
-    const questionsCount = qcQR[0][0]['counts'];
-    await client.setAsync('questionsCount', questionsCount);
-
-    const sqlStr = `select count(*) as count from questions where subject=?`;
-    const subject1count = (await questionService.queryQuestions(sqlStr, [1]))[0].count;
-    const subject4count = (await questionService.queryQuestions(sqlStr, [4]))[0].count;
-    await client.setAsync('qc1', subject1count);
-    await client.setAsync('qc4', subject4count);
+    await client.setAsync('qc4', questions4.length);
+    await client.setAsync('subject4questions', JSON.stringify(questions4));
 };
 
 if (require.main === module) {

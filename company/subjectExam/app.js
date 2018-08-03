@@ -1,46 +1,14 @@
 //app.js
 App({
     globalMethods: {
-
     },
-    globalData: {},
-    fetchUserInfo() {
-        wx.login({
-            success: res => {
-                wx.request({
-                    url: 'http://127.0.0.1:8848/login',
-                    method: 'POST',
-                    data: {
-                        code: res.code
-                    },
-                    success: (res) => {
-                        const data = res.data;
-                        if (data.success) {
-                            this.openID = data.openID
-                        }
-                    },
-                    fail(error) {
-                    }
-                })
-            }
-        })
-        // 获取用户信息
-        wx.getSetting({
-            success: res => {
-                if (res.authSetting['scope.userInfo']) {
-                    wx.getUserInfo({
-                        success: res => {
-                            this.globalData.userInfo = res.userInfo
-                            if (this.userInfoReadyCallback) {
-                                this.userInfoReadyCallback(res)
-                            }
-                        }
-                    })
-                }
-            }
-        })
+    globalData: {
+        subject1data: {},
+        subject4data: {}
     },
     onLaunch: function (options) {
+        this.globalData.currentSubject = 1;
+
         wx.login({
             success: res => {
                 wx.request({
@@ -64,34 +32,27 @@ App({
                                 },
                                 success: (result) => {
                                     const data = result.data.data;
-                                    console.log(data);
                                     const globalData = this.globalData;
-                                    globalData.subject1QC = data.subject1count;
-                                    globalData.subject4QC = data.subject4count;
-                                    globalData.latestQuestion1 = data.userInfo.latest_question1 || 1;
-                                    globalData.latestQuestion4 = data.userInfo.latest_question4 || 1;
-                                    for (let attr of ['collections', 'subject1right', 'subject1failed', 'subject4right', 'subject4failed']) {
-                                        if (!data.userInfo.isNewUser) {
-                                            if (data.userInfo[attr] === '[]') {
-                                                globalData[attr] = []
-                                            } else {
-                                                globalData[attr] = data.userInfo[attr]
-                                            }
-                                        } else {
-                                            globalData[attr] = []
-                                        }
-                                    }
 
-                                    globalData.subject1randomNumbers = Array
-                                        .from({ length: data.subject1count })
-                                        .map((element, index) => index + 1);
-
-                                    globalData.subject4randomNumbers = Array
-                                        .from({ length: data.subject4count })
-                                        .map((element, index) => index + 1);
+                                    // TODO: http 传输json时碰到'[]'不会被解析成[]
+                                    globalData.collections = data.userInfo.collections === '[]' ? [] : data.userInfo.collections;
+                                    globalData.subject1data = Object.assign(globalData.subject1data, {
+                                        subject: 1,
+                                        subjectQC: data.subject1count,
+                                        latestDoneQuestion: data.userInfo.latest_question1 || 1,
+                                        rightQuestions: data.userInfo.subject1right === '[]' ? [] : data.userInfo.subject1right,
+                                        failedQuestions: data.userInfo.subject1failed === '[]' ? [] : data.userInfo.subject1failed
+                                    })
+                                    
+                                    globalData.subject4data = Object.assign(globalData.subject4data, {
+                                        subject: 4,
+                                        subjectQC: data.subject4count,
+                                        latestDoneQuestion: data.userInfo.latest_question4 || 1,
+                                        rightQuestions: data.userInfo.subject4right === '[]' ? [] : data.userInfo.subject4right,
+                                        failedQuestions: data.userInfo.subject4failed === '[]' ? [] : data.userInfo.subject4failed
+                                    })
                                 }
                             });
-                            this.globalData.currentSubject = '科目一';
                         }
 
                     },
@@ -100,12 +61,5 @@ App({
                 })
             }
         })
-    },
-    onShow: function (options) {
-        // Do something when show.
-    },
-    onHide: function () {
-        // Do something when hide.
-    },
-    onError: function (msg) {},
+    }
 })

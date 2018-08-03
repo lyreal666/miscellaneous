@@ -53,18 +53,12 @@ module.exports = {
             errorLogger.error(error);
         }
     },
-    'POST /api/questions/random': async(ctx, next) => {
-        const { subject, start, end } = ctx.request.body;
-        
-        let questions;
-        
-        if (~~subject === 1) {
-            questions = JSON.parse(await redisClient.getAsync('randomSubject1questions')).slice(start - 1, end);
-        } else {
-            questions = JSON.parse(await redisClient.getAsync('randomSubject4questions')).slice(start -1, end);
-        }
-        ctx.rest(questions);
-        console.log(questions);
+    'POST /api/questions/numbers': async (ctx, next) => {
+        const { subject, numbers } = ctx.request.body;
+
+        const questions = JSON.parse(await redisClient.getAsync(`subject${ subject }questions`));
+        const randomQuestions = numbers.map(number => questions[number - 1]);
+        ctx.rest(randomQuestions);
         await next();
     }
 }

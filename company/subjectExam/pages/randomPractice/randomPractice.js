@@ -2,10 +2,12 @@
  * @Author: ytj
  * @Date: 2018-07-12 09:12:47
  * @Last Modified by: ytj
- * @Last Modified time: 2018-08-01 17:49:38
+ * @Last Modified time: 2018-08-03 13:06:48
  */
 
 let app = getApp();
+let globalData = app.globalData;
+let subjectData = globalData.currentSubject === 1 ? globalData.subject1data : globalData.subject4data; 
 
 Page({
     data: {
@@ -27,7 +29,8 @@ Page({
         downloadQuestions: [],
         rightCount: 0,
         failedCount: 0,
-        resetQuestion: true
+        resetQuestion: true,
+        randomNumbers: []
     },
     dealQuestions(downloadQuestions) {
         downloadQuestions.forEach(question => {
@@ -38,18 +41,11 @@ Page({
         });
     },
     setAnswerCount() {
-        let globalData = app.globalData;
-        if (globalData.currentSubject === '科目一') {
-            this.setData({
-                rightCount: globalData.subject1right.length,
-                failedCount: globalData.subject1failed.length
-            })
-        } else {
-            this.setData({
-                rightCount: globalData.subject4right.length,
-                failedCount: globalData.subject4failed.length
-            })
-        }
+        let globalData = globalData;
+        this.setData({
+            rightCount: subjectData.rightQuestions.length,
+            failedCount: subjectData.failedQuestions.length
+        })
     },
     handleToggleTab(event) {
         const index = event.detail.index;
@@ -58,7 +54,7 @@ Page({
             wx.request({
                 url: 'http://127.0.0.1:8848/api/user/collection',
                 data: {
-                    openID: app.globalData.openID,
+                    openID: globalData.openID,
                     number: this.data.currentItem
                 },
                 method: 'POST',
@@ -141,58 +137,45 @@ Page({
     },
     initData() {
         this.setAnswerCount();
+        
+        let globalData = globalData;
+        let subject = globalData.currentSubject === '科目一' ? 1 : 4 ;
+
+        let randomNumbers = Array
+            .from({
+                length: subjectData.subjectQC
+            })
+            .map((element, index) => index + 1)
+            .sort(() => 0.5 - Math.random());
+        
+        const numbers = randomNumbers.slice(0, 20);
         wx.request({
-            url: 'http://127.0.0.1:8848/api/questions/range',
+            url: 'http://127.0.0.1:8848/api/questions/numbers',
             method: 'POST',
             header: {
                 'content-type': 'application/json'
             },
             data: {
-                subject: app.globalData.currentSubject === '科目一' ? 1 : 4,
-                start: 1,
-                end: 20
+                subject: globalData.currentSubject === '科目一' ? 1 : 4,
+                numbers
             },
             success: (result) => {
                 let downloadQuestions = result.data.data;
-                console.log('initData downloadQuestions:', downloadQuestions);
                 this.dealQuestions(downloadQuestions);
                 this.setData({
                     downloadQuestions,
-                    currentItem: (app.globalData.currentSubject === '科目一' ? app.globalData.latestQuestion1 : app.globalData.latestQuestion4) || 1
+                    currentItem: (globalData.currentSubject === '科目一' ? globalData.latestQuestion1 : globalData.latestQuestion4) || 1,
+                    randomNumbers: randomNumbers.slice(20)
                 })
-             console.log(this.data.currentItem);
             }
         })
     },
     onLoad() {
-        if (app.globalData.afterDelRec) {
-            app.globalData.afterDelRec = false;
+        if (globalData.afterDelRec) {
+            globalData.afterDelRec = false;
         }
 
         this.initData();
     },
-    onUnload() {
-        if (!app.globalData.afterDelRec) {
-            wx.request({
-                url: 'http://127.0.0.1:8848/api/user/latestQuestion', //仅为示例，并非真实的接口地址
-                method: 'POST',
-                header: {
-                    'content-type': 'application/json' // 默认值
-                },
-                data: {
-                    subject: app.globalData.currentSubject === '科目一' ? 1 : 4,
-                    latestQuestion: this.data.currentItem
-                },
-                success: (result) => {
-                    // console.log(result);
-                }
-            })  
-            
-            if (app.globalData.currentSubject === '科目一') {
-                app.globalData.latestQuestion1 = this.data.currentItem;
-            } else {
-                app.globalData.latestQuestion4 = this.data.currentItem;
-            }
-        }
-    }
+    onUnload() {}
 })

@@ -1,4 +1,6 @@
 let app = getApp();
+let globalData = app.globalData;
+let subjectData = globalData.currentSubject === 1 ? globalData.subject1data : globalData.subject4data; 
 
 Component({
     properties: {
@@ -38,37 +40,30 @@ Component({
         }]
     },
     methods: {
-        /**
-         * TODO: 科目四下选题界面选项样式不生效
-         */
         setOptions() {
-            let rightNumbers;
-            let failedNumbers;
-            let globalData = app.globalData;
-            if (globalData.currentSubject === '科目一') {
-                rightNumbers = new Set(globalData.subject1right.map(element => element.number))
-                failedNumbers = new Set(globalData.subject1failed.map(element => element.number))
-            } else if (globalData.currentSubject === '科目四') {
-                rightNumbers = new Set(globalData.subject4right.map(element => element.number))
-                failedNumbers = new Set(globalData.subject4failed.map(element => element.number))
-            }
+            let rightIndexes;
+            let failedIndexes;
+            let options = Array
+                .from({
+                    length: subjectData.subjectQC
+                })
+                .map((option, index) => {
+                    return {
+                        num: index + 1,
+                        status: 0
+                    };
+                });
 
-            let options = Array.from({
-                length: globalData.currentSubject === '科目一' ? globalData.subject1QC : globalData.subject4QC
-            });
-            options = options.map((element, index) => {
-                let option = {
-                    num: index + 1,
-                    status: 0
-                };
-                if (rightNumbers.has(index + 1)) {
+            rightIndexes = new Set(subjectData.rightQuestions.map((ele, index) => index));
+            failedIndexes = new Set(subjectData.failedQuestions.map((ele, index) => index));
+
+            options.forEach((option, index) => {
+                if (rightIndexes.has(index)) {
                     option.status = 1;
-                } else if (failedNumbers.has(index + 1)) {
+                } else if (failedIndexes.has(index)) {
                     option.status = 2;
                 }
-                return option;
             })
-
 
             this.setData({
                 options
@@ -91,26 +86,19 @@ Component({
             })
         },
         handleDeleteRecording() {
-            let globalData = app.globalData;
             wx.request({
                 url: 'http://127.0.0.1:8848/api/user/questionDelete',
                 method: 'POST',
                 data: {
                     openID: globalData.openID,
-                    subject: globalData.currentSubject === '科目一' ? 1 : 4,
+                    subject: subjectData.subject,
                     operation: 'delete question recording',
                 }
             });
 
-            if (globalData.currentSubject === '科目一') {
-                globalData.subject1right = [];
-                globalData.subject1failed = [];
-                app.globalData.latestQuestion1 = 1;
-            } else {
-                globalData.subject4right = [];
-                globalData.subject4failed = [];
-                app.globalData.latestQuestion4 = 1;
-            }
+            subjectData.rightQuestions = [];
+            subjectData.failedQuestions = [];
+            subjectData.latestDoneQuestion = 1;
 
             globalData.afterDelRec = true;
             wx.redirectTo({
