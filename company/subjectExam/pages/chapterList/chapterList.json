@@ -1,7 +1,0 @@
-{
-    "navigationBarTitleText": "俏苗学车",
-    "usingComponents": {
-      "text-icon": "/components/textIcon/textIcon",
-      "my-tab-bar": "/components/myTabBar/myTabBar"
-    }
-  }

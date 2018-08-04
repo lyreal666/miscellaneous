@@ -1,8 +1,0 @@
-<view class="container">
-    <block wx:for="{{ tabs }}" wx:key="{{ index }}">
-        <view class="tab-item" data-index="{{ index }}" bindtap="toggleTab" style="color: {{ colors[index] }}">
-            <image class="tab-image" src="{{ item.imgSrc}}" mode="scaleToFill"></image>
-            <text class="tab-text" wx:if=" {{ hasText }}" style="{{ colors[index]}}">{{ item.tabText }}</text>
-        </view>
-    </block>
-</view>

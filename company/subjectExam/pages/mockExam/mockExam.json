@@ -1,7 +1,0 @@
-{
-    "navigationBarTitleText": "俏苗学车",
-    "usingComponents": {
-        "question": "/components/question/question",
-        "float-top-panel": "/components/floatTopPanel/floatTopPanel"
-    }
-  }

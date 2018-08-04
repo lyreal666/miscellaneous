@@ -1,0 +1,54 @@
+{
+    "editor.fontFamily": "'Fira Code', Consolas,  'Courier New', monospace",
+    "fileheader.Author": "ytj",
+    "fileheader.LastModifiedBy": "ytj",
+    "terminal.integrated.fontFamily": "monospace",
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 200,
+    "window.zoomLevel": 0,
+    "extensions.ignoreRecommendations": false,
+    "git.ignoreMissingGitWarning": true,
+    "workbench.colorTheme": "Monokai",
+    "editor.fontSize": 18,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "workbench.activityBar.visible": false,
+    "emmet.includeLanguages": {
+        "wxml": "html"
+    },
+    "minapp-vscode.disableAutoConfig": true,
+    "materialTheme.fixIconsRunning": false,
+    "workbench.iconTheme": "vscode-icons",
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    "terminal.integrated.shell.windows": "F:\\Program Files\\Git\\bin\\bash.exe",
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "editor.renderIndentGuides": false,
+    "cSpell.userWords": [
+        "swiper"
+    ],
+    "files.associations": {
+        "*.wxss": "css",
+        "*.wpy": "vue"
+    },
+    "workbench.statusBar.visible": true,
+    "editor.detectIndentation": false,
+    "window.menuBarVisibility": "toggle",
+    "sync.gist": "e4a50e822da1befc5c7a496cad570c39",
+    "sync.host": "",
+    "sync.pathPrefix": "",
+    "sync.quietSync": false,
+    "sync.askGistName": false,
+    "sync.removeExtensions": true,
+    "sync.syncExtensions": true,
+    "sync.autoDownload": false,
+    "sync.autoUpload": false,
+    "sync.lastUpload": "2018-08-03T14:48:07.422Z",
+    "sync.lastDownload": "",
+    "sync.forceDownload": false,
+}
