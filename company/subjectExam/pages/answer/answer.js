@@ -2,9 +2,12 @@
  * @Author: ytj
  * @Date: 2018-07-12 09:12:47
  * @Last Modified by: ytj
- * @Last Modified time: 2018-08-03 12:44:15
+ * @Last Modified time: 2018-08-03 23:03:58
  */
 
+/**
+ * FIXME: 考虑给questions表加一个index字段，
+ */
 let app = getApp();
 let globalData = app.globalData;
 let subjectData = globalData.currentSubject === 1 ? globalData.subject1data : globalData.subject4data; 
@@ -118,8 +121,8 @@ Page({
                     },
                     data: {
                         subject: subjectData.subject,
-                        start: startIndex,
-                        end: endIndex
+                        start: downloadQuestions.length,
+                        end: 1
                     },
                     success: (result) => {
                         let downloadQuestions = result.data.data;
